@@ -2,15 +2,31 @@
 
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 
-export default function Hero() {
+export default function Hero(id: { id: string }) {
   return (
-    <section className="w-full min-h-screen  relative">
+    <motion.section
+      className="w-full min-h-screen relative"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.7 }}
+    >
       <div className="container mx-auto px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-0 min-h-[80vh] items-center relative">
-          {/* Left Side - Image/Badge */}
-          <div className="flex items-center justify-center lg:justify-end lg:pr-16 relative">
-            <div className="relative w-[300px] h-[500px] lg:w-[350px] lg:h-[550px] rounded-[150px] overflow-hidden shadow-2xl">
+          {/* Left Side - Image */}
+          <motion.div
+            className="flex items-center justify-center lg:justify-end lg:pr-16 relative"
+            initial={{ x: -80, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <motion.div
+              className="relative w-[300px] h-[500px] lg:w-[350px] lg:h-[550px] rounded-[150px] overflow-hidden shadow-2xl"
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            >
               <Image
                 src="/photos/rifki-profile.jpg"
                 alt="Profile"
@@ -18,51 +34,76 @@ export default function Hero() {
                 className="object-cover rounded-[150px]"
                 priority
               />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Vertical divider line - taller */}
-          <div className="hidden lg:block absolute left-1/2 top-[-5%] bottom-[-5%] w-px bg-white/20 -translate-x-1/2 z-10" />
+          <motion.div
+            className="hidden lg:block absolute left-1/2 top-[-5%] bottom-[-5%] w-px bg-white/20 -translate-x-1/2 z-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          />
 
           {/* Right Side - Content */}
-          <div className="flex flex-col justify-center lg:pl-16 space-y-8">
+          <motion.div
+            className="flex flex-col justify-center lg:pl-16 space-y-8"
+            initial={{ x: 80, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          >
             {/* Top tagline */}
-            <p className="text-[#7ec47e] text-sm lg:text-base tracking-wide">
-              Hi, I'm Rifki — Backend & DevOps Engineer
-            </p>
+            <motion.p
+              className="text-[#7ec47e] text-sm lg:text-base tracking-wide"
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+            >
+              Backend & DevOps Engineer
+            </motion.p>
 
             {/* Main heading */}
-            <h1 className="text-6xl lg:text-7xl xl:text-8xl font-light text-white leading-[0.95] tracking-tight">
-              Building scalable
-              <br />
-              & reliable systems
-            </h1>
+            <motion.h1
+              className="text-6xl lg:text-7xl xl:text-8xl font-light text-white leading-[0.95] tracking-tight"
+              initial={{ y: 40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              Delivering scalable,<br />reliable systems
+            </motion.h1>
 
             {/* Bottom content */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8">
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
               {/* Left description */}
-              <div>
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.7, delay: 1 }}
+              >
                 <p className="text-white text-base lg:text-lg leading-relaxed">
-                  I specialize in architecting robust backends,
-                  <br />
-                  automating cloud infrastructure, and
-                  <br />
-                  delivering high-performance web solutions.
+                  Cloud-native backend specialist.<br />Automation, APIs, CI/CD.
                 </p>
-              </div>
+              </motion.div>
 
               {/* Right description */}
-              <div>
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.7, delay: 1.2 }}
+              >
                 <p className="text-gray-400 text-sm lg:text-base leading-relaxed">
-                  From APIs to CI/CD, I turn ideas into production-ready apps.
-                  <br />
-                  Let's build something impactful together.
+                  Let’s build robust, efficient solutions together.
                 </p>
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
