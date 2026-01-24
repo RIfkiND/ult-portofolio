@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
-import { Libre_Baskerville } from "next/font/google";
+import { Prata, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/provider/theme-provider"
 
-const libreBaskervilleSerif = Libre_Baskerville({
-  variable: "--font-libre-baskerville",
+const prataSerif = Prata({
+  variable: "--font-prata",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400"],
+});
+
+const interSans = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -20,9 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning  className="scroll-smooth" >
+    <html lang="en" suppressHydrationWarning   >
       <body
-        className={`${libreBaskervilleSerif.variable} antialiased`}
+        className={`${prataSerif.variable} ${interSans.variable} antialiased`}
       >
           <ThemeProvider
             attribute="class"

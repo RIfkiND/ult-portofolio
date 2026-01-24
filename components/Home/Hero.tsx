@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Hero(id: { id: string }) {
   return (
     <motion.section
-      className="w-full min-h-screen relative"
+      className="w-full min-h-screen relative font-prata"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
@@ -16,7 +16,7 @@ export default function Hero(id: { id: string }) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-0 min-h-[80vh] items-center relative">
           {/* Left Side - Image */}
           <motion.div
-            className="flex items-center justify-center lg:justify-end lg:pr-16 relative"
+            className="flex flex-col items-center justify-center lg:justify-end lg:pr-16 relative"
             initial={{ x: -80, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -35,6 +35,24 @@ export default function Hero(id: { id: string }) {
                 priority
               />
             </motion.div>
+            {/* Social links as buttons */}
+            <div className="flex gap-4 mt-6">
+              <a href="https://github.com/your-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <button className="rounded-full bg-neutral-900/80 hover:bg-neutral-800 border border-white/10 p-2 transition-colors">
+                  <Github className="w-7 h-7 text-white/80" />
+                </button>
+              </a>
+              <a href="https://linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <button className="rounded-full bg-neutral-900/80 hover:bg-neutral-800 border border-white/10 p-2 transition-colors">
+                  <Linkedin className="w-7 h-7 text-white/80" />
+                </button>
+              </a>
+              <a href="mailto:your@email.com" aria-label="Email">
+                <button className="rounded-full bg-neutral-900/80 hover:bg-neutral-800 border border-white/10 p-2 transition-colors">
+                  <Mail className="w-7 h-7 text-white/80" />
+                </button>
+              </a>
+            </div>
           </motion.div>
 
           {/* Vertical divider line - taller */}
@@ -64,7 +82,7 @@ export default function Hero(id: { id: string }) {
 
             {/* Main heading */}
             <motion.h1
-              className="text-6xl lg:text-7xl xl:text-8xl font-light text-white leading-[0.95] tracking-tight"
+              className="text-6xl lg:text-7xl xl:text-8xl font-normal text-white leading-[0.95] tracking-tight"
               initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}

@@ -1,35 +1,56 @@
 "use client";
 
-import { TerminalSquare, Database, Cloud, Server, Github, GitBranch, Zap } from "lucide-react";
-import { SiDocker, SiGo } from "react-icons/si"; // Import Docker and Go icons from react-icons
+import { SiJavascript, SiPhp, SiGo, SiDocker, SiLinux } from "react-icons/si";
 
-const techIcons = [
-  { icon: <SiGo className="w-12 h-12 text-blue-400" />, name: "Golang" },
-  { icon: <TerminalSquare className="w-12 h-12 text-yellow-400" />, name: "Node.js" },
-  { icon: <Database className="w-12 h-12 text-green-400" />, name: "PostgreSQL" },
-  { icon: <Cloud className="w-12 h-12 text-cyan-400" />, name: "AWS" },
-  { icon: <Server className="w-12 h-12 text-purple-400" />, name: "Linux" },
-  { icon: <SiDocker className="w-12 h-12 text-blue-500" />, name: "Docker" },
-  { icon: <Github className="w-12 h-12 text-white" />, name: "GitHub" },
-  { icon: <GitBranch className="w-12 h-12 text-pink-400" />, name: "Git" },
-  { icon: <Zap className="w-12 h-12 text-emerald-400" />, name: "CI/CD" },
+const logos = [
+  { icon: SiJavascript, name: "JavaScript" },
+  { icon: SiPhp, name: "PHP" },
+  { icon: SiGo, name: "Go" },
+  { icon: SiDocker, name: "Docker" },
+  { icon: SiLinux, name: "Linux" },
 ];
 
-export default function SkillSection() {
+export default function SkillSection(id : { id: string }) {
   return (
-    <section className="relative w-full py-16  flex justify-center items-center">
-      {/* Gradient overlay at bottom left */}
-      <div className="pointer-events-none absolute right-0 bottom-0 w-1/2 h-1/2 z-0">
-        <div className="w-full h-full bg-gradient-to-tr from-green-400/30 via-transparent to-transparent rounded-full blur-2xl" />
-      </div>
-      {/* Tech icons row */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto rounded-[100px] bg-black/70 border border-white/10 flex flex-row items-center justify-between px-10 py-10 backdrop-blur-md">
-        {techIcons.map((tech) => (
-          <div key={tech.name} className="flex flex-col items-center justify-center h-16 w-24">
-            {tech.icon}
-            <span className="mt-2 text-xs text-gray-400 font-medium">{tech.name}</span>
+    <section className="w-full pt-24 sm:pt-32 px-2 sm:px-4 relative">
+      {/* Radial gradient at bottom right */}
+      <div 
+        className="absolute bottom-0 right-0 w-[180px] h-[180px] sm:w-[300px] sm:h-[300px] md:w-[500px] md:h-[500px] lg:w-[650px] lg:h-[700px] pointer-events-none "
+        style={{
+          background: 'radial-gradient(circle at bottom right, rgba(16, 50, 40, 0.5) 0%, transparent 60%)',
+        }}
+      />
+      <div className="mx-auto max-w-md sm:max-w-xl md:max-w-3xl lg:max-w-5xl">
+        <div className="relative rounded-full sm:rounded-full border border-white/[0.08] bg-neutral-950 p-3 sm:p-6 md:p-10 overflow-hidden">
+          {/* Subtle top gradient border effect */}
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+          <div className="relative flex flex-wrap items-center justify-center gap-1.5 sm:gap-6 md:gap-10 lg:gap-16">
+            {/* Mobile: only show JavaScript, Go, PHP */}
+            <div className="flex sm:hidden w-full items-center justify-center gap-1.5">
+              {[logos[0], logos[2], logos[1]].map((logo, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-0.5 text-white/60 hover:text-white/80 transition-colors duration-300 min-w-[48px] justify-center"
+                >
+                  <logo.icon className="h-4 w-4" />
+                  <span className="text-xs font-medium whitespace-nowrap">{logo.name}</span>
+                </div>
+              ))}
+            </div>
+            {/* Desktop: show all */}
+            <div className="hidden sm:flex flex-wrap items-center justify-center gap-6 md:gap-10 lg:gap-16 w-full">
+              {logos.map((logo, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-2 text-white/60 hover:text-white/80 transition-colors duration-300 min-w-[100px] md:min-w-[120px] justify-center"
+                >
+                  <logo.icon className="h-7 w-7 md:h-8 md:w-8 lg:h-9 lg:w-9" />
+                  <span className="text-base md:text-lg font-medium whitespace-nowrap">{logo.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );
