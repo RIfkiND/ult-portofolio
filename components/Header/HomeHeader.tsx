@@ -45,7 +45,7 @@ export default function HomeHeader() {
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-2 bg-neutral-950 border-white/10 rounded-md p-2 border border-[#1c1c1c]">
+          <div className="hidden md:flex items-center gap-2  border-white/10 rounded-md p-2 border border-[#1c1c1c] backdrop-blur-md">
             <Link
               href="/about"
               className="text-white hover:text-white transition-colors text-sm uppercase tracking-wider font-normal rounded-md px-5 py-2.5 bg-neutral-800 hover:bg-zinc-800/50"

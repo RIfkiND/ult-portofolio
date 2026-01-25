@@ -106,6 +106,18 @@ export default function Hero(id: { id: string }) {
                 <p className="text-white text-base lg:text-lg leading-relaxed">
                   Cloud-native backend specialist.<br />Automation, APIs, CI/CD.
                 </p>
+                <motion.a
+                  href="/cv.pdf"
+                  download
+                  whileHover={{ scale: 1.06 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-flex items-center gap-2 mt-5 px-5 py-2.5 rounded-lg bg-[#7ec47e] text-black font-semibold shadow-md hover:bg-[#6bb06b] transition-colors focus:outline-none focus:ring-2 focus:ring-[#7ec47e]/60 focus:ring-offset-2"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.2} stroke="currentColor" className="w-5 h-5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m0 0l-5-5m5 5l5-5" />
+                  </svg>
+                  Download CV
+                </motion.a>
               </motion.div>
 
               {/* Right description */}
