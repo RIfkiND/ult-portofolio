@@ -3,16 +3,15 @@ import { FaInstagram, FaBehance, FaLinkedinIn } from "react-icons/fa"
 
 export default function Footer() {
   const navRows = [
-    { left: { label: "Branding", href: "/branding" }, right: { label: "Réalisations", href: "/realisations" } },
-    { left: { label: "Site web", href: "/site-web" }, right: { label: "Ressources", href: "/ressources" } },
-    { left: { label: "Campagne", href: "/campagne" }, right: { label: "Contact", href: "/contact" } },
-  ]
+    { left: { label: "About", href: "/about" }, right: { label: "Projects", href: "/project" } },
+    { left: { label: "Experience", href: "/experience" }, right: { label: "Contact", href: "mailto:rifkinauvaldzaki08@gmail.com" } },
+  ];
 
   const socialLinks = [
+    { icon: FaLinkedinIn, href: "https://www.linkedin.com/in/rifki-nd", label: "LinkedIn" },
     { icon: FaInstagram, href: "https://instagram.com", label: "Instagram" },
-    { icon: FaBehance, href: "https://behance.net", label: "Behance" },
-    { icon: FaLinkedinIn, href: "https://linkedin.com", label: "LinkedIn" },
-  ]
+    { icon: FaBehance, href: "https://github.com/RIfkiND", label: "GitHub" },
+  ];
 
   return (
     <section className="bg-white w-full">
@@ -24,29 +23,14 @@ export default function Footer() {
             <div className="flex flex-col gap-8 lg:max-w-xs">
               {/* Logo */}
               <div className="flex items-center gap-3">
-                {/* Stylized 13g Logo */}
-                <svg
-                  width="52"
-                  height="28"
-                  viewBox="0 0 52 28"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="text-white"
-                >
-                  {/* "1" - dot and stem */}
-                  <circle cx="6" cy="5" r="5" fill="currentColor" />
-                  <rect x="3" y="10" width="6" height="16" rx="3" fill="currentColor" />
-                  {/* "0" - circle */}
-                  <circle cx="24" cy="14" r="9" stroke="currentColor" strokeWidth="5" />
-                  {/* "0" - second circle */}
-                  <circle cx="44" cy="14" r="9" stroke="currentColor" strokeWidth="5" />
-                </svg>
+                {/* Text Logo for Rifki */}
+                <span className="text-white text-3xl font-extrabold tracking-tight select-none font-serif">Rifki</span>
                 <div className="h-7 w-px bg-white/40 mx-1" />
                 <div className="flex items-center gap-1">
                   <span className="text-white text-sm font-medium leading-tight">
-                    Treize
+                    ND
                     <br />
-                    grammes
+                    
                   </span>
                   <span className="text-white/50 text-[10px] ml-1 self-start mt-0.5">®</span>
                 </div>
@@ -54,11 +38,7 @@ export default function Footer() {
 
               {/* Tagline */}
               <h2 className="text-[1.75rem] md:text-[2rem] text-[#a8a8a8] font-serif italic leading-[1.2] tracking-tight">
-                Esprits créatifs
-                <br />
-                pour marques
-                <br />
-                créatives
+                Contact me here.
               </h2>
             </div>
 
@@ -111,10 +91,10 @@ export default function Footer() {
         {/* Bottom Legal Link */}
         <div className="text-center mt-8">
           <Link
-            href="/mentions-legales"
+            href="/privacy-policy"
             className="text-[#6a6a6a] hover:text-[#8a8a8a] transition-colors text-sm"
           >
-            Mentions légales
+            Privacy Policy
           </Link>
         </div>
       </footer>

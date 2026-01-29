@@ -2,13 +2,19 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-const skills = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"]
+const skills = [
+  "Go",
+  "PHP",
+  "Docker",
+  "Linux",
+  "CI/CD"
+]
 
 const categories = [
-  { name: "Web Apps", color: "bg-green-400", height: 280 },
-  { name: "UI/UX", color: "bg-yellow-400", height: 240 },
-  { name: "Mobile", color: "bg-blue-500", height: 200 },
-  { name: "Open Source", color: "bg-pink-400", height: 160 },
+  { name: "Backend ", color: "bg-green-400", height: 280 },
+  { name: "Databases", color: "bg-blue-500", height: 240 },
+  { name: "Infrastructure", color: "bg-yellow-400", height: 200 },
+  { name: "Automation", color: "bg-pink-400", height: 160 },
 ]
 export default function LearnSection() {
   return (
@@ -32,20 +38,18 @@ export default function LearnSection() {
             transition={{ duration: 0.6 }}
             className="space-y-8"
           >
+
             <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight text-balance">
-              <span className="font-bold text-white">Creative work</span>{" "}
-              <span className="font-normal text-gray-400">that drives results</span>
+              <span className="font-bold text-white">Backend Specialist</span>
             </h2>
 
             <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
-              I specialize in building modern web applications and digital experiences. With a focus
-              on clean code, intuitive design, and performance, I help bring ideas to life through
-              thoughtful development and creative problem-solving.
+              I focus on building scalable backend systems, designing robust APIs, and optimizing databases and infrastructure for reliability and performance. My expertise is in server-side development, distributed systems, and backend architecture.
             </p>
 
             <div className="space-y-4 pt-4">
               <p className="text-sm text-gray-500 uppercase tracking-wider font-medium">
-                My core skills:
+                Core Backend Skills:
               </p>
               <div className="flex flex-wrap gap-3">
                 {skills.map((skill, index) => (

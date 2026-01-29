@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Linkedin, Mail, Instagram, Github } from "lucide-react";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useState,useEffect } from "react";
 import {
   MobileNav,
@@ -65,33 +66,65 @@ export default function HomeHeader() {
               Experience
             </Link>
             <div className="h-6 w-px bg-white/10 mx-4" />
-            <motion.div
-              onHoverStart={() => setIsHovered(true)}
-              onHoverEnd={() => setIsHovered(false)}
-              className="relative cursor-pointer rounded-full overflow-hidden mr-1"
-              style={{ width: '180px', height: '50px' }}
-            >
-              <motion.div
-                className="absolute inset-0 rounded-full"
-                animate={{ backgroundColor: isHovered ? '#8ddd8d' : '#171717' }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
-              />
-              <motion.span
-                className="absolute top-1/2 -translate-y-1/2 uppercase text-sm font-normal tracking-wider z-10"
-                animate={{ x: isHovered ? 18 : 65, color: isHovered ? '#1a1a1a' : '#fff' }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-              >
-                Contact
-              </motion.span>
-              <motion.div
-                className="absolute top-1/2 -translate-y-1/2 rounded-full flex items-center justify-center z-10"
-                style={{ width: '42px', height: '42px' }}
-                animate={{ x: isHovered ? 130 : 8, backgroundColor: isHovered ? '#1a1a1a' : '#8ddd8d' }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-              >
-                <ArrowRight className="h-5 w-5" strokeWidth={2.5} style={{ color: isHovered ? '#fff' : '#1a1a1a' }} />
-              </motion.div>
-            </motion.div>
+            <Dialog>
+              <DialogTrigger asChild>
+                <motion.div
+                  onHoverStart={() => setIsHovered(true)}
+                  onHoverEnd={() => setIsHovered(false)}
+                  className="relative cursor-pointer rounded-full overflow-hidden mr-1"
+                  style={{ width: '180px', height: '50px' }}
+                  tabIndex={0}
+                  role="button"
+                >
+                  <motion.div
+                    className="absolute inset-0 rounded-full"
+                    animate={{ backgroundColor: isHovered ? '#8ddd8d' : '#171717' }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                  />
+                  <motion.span
+                    className="absolute top-1/2 -translate-y-1/2 uppercase text-sm font-normal tracking-wider z-10"
+                    animate={{ x: isHovered ? 18 : 65, color: isHovered ? '#1a1a1a' : '#fff' }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                  >
+                    Contact
+                  </motion.span>
+                  <motion.div
+                    className="absolute top-1/2 -translate-y-1/2 rounded-full flex items-center justify-center z-10"
+                    style={{ width: '42px', height: '42px' }}
+                    animate={{ x: isHovered ? 130 : 8, backgroundColor: isHovered ? '#1a1a1a' : '#8ddd8d' }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                  >
+                    <ArrowRight className="h-5 w-5" strokeWidth={2.5} style={{ color: isHovered ? '#fff' : '#1a1a1a' }} />
+                  </motion.div>
+                </motion.div>
+              </DialogTrigger>
+              <DialogContent className="bg-zinc-900/70 backdrop-blur-lg rounded-2xl shadow-xl p-8 w-[90vw] max-w-md flex flex-col items-center border border-white/10">
+               
+                <div className="flex flex-row gap-6 w-full justify-center mt-2">
+                  <a
+                    href="https://www.linkedin.com/in/rifki-nd" target="_blank" rel="noopener noreferrer"
+                    className="rounded-full bg-zinc-800 hover:bg-emerald-400/20 border border-white/10 p-4 transition-colors flex items-center justify-center"
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin className="w-7 h-7 text-emerald-400" />
+                  </a>
+                  <a
+                    href="mailto:rifkinauvaldzaki08@gmail.com"
+                    className="rounded-full bg-zinc-800 hover:bg-emerald-400/20 border border-white/10 p-4 transition-colors flex items-center justify-center"
+                    aria-label="Email"
+                  >
+                    <Mail className="w-7 h-7 text-emerald-400" />
+                  </a>
+                  <a
+                    href="https://github.com/RIfkiND" target="_blank" rel="noopener noreferrer"
+                    className="rounded-full bg-zinc-800 hover:bg-emerald-400/20 border border-white/10 p-4 transition-colors flex items-center justify-center"
+                    aria-label="GitHub"
+                  >
+                    <Github className="w-7 h-7 text-emerald-400" />
+                  </a>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
           {/* Mobile nav - hamburger at far right */}
           <div className="md:hidden flex items-center justify-end flex-1 relative z-50">

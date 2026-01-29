@@ -37,17 +37,17 @@ export default function Hero(id: { id: string }) {
             </motion.div>
             {/* Social links as buttons */}
             <div className="flex gap-4 mt-6">
-              <a href="https://github.com/your-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <a href="https://github.com/RIfkiND" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                 <button className="rounded-full bg-neutral-900/80 hover:bg-neutral-800 border border-white/10 p-2 transition-colors">
                   <Github className="w-7 h-7 text-white/80" />
                 </button>
               </a>
-              <a href="https://linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/rifki-nd" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <button className="rounded-full bg-neutral-900/80 hover:bg-neutral-800 border border-white/10 p-2 transition-colors">
                   <Linkedin className="w-7 h-7 text-white/80" />
                 </button>
               </a>
-              <a href="mailto:your@email.com" aria-label="Email">
+              <a href="mailto:rifkinauvaldzaki08@gmail.com" aria-label="Email">
                 <button className="rounded-full bg-neutral-900/80 hover:bg-neutral-800 border border-white/10 p-2 transition-colors">
                   <Mail className="w-7 h-7 text-white/80" />
                 </button>
