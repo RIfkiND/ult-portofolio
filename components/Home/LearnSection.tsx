@@ -11,14 +11,14 @@ const skills = [
 ]
 
 const categories = [
-  { name: "Backend ", color: "bg-green-400", height: 280 },
-  { name: "Databases", color: "bg-blue-500", height: 240 },
-  { name: "Infrastructure", color: "bg-yellow-400", height: 200 },
-  { name: "Automation", color: "bg-pink-400", height: 160 },
+  {  color: "bg-green-400", height: 280 },
+  { color: "bg-blue-500", height: 240 },
+  {  color: "bg-yellow-400", height: 200 },
+  {  color: "bg-pink-400", height: 160 },
 ]
-export default function LearnSection() {
+export default function LearnSection(id : { id: string }) {
   return (
-    <section className="w-full pt-24 sm:pt-32 px-2 sm:px-4 relative z-0 min-h-[700px] flex flex-col justify-center ">
+    <section className="w-full pt-20 sm:pt-32 px-2 sm:px-4 relative z-0 min-h-[700px] flex flex-col justify-center ">
       {/* Top left: Radial gradient background */}
       <div
         className="absolute top-0 left-0 w-[180px] h-[180px] sm:w-[300px] sm:h-[300px] md:w-[500px] md:h-[500px] lg:w-[650px] lg:h-[650px] pointer-events-none z-0"
@@ -72,7 +72,7 @@ export default function LearnSection() {
             <div className="flex items-end gap-4 md:gap-6">
               {categories.map((category, index) => (
                 <motion.div
-                  key={category.name}
+                  key={index}
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.15 }}
@@ -96,15 +96,7 @@ export default function LearnSection() {
                     </motion.div>
                   </motion.div>
 
-                  {/* Category Label */}
-                  <motion.span
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
-                    className="text-white text-sm md:text-base font-medium text-center max-w-20 md:max-w-24"
-                  >
-                    {category.name}
-                  </motion.span>
+                  {/* Category Label removed, pill bar only */}
                 </motion.div>
               ))}
             </div>

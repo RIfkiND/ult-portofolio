@@ -55,9 +55,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
     <motion.div
       animate={{
         backdropFilter: visible ? "blur(10px)" : "none",
-        boxShadow: visible
-          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-          : "none",
+        boxShadow: "none",
         width: "100%",
         paddingRight: 0,
         paddingLeft: 0,
@@ -71,7 +69,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       }}
       className={cn(
         "relative z-50 flex w-full flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
+        visible && "bg-neutral-950/80",
         className,
       )}
     >
@@ -110,7 +108,7 @@ export const MobileNavMenu = ({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           className={cn(
-            "absolute top-full left-1/2 -translate-x-1/2 w-64 z-40 flex flex-col items-start justify-start gap-4 rounded-b-lg bg-white px-6 py-8 shadow-[0_4px_24px_rgba(34,_42,_53,_0.10),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950",
+            "absolute top-full left-1/2 -translate-x-1/2 w-64 z-40 flex flex-col items-start justify-start gap-4 rounded-b-lg bg-white px-6 py-8 dark:bg-neutral-950",
             className,
           )}
         >

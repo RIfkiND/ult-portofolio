@@ -26,6 +26,7 @@ export default function HomeHeader() {
 
   return (
     <header className="w-full md:sticky md:top-0 z-40 font-inter">
+      <style>{`html { scroll-behavior: smooth; }`}</style>
       <div className="container mx-auto px-6 lg:px-8 pt-10">
         <nav className="flex items-center justify-between pb-6">
           {/* Logo (always left) */}
@@ -47,24 +48,24 @@ export default function HomeHeader() {
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-2  border-white/10 rounded-md p-2 border border-[#1c1c1c] backdrop-blur-md">
-            <Link
-              href="/about"
+            <a
+              href="#about"
               className="text-white hover:text-white transition-colors text-sm uppercase tracking-wider font-normal rounded-md px-5 py-2.5 bg-neutral-800 hover:bg-zinc-800/50"
             >
               About Me
-            </Link>
-            <Link
-              href="/project"
+            </a>
+            <a
+              href="#project"
               className="text-white hover:text-white transition-colors text-sm uppercase tracking-wider font-normal rounded-md px-5 py-2.5 bg-neutral-800 hover:bg-zinc-800/50"
             >
               Project
-            </Link>
-            <Link
-              href="/experience"
+            </a>
+            <a
+              href="#experience"
               className="text-white hover:text-white transition-colors text-sm uppercase tracking-wider font-normal rounded-md px-5 py-2.5 bg-neutral-800 hover:bg-zinc-800/50"
             >
               Experience
-            </Link>
+            </a>
             <div className="h-6 w-px bg-white/10 mx-4" />
             <Dialog>
               <DialogTrigger asChild>
@@ -99,7 +100,7 @@ export default function HomeHeader() {
                 </motion.div>
               </DialogTrigger>
               <DialogContent className="bg-zinc-900/70 backdrop-blur-lg rounded-2xl shadow-xl p-8 w-[90vw] max-w-md flex flex-col items-center border border-white/10">
-               
+                <DialogTitle className="sr-only">Contact Links</DialogTitle>
                 <div className="flex flex-row gap-6 w-full justify-center mt-2">
                   <a
                     href="https://www.linkedin.com/in/rifki-nd" target="_blank" rel="noopener noreferrer"
@@ -135,15 +136,15 @@ export default function HomeHeader() {
                 </div>
               </MobileNavHeader>
               <MobileNavMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} className="mx-auto left-1/2 -translate-x-1/2 w-64">
-                <Link href="/about" onClick={() => setMenuOpen(false)}>
+                <a href="#about" onClick={() => setMenuOpen(false)}>
                   About Me
-                </Link>
-                <Link href="/project" onClick={() => setMenuOpen(false)}>
+                </a>
+                <a href="#project" onClick={() => setMenuOpen(false)}>
                   Project
-                </Link>
-                <Link href="/experience" onClick={() => setMenuOpen(false)}>
+                </a>
+                <a href="#experience" onClick={() => setMenuOpen(false)}>
                   Experience
-                </Link>
+                </a>
               </MobileNavMenu>
             </MobileNav>
           </div>

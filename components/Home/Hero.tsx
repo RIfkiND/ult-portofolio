@@ -70,6 +70,7 @@ export default function Hero(id: { id: string }) {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
+
             {/* Top tagline */}
             <motion.p
               className="text-[#7ec47e] text-sm lg:text-base tracking-wide"
@@ -78,6 +79,16 @@ export default function Hero(id: { id: string }) {
               transition={{ duration: 0.7, delay: 0.4 }}
             >
               Backend & DevOps Engineer
+            </motion.p>
+
+            {/* Personal introduction */}
+            <motion.p
+              className="text-white/90 text-lg lg:text-xl max-w-2xl"
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.5 }}
+            >
+              Hi👋, I&apos;m Rifki Nauval Dzaki from Telkom University, a passionate software engineer with 1 year of experience specializing in backend and DevOps. I thrive on building scalable systems and automating workflows to deliver real business value.
             </motion.p>
 
             {/* Main heading */}

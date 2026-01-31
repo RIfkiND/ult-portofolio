@@ -10,8 +10,8 @@ export default function HomePage() {
       <Hero id='home' />
       <Skill id='skill' />
      <ExperienceSection id='experience' />
-    <LearnSection/>
-     <ProjectSection/>
+    <LearnSection id= 'learn'/>
+     <ProjectSection id='project'/>
     </div>
   );
 }

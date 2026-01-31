@@ -18,50 +18,35 @@ interface Experience {
 const experiences: Experience[] = [
   {
     id: 1,
-    company: "Stripe, San Francisco, USA",
-    location: "San Francisco, USA",
-    dateRange: "March 2023 - Present",
-    description: "Staff Engineer, Building scalable payment infrastructure and APIs",
-    tags: ["TypeScript", "Go"],
+    company: "PT FAHOVE TEKNOLOGI INDONESIA (Backend Developer Intern)",
+    location: "Indonesia · Remote",
+    dateRange: "Sep 2025 - Dec 2025",
+    description: "As a Backend Developer Intern, created and developed backend services for KARGOO using a microservices architecture. Implemented backend systems with Golang, built real-time WebSocket features, applied event-driven architecture, developed RESTful APIs, and collaborated with frontend/UI/UX teams. Improved system performance, reliability, and data flow.",
+    tags: ["Go", "Microservices", "WebSocket", "REST API"],
   },
   {
     id: 2,
-    company: "Meta, Menlo Park, USA",
-    location: "USA",
-    dateRange: "June 2021 - February 2023",
-    description: "Senior SWE, Led React Native core team - Performance optimization",
-    tags: ["React", "C++"],
+    company: "Hadir Teknologi (Backend Developer Intern)",
+    location: "Ciamis Regency, West Java, Indonesia · Hybrid",
+    dateRange: "Feb 2025 - May 2025",
+    description: "As a Backend Developer Intern for SINDARA, an integrated system for Kemendikdasmen. Developed and maintained backend services for data integration, system interoperability, and secure communication between government applications. Gained experience in backend architecture, API development, database management, and system integration for large-scale digital ecosystems.",
+    tags: ["Backend", "API", "Integration", "Database"],
   },
   {
     id: 3,
-    company: "Vercel, Remote",
-    location: "Remote",
-    dateRange: "January 2020 - May 2021",
-    description: "Software Engineer, Next.js framework and edge runtime development",
-    tags: ["Node.js", "Rust"],
+    company: "Minilemon Technology (Backend Developer Intern)",
+    location: "Surabaya, Indonesia · Remote",
+    dateRange: "Nov 2024 - Feb 2025",
+    description: "As a Backend Developer Intern, worked on backend web development using Python and related technologies.",
+    tags: ["Python", "Backend", "Web Development"],
   },
   {
     id: 4,
-    company: "Google, London, UK",
-    location: "UK",
-    dateRange: "August 2018 - December 2019",
-    description: "",
-    tags: ["Python", "Kubernetes"],
-    images: [
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=200&h=150&fit=crop",
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=200&h=150&fit=crop",
-      "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=200&h=150&fit=crop",
-    ],
-    expandedDescription:
-      "From architecting distributed systems to optimizing cloud infrastructure, each role has deepened my expertise in building reliable, high-performance software at scale.",
-  },
-  {
-    id: 5,
-    company: "Spotify, Stockholm, Sweden",
-    location: "Sweden",
-    dateRange: "July 2016 - July 2018",
-    description: "Backend Engineer, Music recommendation systems and data pipelines",
-    tags: ["Java", "Scala"],
+    company: "BBPPMPV BMTI Kemdikbud (Backend Engineer Intern)",
+    location: "Bandung, Indonesia · On-site",
+    dateRange: "Oct 2024 - Jan 2025",
+    description: "As a Backend Engineer Intern for EDP Kejuruan system. Designed and developed APIs, integrated databases, implemented authentication/authorization, deployed with Docker & Nginx. Led the team, built backend with Laravel, designed database, and deployed the application for real-time usage. Helped BMTI track alumni career progress and training effectiveness.",
+    tags: ["Laravel", "API", "Docker", "Nginx"],
   },
 ]
 
@@ -78,24 +63,24 @@ export default function ExperienceSection(id: { id: string }) {
     degree: 'Bachelor of Software Engineering',
     gpa: '3.66/4',
     years: '2018 - 2022',
-    image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?w=400&h=250&fit=crop',
+    image: '/images/education/telkom.png',
   }
 
   const certificates = [
     {
       name: 'TOEIC Certificate',
       score: 'TOEIC 850',
-      image: 'https://images.unsplash.com/photo-1517520287167-4bbf64a00d66?w=400&h=250&fit=crop',
+      url: '/certificates/toeic.jpeg',
     },
     {
       name: 'TOEFL Certificate',
       score: 'TOEFL 540',
-      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=250&fit=crop',
+      url: '/certificates/toefl.pdf',
     },
     {
       name: 'BNSP Certificate',
       score: '',
-      image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=400&h=250&fit=crop',
+      url: '/certificates/bnsp.pdf',
     },
   ]
 
@@ -150,9 +135,7 @@ export default function ExperienceSection(id: { id: string }) {
             {activeTab === 'experience' ? (
               <>
                 <p className="text-zinc-400 leading-relaxed mb-4">
-                  Over the past 8+ years, I've built scalable systems and APIs at
-                  leading tech companies, collaborating with world-class engineers
-                  to ship products used by millions.
+                  With 1 years of industry experience and a foundation in technology that began in vocational high school, I've built scalable systems and APIs, collaborating with talented engineers to deliver products used by many.
                 </p>
                 <a
                   href="#"
@@ -212,9 +195,6 @@ export default function ExperienceSection(id: { id: string }) {
                               <p className="text-zinc-400 text-sm leading-relaxed flex-1">
                                 {exp.expandedDescription}
                               </p>
-                              <button className="w-10 h-10 rounded-full bg-zinc-100 text-zinc-900 flex items-center justify-center hover:bg-emerald-400 transition-colors shrink-0">
-                                <ArrowRight className="w-5 h-5" />
-                              </button>
                             </div>
                           )}
                         </div>
@@ -223,20 +203,11 @@ export default function ExperienceSection(id: { id: string }) {
                       )}
                     </div>
 
-                    {/* Tags */}
-                    <div className="lg:col-span-3 flex gap-2 justify-start lg:justify-end flex-wrap">
-                      {exp.tags.map((tag, idx) => (
-                        <span
-                          key={idx}
-                          className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                            idx === 0
-                              ? "bg-zinc-100 text-zinc-900"
-                              : "border border-zinc-700 text-zinc-400 hover:border-zinc-500"
-                          }`}
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                    {/* Location (was tags) */}
+                    <div className="lg:col-span-3 flex items-center justify-start lg:justify-end">
+                      <span className="px-4 py-1.5 rounded-full text-sm font-medium bg-zinc-100 text-zinc-900">
+                        {exp.location}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -266,16 +237,16 @@ export default function ExperienceSection(id: { id: string }) {
               <h2 className="text-2xl font-semibold mb-6 text-center">Education</h2>
               <div className="flex flex-col md:flex-row gap-8 items-center md:items-start mb-10">
                 <div className="w-full md:w-1/3 flex-shrink-0 flex justify-center">
-                  <div className="relative w-56 h-36 rounded-lg overflow-hidden bg-zinc-800">
+                  <div className="relative w-24 h-14 rounded-lg overflow-hidden bg-zinc-800">
                     <Image
                       src={education.image}
                       alt="Telkom University"
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 bg-zinc-900/60 backdrop-blur-md rounded-xl p-6 border border-white/10">
                   <h3 className="text-xl font-semibold text-zinc-100 mb-1">{education.university}</h3>
                   <p className="text-zinc-400 mb-1">{education.degree}</p>
                   <p className="text-zinc-400 mb-1">GPA: <span className="text-emerald-400 font-medium">{education.gpa}</span></p>
@@ -285,18 +256,21 @@ export default function ExperienceSection(id: { id: string }) {
               <h2 className="text-2xl font-semibold mb-6 text-center">Certificates</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {certificates.map((cert, idx) => (
-                  <div key={idx} className="bg-zinc-900 rounded-lg shadow p-4 flex flex-col items-center">
-                    <div className="relative w-40 h-28 rounded-md overflow-hidden mb-3 bg-zinc-800">
-                      <Image
-                        src={cert.image}
-                        alt={cert.name}
-                        fill
-                        className="object-cover"
-                      />
+                  <a
+                    key={idx}
+                    href={cert.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-zinc-900/60 backdrop-blur-md rounded-lg shadow p-4 flex flex-col items-center border border-white/10 group hover:bg-zinc-800 transition-colors"
+                  >
+                    <div className="relative w-40 h-28 rounded-md overflow-hidden mb-3 bg-zinc-800 flex items-center justify-center">
+                      <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-zinc-700 group-hover:bg-emerald-400 transition-colors">
+                        <ArrowUpRight className="w-6 h-6 text-white group-hover:text-zinc-900 transition-colors" />
+                      </span>
                     </div>
                     <h4 className="text-lg font-semibold text-zinc-100 mb-1">{cert.name}</h4>
                     {cert.score && <p className="text-emerald-400 font-medium mb-1">{cert.score}</p>}
-                  </div>
+                  </a>
                 ))}
               </div>
             </div>

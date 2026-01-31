@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { FaInstagram, FaBehance, FaLinkedinIn } from "react-icons/fa"
+import { FaInstagram, FaGithub, FaLinkedinIn } from "react-icons/fa"
 
 export default function Footer() {
   const navRows = [
@@ -10,7 +10,7 @@ export default function Footer() {
   const socialLinks = [
     { icon: FaLinkedinIn, href: "https://www.linkedin.com/in/rifki-nd", label: "LinkedIn" },
     { icon: FaInstagram, href: "https://instagram.com", label: "Instagram" },
-    { icon: FaBehance, href: "https://github.com/RIfkiND", label: "GitHub" },
+    { icon: FaGithub, href: "https://github.com/RIfkiND", label: "GitHub" },
   ];
 
   return (

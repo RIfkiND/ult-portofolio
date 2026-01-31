@@ -4,8 +4,8 @@ import PageLoader from '@/components/ui/page-loader';
 import { Suspense } from 'react';
 import Footer from '@/components/Footer/Footer';
 export const metadata: Metadata = {
-  title: 'Portfolio - Ted',
-  description: '27-year-old game software developer from Singapore',
+  title: 'Portfolio - Rifki',
+  description: ' Backend developer from indonesia',
 };
 
 export default function PublicLayout({
