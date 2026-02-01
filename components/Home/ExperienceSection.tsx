@@ -42,10 +42,10 @@ const experiences: Experience[] = [
   },
   {
     id: 4,
-    company: "BBPPMPV BMTI Kemdikbud (Backend Engineer Intern)",
+    company: "BBPPMPV BMTI Kemdikbud (Field Work Practice)",
     location: "Bandung, Indonesia · On-site",
     dateRange: "Oct 2024 - Jan 2025",
-    description: "As a Backend Engineer Intern for EDP Kejuruan system. Designed and developed APIs, integrated databases, implemented authentication/authorization, deployed with Docker & Nginx. Led the team, built backend with Laravel, designed database, and deployed the application for real-time usage. Helped BMTI track alumni career progress and training effectiveness.",
+    description: "Designed and developed RESTful APIs, integrated relational databases, and implemented authentication and authorization mechanisms. Deployed services using Docker and Nginx. Led a small development team and contributed to RTLEDP system as a Field Work Practice (PKL) project for SMKN 1 Ciamis.",
     tags: ["Laravel", "API", "Docker", "Nginx"],
   },
 ]
@@ -280,3 +280,4 @@ export default function ExperienceSection(id: { id: string }) {
     </div>
   )
 }
+
