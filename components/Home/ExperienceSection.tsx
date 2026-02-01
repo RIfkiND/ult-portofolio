@@ -69,7 +69,7 @@ export default function ExperienceSection(id: { id: string }) {
   const certificates = [
     {
       name: 'TOEIC Certificate',
-      score: 'TOEIC 850',
+      score: 'TOEIC 800',
       url: '/certificates/toeic.jpeg',
     },
     {
@@ -280,4 +280,5 @@ export default function ExperienceSection(id: { id: string }) {
     </div>
   )
 }
+
 
