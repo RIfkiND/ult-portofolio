@@ -62,7 +62,7 @@ export default function ExperienceSection(id: { id: string }) {
     university: 'Telkom University',
     degree: 'Bachelor of Software Engineering',
     gpa: '3.66/4',
-    years: '2018 - 2022',
+    years: '2025 - present',
     image: '/images/education/telkom.png',
   }
 
@@ -74,7 +74,7 @@ export default function ExperienceSection(id: { id: string }) {
     },
     {
       name: 'TOEFL Certificate',
-      score: 'TOEFL 540',
+      score: 'TOEFL 520',
       url: '/certificates/toefl.pdf',
     },
     {
@@ -280,5 +280,6 @@ export default function ExperienceSection(id: { id: string }) {
     </div>
   )
 }
+
 
 
