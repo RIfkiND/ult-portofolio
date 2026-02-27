@@ -7,7 +7,8 @@ import { motion } from "framer-motion";
 export default function Hero(id: { id: string }) {
   return (
     <motion.section
-      className="w-full min-h-screen relative font-prata"
+      id={id.id}
+      className="w-full min-h-screen relative font-prata scroll-mt-20"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Prata, Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/provider/theme-provider"
+import { ThemeProvider } from "@/components/provider/theme-provider";
+import { SmoothScrollProvider } from "@/components/provider/smooth-scroll-provider";
 
 const prataSerif = Prata({
   variable: "--font-prata",
@@ -35,7 +36,9 @@ export default function RootLayout({
             defaultTheme="dark"
             disableTransitionOnChange
           >
-            {children}
+            <SmoothScrollProvider>
+              {children}
+            </SmoothScrollProvider>
           </ThemeProvider>
 
       </body>

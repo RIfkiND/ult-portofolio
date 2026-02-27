@@ -12,12 +12,12 @@ const logos = [
 
 export default function SkillSection(id : { id: string }) {
   return (
-    <section className="w-full pt-24 sm:pt-32 px-2 sm:px-4 relative">
+    <section id={id.id} className="w-full pt-24 sm:pt-32 px-2 sm:px-4 relative scroll-mt-20">
       {/* Radial gradient at bottom right */}
       <div 
         className="absolute bottom-0 right-0 w-[180px] h-[180px] sm:w-[300px] sm:h-[300px] md:w-[500px] md:h-[500px] lg:w-[650px] lg:h-[700px] pointer-events-none "
         style={{
-          background: 'radial-gradient(circle at bottom right, rgba(16, 50, 40, 0.5) 0%, transparent 60%)',
+          background: 'radial-gradient(circle at bottom right, rgba(35, 46, 35) 0%, transparent 60%)',
         }}
       />
       <div className="mx-auto max-w-md sm:max-w-xl md:max-w-3xl lg:max-w-5xl">

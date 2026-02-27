@@ -18,13 +18,13 @@ const categories = [
 ]
 export default function LearnSection(id : { id: string }) {
   return (
-    <section className="w-full pt-20 sm:pt-32 px-2 sm:px-4 relative z-0 min-h-[700px] flex flex-col justify-center ">
+    <section id={id.id} className="w-full pt-20 sm:pt-32 px-2 sm:px-4 relative z-0 min-h-[700px] flex flex-col justify-center scroll-mt-20">
       {/* Top left: Radial gradient background */}
       <div
         className="absolute top-0 left-0 w-[180px] h-[180px] sm:w-[300px] sm:h-[300px] md:w-[500px] md:h-[500px] lg:w-[650px] lg:h-[650px] pointer-events-none z-0"
         style={{
           background:
-            "radial-gradient(circle at top left, rgba(16, 50, 40, 0.5) 0%, transparent 60%)",
+            "radial-gradient(circle at top left, rgba(35, 46, 35)0%, transparent 60%)",
         }}
       />
  

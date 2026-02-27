@@ -91,13 +91,13 @@ export default function ExperienceSection(id: { id: string }) {
   const hasMoreExperiences = experiences.length > INITIAL_DISPLAY_COUNT
 
   return (
-    <div className="relative min-h-screen text-zinc-100 py-20 px-6 md:px-12 lg:px-20">
+    <div id={id.id} className="relative min-h-screen text-zinc-100 py-20 px-6 md:px-12 lg:px-20 scroll-mt-20">
          {/* Top right gradient */}
             <div
                 className="absolute top-0 right-0 w-[180px] h-[180px] sm:w-[300px] sm:h-[300px] md:w-[500px] md:h-[500px] lg:w-[650px] lg:h-[650px] pointer-events-none z-0"
                 style={{
                     background:
-                        "radial-gradient(circle at top right, rgba(16, 50, 40, 0.5) 0%, transparent 60%)",
+                        "radial-gradient(circle at top right, rgba(35, 46, 35) 0%, transparent 60%)",
                     transform: "scaleX(1)",
                 }}
             />
@@ -106,7 +106,7 @@ export default function ExperienceSection(id: { id: string }) {
                 className="absolute bottom-0 left-0 w-[180px] h-[180px] sm:w-[300px] sm:h-[300px] md:w-[500px] md:h-[500px] lg:w-[650px] lg:h-[650px] pointer-events-none z-0"
                 style={{
                     background:
-                        "radial-gradient(circle at bottom left, rgba(16, 50, 40, 0.5) 0%, transparent 60%)",
+                        "radial-gradient(circle at bottom left, rgba(35, 46, 35) 0%, transparent 60%)",
                 }}
             />
       <div className="max-w-6xl mx-auto">
@@ -232,49 +232,106 @@ export default function ExperienceSection(id: { id: string }) {
             )}
           </>
         ) : (
-          <div className="border-t border-zinc-800 py-10">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-2xl font-semibold mb-6 text-center">Education</h2>
-              <div className="flex flex-col md:flex-row gap-8 items-center md:items-start mb-10">
-                <div className="w-full md:w-1/3 flex-shrink-0 flex justify-center">
-                  <div className="relative w-24 h-14 rounded-lg overflow-hidden bg-zinc-800">
-                    <Image
-                      src={education.image}
-                      alt="Telkom University"
-                      fill
-                      className="object-contain"
-                    />
+          <>
+            {/* Education Section */}
+            <div className="border-t border-zinc-800 mb-12">
+              <div className="border-b border-zinc-800 py-6 transition-colors hover:bg-zinc-900/50">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
+                  {/* Icon & Category */}
+                  <div className="lg:col-span-4 flex items-start gap-4">
+                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-white flex items-center justify-center border border-white/10 overflow-hidden p-2">
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={education.image}
+                          alt={education.university}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-zinc-100 mb-1">{education.university}</h3>
+                      <p className="text-zinc-500 text-sm">• {education.years}</p>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <div className="lg:col-span-5">
+                    <p className="text-zinc-400 mb-3">{education.degree}</p>
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
+                        <span className="text-zinc-500 text-sm">GPA:</span>
+                        <span className="text-zinc-100 font-semibold">{education.gpa}</span>
+                      </div>
+                      <div className="h-4 w-px bg-zinc-700" />
+                      <p className="text-zinc-400 text-sm">
+                        Pursuing excellence in Software Engineering with focus on backend development and system architecture
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Category Badge */}
+                  <div className="lg:col-span-3 flex items-center justify-start lg:justify-end">
+                    <span className="px-4 py-1.5 rounded-full text-sm font-medium bg-zinc-100 text-zinc-900">
+                      Education
+                    </span>
                   </div>
                 </div>
-                <div className="flex-1 bg-zinc-900/60 backdrop-blur-md rounded-xl p-6 border border-white/10">
-                  <h3 className="text-xl font-semibold text-zinc-100 mb-1">{education.university}</h3>
-                  <p className="text-zinc-400 mb-1">{education.degree}</p>
-                  <p className="text-zinc-400 mb-1">GPA: <span className="text-emerald-400 font-medium">{education.gpa}</span></p>
-                  <p className="text-zinc-400">{education.years}</p>
-                </div>
-              </div>
-              <h2 className="text-2xl font-semibold mb-6 text-center">Certificates</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {certificates.map((cert, idx) => (
-                  <a
-                    key={idx}
-                    href={cert.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-zinc-900/60 backdrop-blur-md rounded-lg shadow p-4 flex flex-col items-center border border-white/10 group hover:bg-zinc-800 transition-colors"
-                  >
-                    <div className="relative w-40 h-28 rounded-md overflow-hidden mb-3 bg-zinc-800 flex items-center justify-center">
-                      <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-zinc-700 group-hover:bg-emerald-400 transition-colors">
-                        <ArrowUpRight className="w-6 h-6 text-white group-hover:text-zinc-900 transition-colors" />
-                      </span>
-                    </div>
-                    <h4 className="text-lg font-semibold text-zinc-100 mb-1">{cert.name}</h4>
-                    {cert.score && <p className="text-emerald-400 font-medium mb-1">{cert.score}</p>}
-                  </a>
-                ))}
               </div>
             </div>
-          </div>
+
+            {/* Certificates Section */}
+            <div className="border-t border-zinc-800">
+              <div className="mb-6 pt-6">
+                <h3 className="text-2xl font-semibold text-white flex items-center gap-3">
+                  
+                  Certifications
+                </h3>
+              </div>
+
+              {certificates.map((cert, idx) => (
+                <a
+                  key={idx}
+                  href={cert.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block border-b border-zinc-800 py-6 transition-colors hover:bg-zinc-900/50 group"
+                >
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+                    {/* Icon & Title */}
+                    <div className="lg:col-span-4 flex items-center gap-4">
+                      <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-purple-400/10 to-pink-400/10 flex items-center justify-center border border-white/10 group-hover:border-emerald-400/30 transition-colors">
+                        <ArrowUpRight className="w-8 h-8 text-zinc-400 group-hover:text-emerald-400 transition-colors" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-zinc-100 group-hover:text-emerald-400 transition-colors">
+                          {cert.name}
+                        </h4>
+                        {cert.score && (
+                          <p className="text-zinc-100 text-sm font-medium mt-1">{cert.score}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Description */}
+                    <div className="lg:col-span-5">
+                      <p className="text-zinc-400">
+                        Professional certification demonstrating expertise and commitment to continuous learning
+                      </p>
+                    </div>
+
+                    {/* Category Badge */}
+                    <div className="lg:col-span-3 flex items-center justify-start lg:justify-end gap-3">
+                      <span className="px-4 py-1.5 rounded-full text-sm font-medium bg-zinc-100 text-zinc-900">
+                        Certificate
+                      </span>
+                      <ArrowRight className="w-5 h-5 text-zinc-600 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </>
         )}
       </div>
     </div>
