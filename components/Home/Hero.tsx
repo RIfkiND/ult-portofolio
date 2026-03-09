@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, Code2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Hero(id: { id: string }) {
@@ -53,6 +53,11 @@ export default function Hero(id: { id: string }) {
                   <Mail className="w-7 h-7 text-white/80" />
                 </button>
               </a>
+              <a href="https://leetcode.com/u/RifkiND/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode">
+                <button className="rounded-full bg-neutral-900/80 hover:bg-neutral-800 border border-white/10 p-2 transition-colors">
+                  <Code2 className="w-7 h-7 text-white/80" />
+                </button>
+              </a>
             </div>
           </motion.div>
 
@@ -89,7 +94,7 @@ export default function Hero(id: { id: string }) {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.5 }}
             >
-              Hi👋, I&apos;m Rifki Nauval Dzaki from Telkom University, a passionate software engineer with 1 year of experience specializing in backend and DevOps. I thrive on building scalable systems and automating workflows to deliver real business value.
+              Hi👋, I&apos;m Rifki Nauval Dzaki from Telkom University, majoring in Software Engineering — a passionate software engineer specializing in backend and DevOps. I thrive on building scalable systems and automating workflows to deliver real business value.
             </motion.p>
 
             {/* Main heading */}

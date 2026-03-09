@@ -1,104 +1,146 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
+import { ArrowUpRight, Github, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  imageUrl: string;
-  techStack: string[];
-  link?: string;
-  github?: string;
-  category: string;
-}
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "SINDARA",
-    description:
-      "SINDARA is an integrated digital platform for Indonesian primary education teachers, offering digital guestbooks, professional consultations, numeracy/literacy modules, and interactive learning resources.",
-    imageUrl: "/projects/sindara.png",
-    techStack: ["SSO", "REST API", "Microservice", "Backend"],
-    link: "https://sindara.gurudikdas.kemendikdasmen.go.id/",
-    category: "Backend"
-  },
-  {
-    id: 2,
-    title: "EDP Kejuruan (RTLBMTI)",
-    description:
-      "EDP Kejuruan is a real-time monitoring and evaluation platform for vocational teacher training, featuring live dashboards, comprehensive reporting, and user management.",
-    imageUrl: "/projects/diklat.png",
-    techStack: ["Backend", "API", "Server", "CI/CD"],
-    link: "https://edp.kejuruan.id/",
-    category: "DevOps"
-  },
-  {
-    id: 3,
-    title: "Portfolio Website",
-    description:
-      "A personal portfolio site showcasing projects, skills, and professional background, with a modern, responsive design and smooth animations.",
-    imageUrl: "",
-    techStack: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
-    link: "/",
-    category: "Frontend"
-  },
-  {
-    id: 4,
-    title: "Hasilbumi E-Commerce",
-    description:
-      "Hasilbumi is an agricultural platform where I handled all backend and DevOps responsibilities, including API development, database optimization, and infrastructure management.",
-    imageUrl: "",
-    techStack: ["Laravel", "Payment Gateway", "React", "Stripe"],
-    link: "https://www.linkedin.com/in/rifki-nd/details/projects/1307333513/multiple-media-viewer/?locale=in_ID&profileId=ACoAAEeVC8oBE5xXklO_HJHfEKRPlrpTvI8oqVI&treasuryMediaId=1727884187244",
-    category: "Full Stack"
-  },
-  {
-    id: 5,
-    title: "Codeout",
-    description:
-      "Codeout is a collaborative coding challenge platform with live code execution, lobbies for competition, and real-time feedback, built for developer skill improvement. Created for Telkom University competition (7th place).",
-    imageUrl: "",
-    techStack: ["SvelteKit", "Supabase", "Piston API", "shadcn/ui"],
-    link: "https://codeout-app.vercel.app/",
-    category: "Full Stack"
-  },
-];
+import { projects } from "@/components/data/ProjectData";
 
 const categories = ["All", "Backend", "DevOps", "Frontend", "Full Stack"];
+
+const featured = projects.slice(0, 3);
 
 export default function ProjectGallery() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [featuredIndex, setFeaturedIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
 
-  const filteredProjects = selectedCategory === "All" 
-    ? projects 
+  const filteredProjects = selectedCategory === "All"
+    ? projects
     : projects.filter(p => p.category === selectedCategory);
 
+  const paginate = (dir: number) => {
+    setDirection(dir);
+    setFeaturedIndex(i => (i + dir + featured.length) % featured.length);
+  };
+
+  const variants = {
+    enter: (d: number) => ({ x: d > 0 ? 60 : -60, opacity: 0 }),
+    center: { x: 0, opacity: 1, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } },
+    exit: (d: number) => ({ x: d > 0 ? -60 : 60, opacity: 0, transition: { duration: 0.25, ease: [0.4, 0, 1, 1] } }),
+  };
+
+  const current = featured[featuredIndex];
+
   return (
-    <section className="min-h-screen bg-zinc-950 text-white py-20 px-6 lg:px-8">
+    <section className="bg-zinc-950 text-white py-20 px-6 lg:px-8">
       <div className="container mx-auto max-w-7xl">
-        {/* Header */}
+
+        {/* Featured Carousel */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-20"
         >
-          <span className="text-emerald-400 text-sm font-medium tracking-wide uppercase">
-            • Portfolio
-          </span>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mt-4 mb-6">
-            All  Projects
-          </h1>
-          <p className="text-zinc-400 text-lg md:text-xl max-w-2xl">
-            A collection of my work spanning backend development, DevOps automation, and full-stack applications.
-          </p>
+          <div className="flex items-center justify-between mb-6">
+            <p className="text-zinc-500 text-xs uppercase tracking-widest font-medium">Featured Projects</p>
+            <div className="flex items-center gap-3">
+              {/* Dot indicators */}
+              <div className="flex gap-1.5">
+                {featured.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => { setDirection(i > featuredIndex ? 1 : -1); setFeaturedIndex(i); }}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      i === featuredIndex ? "w-6 bg-white" : "w-1.5 bg-zinc-700 hover:bg-zinc-500"
+                    }`}
+                  />
+                ))}
+              </div>
+              {/* Arrow buttons */}
+              <button
+                onClick={() => paginate(-1)}
+                className="p-2 rounded-full border border-zinc-700 hover:border-white hover:bg-white/5 transition-all"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => paginate(1)}
+                className="p-2 rounded-full border border-zinc-700 hover:border-white hover:bg-white/5 transition-all"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Slide */}
+          <div className="relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/40">
+            <AnimatePresence custom={direction} mode="wait">
+              <motion.a
+                key={current.id}
+                custom={direction}
+              
+                initial="enter"
+                animate="center"
+                exit="exit"
+                href={current.link ?? "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col md:flex-row w-full"
+              >
+                {/* Image side */}
+                <div className="relative md:w-1/2 aspect-video overflow-hidden bg-zinc-800 shrink-0">
+                  {current.imageUrl ? (
+                    <Image
+                      src={current.imageUrl}
+                      alt={current.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center w-full h-full bg-zinc-900">
+                      <span className="text-8xl font-black text-zinc-800">{current.title.charAt(0)}</span>
+                    </div>
+                  )}
+                </div>
+                {/* Content side */}
+                <div className="flex flex-col justify-center p-8 md:p-12 flex-1">
+                  <span className="px-3 py-1 text-xs font-medium bg-brand/10 text-brand rounded-full border border-brand/20 w-fit mb-5">
+                    {current.category}
+                  </span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight group-hover:text-brand transition-colors">
+                    {current.title}
+                  </h2>
+                  <p className="text-zinc-400 leading-relaxed mb-8 max-w-lg">
+                    {current.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-8">
+                    {current.techStack.map((tech) => (
+                      <span key={tech} className="px-3 py-1 text-xs font-medium bg-white/5 text-zinc-300 rounded-full border border-white/10">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="inline-flex items-center gap-2 text-brand font-medium text-sm group-hover:gap-3 transition-all">
+                    View Project <ArrowUpRight className="w-4 h-4" />
+                  </div>
+                </div>
+              </motion.a>
+            </AnimatePresence>
+          </div>
         </motion.div>
+
+        {/* All Projects heading */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="text-zinc-500 text-xs uppercase tracking-widest font-medium mb-6"
+        >
+          All Projects
+        </motion.p>
 
         {/* Category Filter */}
         <motion.div
@@ -108,9 +150,10 @@ export default function ProjectGallery() {
           className="flex flex-wrap gap-3 mb-12"
         >
           {categories.map((category) => (
-            <button
+            <motion.button
               key={category}
               onClick={() => setSelectedCategory(category)}
+              whileTap={{ scale: 0.95 }}
               className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 selectedCategory === category
                   ? "bg-white text-zinc-950"
@@ -118,110 +161,128 @@ export default function ProjectGallery() {
               }`}
             >
               {category}
-            </button>
+            </motion.button>
           ))}
         </motion.div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              onHoverStart={() => setHoveredId(project.id)}
-              onHoverEnd={() => setHoveredId(null)}
-              className="group relative bg-zinc-900/50 rounded-2xl overflow-hidden border border-zinc-800 hover:border-white/30 transition-all duration-300"
-            >
-              {/* Image Container */}
-              <div className="relative aspect-video overflow-hidden bg-zinc-800">
-                {project.imageUrl ? (
-                  <Image
-                    src={project.imageUrl}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                ) : (
-                  <div className="flex items-center justify-center w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900">
-                    <div className="text-6xl font-bold text-zinc-700">
-                      {project.title.charAt(0)}
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 16 }}
+                transition={{ duration: 0.25, delay: index * 0.04, ease: "easeOut" }}
+                onHoverStart={() => setHoveredId(project.id)}
+                onHoverEnd={() => setHoveredId(null)}
+                className="group relative bg-zinc-900/50 rounded-2xl overflow-hidden border border-zinc-800 hover:border-white/30 transition-colors duration-300"
+              >
+                {/* Image Container */}
+                <div className="relative aspect-video overflow-hidden bg-zinc-800">
+                  {project.imageUrl ? (
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center w-full h-full bg-linear-to-br from-zinc-800 to-zinc-900">
+                      <div className="text-6xl font-bold text-zinc-700">
+                        {project.title.charAt(0)}
+                      </div>
                     </div>
+                  )}
+
+                  {/* Overlay on hover */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: hoveredId === project.id ? 1 : 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center gap-4"
+                  >
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white hover:text-zinc-900 transition-colors"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <ExternalLink className="w-5 h-5" />
+                      </a>
+                    )}
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white hover:text-zinc-900 transition-colors"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Github className="w-5 h-5" />
+                      </a>
+                    )}
+                  </motion.div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="text-xl font-semibold text-white transition-colors">
+                      {project.title}
+                    </h3>
+                    <ArrowUpRight className="w-5 h-5 text-zinc-500 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                   </div>
-                )}
-                
-                {/* Overlay on hover */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: hoveredId === project.id ? 1 : 0 }}
-                  className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center gap-4"
-                >
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white hover:text-zinc-900 transition-colors"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <ExternalLink className="w-5 h-5" />
-                    </a>
-                  )}
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white hover:text-zinc-900 transition-colors"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <Github className="w-5 h-5" />
-                    </a>
-                  )}
-                </motion.div>
-              </div>
 
-              {/* Content */}
-              <div className="p-6">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-xl font-semibold text-white transition-colors">
-                    {project.title}
-                  </h3>
-                  <ArrowUpRight className="w-5 h-5 text-zinc-500 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                  <p className="text-zinc-400 text-sm leading-relaxed mb-4 line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.techStack.slice(0, 3).map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 text-xs font-medium bg-white/10 text-white rounded-full border border-white/20"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.techStack.length > 3 && (
+                      <span className="px-3 py-1 text-xs font-medium text-zinc-500">
+                        +{project.techStack.length - 3}
+                      </span>
+                    )}
+                  </div>
                 </div>
 
-                <p className="text-zinc-400 text-sm leading-relaxed mb-4 line-clamp-3">
-                  {project.description}
-                </p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2">
-                  {project.techStack.slice(0, 3).map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 text-xs font-medium bg-white/10 text-white rounded-full border border-white/20"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.techStack.length > 3 && (
-                    <span className="px-3 py-1 text-xs font-medium text-zinc-500">
-                      +{project.techStack.length - 3}
-                    </span>
-                  )}
+                {/* Category Badge */}
+                <div className="absolute top-4 right-4">
+                  <span className="px-3 py-1 text-xs font-medium bg-zinc-900/90 backdrop-blur-sm text-white rounded-full border border-white/30">
+                    {project.category}
+                  </span>
                 </div>
-              </div>
-
-              {/* Category Badge */}
-              <div className="absolute top-4 right-4">
-                <span className="px-3 py-1 text-xs font-medium bg-zinc-900/90 backdrop-blur-sm text-white rounded-full border border-white/30">
-                  {project.category}
-                </span>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
+
+        {/* Empty State */}
+        <AnimatePresence>
+          {filteredProjects.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="text-center py-20 text-zinc-500"
+            >
+              No projects found in this category.
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Bottom CTA */}
         <motion.div

@@ -1,21 +1,28 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowRight, Linkedin, Mail, Instagram, Github } from "lucide-react";
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { useState,useEffect } from "react";
+import { ArrowRight, Linkedin, Mail, Github } from "lucide-react";
+import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { useState, useEffect } from "react";
 import {
   MobileNav,
   MobileNavHeader,
   MobileNavMenu,
   MobileNavToggle,
 } from "@/components/ui/Mobile Header";
+
 export default function HomeHeader() {
   const [isHovered, setIsHovered] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  // Track scroll position to hide logo
   const [hideLogo, setHideLogo] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  // Prefix hash links with "/" when not on home page
+  const navHref = (hash: string) => (isHome ? hash : `/${hash}`);
+
   useEffect(() => {
     const onScroll = () => {
       setHideLogo(window.scrollY > 40);
@@ -47,24 +54,26 @@ export default function HomeHeader() {
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-2  border-white/10 rounded-md p-2 border border-[#1c1c1c] backdrop-blur-md">
-            <a
-              href="#about"
+            <Link
+              href={navHref("#about")}
               className="text-white hover:text-white transition-colors text-sm uppercase tracking-wider font-normal rounded-md px-5 py-2.5 bg-neutral-800 hover:bg-zinc-800/50"
+              scroll={false}
             >
               About Me
-            </a>
-            <a
-              href="#project"
-              className="text-white hover:text-white transition-colors text-sm uppercase tracking-wider font-normal rounded-md px-5 py-2.5 bg-neutral-800 hover:bg-zinc-800/50"
+            </Link>
+            <Link
+              href="/project"
+              className={`text-white hover:text-white transition-colors text-sm uppercase tracking-wider font-normal rounded-md px-5 py-2.5 hover:bg-zinc-800/50 ${pathname === "/project" ? "bg-neutral-800/40" : "bg-neutral-800"}`}
             >
               Project
-            </a>
-            <a
-              href="#experience"
+            </Link>
+            <Link
+              href={navHref("#experience")}
               className="text-white hover:text-white transition-colors text-sm uppercase tracking-wider font-normal rounded-md px-5 py-2.5 bg-neutral-800 hover:bg-zinc-800/50"
+              scroll={false}
             >
               Experience
-            </a>
+            </Link>
             <div className="h-6 w-px bg-white/10 mx-4" />
             <Dialog>
               <DialogTrigger asChild>
@@ -103,24 +112,24 @@ export default function HomeHeader() {
                 <div className="flex flex-row gap-6 w-full justify-center mt-2">
                   <a
                     href="https://www.linkedin.com/in/rifki-nd" target="_blank" rel="noopener noreferrer"
-                    className="rounded-full bg-zinc-800 hover:bg-emerald-400/20 border border-white/10 p-4 transition-colors flex items-center justify-center"
+                    className="rounded-full bg-zinc-800 hover:bg-brand/20 border border-white/10 p-4 transition-colors flex items-center justify-center"
                     aria-label="LinkedIn"
                   >
-                    <Linkedin className="w-7 h-7 text-emerald-400" />
+                    <Linkedin className="w-7 h-7 text-brand" />
                   </a>
                   <a
                     href="mailto:rifkinauvaldzaki08@gmail.com"
-                    className="rounded-full bg-zinc-800 hover:bg-emerald-400/20 border border-white/10 p-4 transition-colors flex items-center justify-center"
+                    className="rounded-full bg-zinc-800 hover:bg-brand/20 border border-white/10 p-4 transition-colors flex items-center justify-center"
                     aria-label="Email"
                   >
-                    <Mail className="w-7 h-7 text-emerald-400" />
+                    <Mail className="w-7 h-7 text-brand" />
                   </a>
                   <a
                     href="https://github.com/RIfkiND" target="_blank" rel="noopener noreferrer"
-                    className="rounded-full bg-zinc-800 hover:bg-emerald-400/20 border border-white/10 p-4 transition-colors flex items-center justify-center"
+                    className="rounded-full bg-zinc-800 hover:bg-brand/20 border border-white/10 p-4 transition-colors flex items-center justify-center"
                     aria-label="GitHub"
                   >
-                    <Github className="w-7 h-7 text-emerald-400" />
+                    <Github className="w-7 h-7 text-brand" />
                   </a>
                 </div>
               </DialogContent>
@@ -135,15 +144,15 @@ export default function HomeHeader() {
                 </div>
               </MobileNavHeader>
               <MobileNavMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} className="mx-auto left-1/2 -translate-x-1/2 w-64">
-                <a href="#about" onClick={() => setMenuOpen(false)}>
+                <Link href={navHref("#about")} scroll={false} onClick={() => setMenuOpen(false)}>
                   About Me
-                </a>
-                <a href="#project" onClick={() => setMenuOpen(false)}>
+                </Link>
+                <Link href="/project" onClick={() => setMenuOpen(false)}>
                   Project
-                </a>
-                <a href="#experience" onClick={() => setMenuOpen(false)}>
+                </Link>
+                <Link href={navHref("#experience")} scroll={false} onClick={() => setMenuOpen(false)}>
                   Experience
-                </a>
+                </Link>
               </MobileNavMenu>
             </MobileNav>
           </div>

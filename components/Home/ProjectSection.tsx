@@ -65,7 +65,7 @@ export default function ProjectShowcase(id : { id: string }) {
   return (
     <section className="py-16 px-4 md:px-8 lg:px-16">
       <div className="max-w-6xl mx-auto">
-         <span className="text-emerald-400 text-sm font-medium tracking-wide">
+         <span className="text-brand text-sm font-medium tracking-wide">
               • Project
             </span>
         <h2 className="text-3xl pt-2 md:text-4xl font-bold text-foreground text-lefth mb-12">

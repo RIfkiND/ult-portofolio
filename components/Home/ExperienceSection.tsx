@@ -115,13 +115,13 @@ export default function ExperienceSection(id: { id: string }) {
           <div>
             <div className="flex gap-4 mb-2">
               <button
-                className={`text-sm font-medium tracking-wide px-3 py-1 rounded-full transition-colors ${activeTab === 'experience' ? 'bg-emerald-400 text-zinc-900' : 'text-emerald-400 hover:bg-zinc-800'}`}
+                className={`text-sm font-medium tracking-wide px-3 py-1 rounded-full transition-colors ${activeTab === 'experience' ? 'bg-brand text-zinc-900' : 'text-brand hover:bg-zinc-800'}`}
                 onClick={() => setActiveTab('experience')}
               >
                 Experience
               </button>
               <button
-                className={`text-sm font-medium tracking-wide px-3 py-1 rounded-full transition-colors ${activeTab === 'education' ? 'bg-emerald-400 text-zinc-900' : 'text-emerald-400 hover:bg-zinc-800'}`}
+                className={`text-sm font-medium tracking-wide px-3 py-1 rounded-full transition-colors ${activeTab === 'education' ? 'bg-brand text-zinc-900' : 'text-brand hover:bg-zinc-800'}`}
                 onClick={() => setActiveTab('education')}
               >
                 Education
@@ -134,9 +134,9 @@ export default function ExperienceSection(id: { id: string }) {
           <div className="flex flex-col justify-center">
             {activeTab === 'experience' ? (
               <>
-                <p className="text-zinc-400 leading-relaxed mb-4">
+                {/* <p className="text-zinc-400 leading-relaxed mb-4">
                   With 1 years of industry experience and a foundation in technology that began in vocational high school, I've built scalable systems and APIs, collaborating with talented engineers to deliver products used by many.
-                </p>
+                </p> */}
                 <a
                   href="#"
                   className="inline-flex items-center gap-2 text-zinc-100 hover:text-emerald-400 transition-colors font-medium group"

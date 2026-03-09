@@ -34,6 +34,7 @@ html.lenis {
 }
 
 @theme inline {
+  --color-brand: #8ddd8d;
   --font-family-serif: 'Georgia', 'Times New Roman', serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
