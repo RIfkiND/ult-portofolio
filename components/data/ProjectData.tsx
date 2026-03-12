@@ -64,11 +64,11 @@ export const projects: Project[] = [
   },
   {
     id: 6,
-    title: "Go Search Engine",
+    title: "Search Engine",
     description:
       "A full-featured search engine built with Golang and Supabase, featuring a custom web crawler, TF-IDF and BM25 ranking algorithms for relevance scoring, real-time autocomplete, and query suggestions powered by prefix indexing.",
-    imageUrl: "",
-    techStack: ["Golang", "Supabase", "TF-IDF", "BM25", "Web Crawler"],
+    imageUrl: "/projects/kisearch.png",
+    techStack: ["NextJs","Golang", "Supabase", "TF-IDF", "BM25", "Web Crawler"],
     category: "Backend",
   },
   {
