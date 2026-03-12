@@ -47,12 +47,12 @@ const projects: Project[] = [
     description:
       "Hasilbumi is an agricultural platform where I handled all backend and DevOps responsibilities, including API, database, and infrastructure.",
     imageUrl: "",
-    techStack: ["Laravel", "Payment Gateway", "React",  "Stripe"],
-    link: "https://www.linkedin.com/in/rifki-nd/details/projects/1307333513/multiple-media-viewer/?locale=in_ID&profileId=ACoAAEeVC8oBE5xXklO_HJHfEKRPlrpTvI8oqVI&treasuryMediaId=1727884187244"
+    techStack: ["Laravel", "Payment Gateway", "Vue",  "Stripe"],
+    link: "https://www.linkedin.com/posts/aji-setiawan-360718297_webdevelopment-websitedesign-uiuxdesign-activity-7239875914493272064-4i4N?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEeVC8oBE5xXklO_HJHfEKRPlrpTvI8oqVI"
   },
   {
     id: 5,
-    title: "Codeout (Competition, 7th Telkom University)",
+    title: "Codeout (Competition Finalist)",
     description:
       "Codeout is a collaborative coding challenge platform with live code execution, lobbies for competition, and real-time feedback, built for developer skill improvement. This project was created for the final round of a software development competition at Telkom University.",
     imageUrl: "",
@@ -139,3 +139,4 @@ export default function ProjectShowcase(id : { id: string }) {
     </section>
   );
 }
+
