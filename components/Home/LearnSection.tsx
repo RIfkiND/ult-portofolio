@@ -3,7 +3,9 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 const skills = [
+  "JavaScript",
   "Go",
+  "Python",
   "PHP",
   "Docker",
   "Linux",
@@ -44,12 +46,12 @@ export default function LearnSection(id : { id: string }) {
             </h2>
 
             <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
-              I focus on building scalable backend systems, designing robust APIs, and optimizing databases and infrastructure for reliability and performance. My expertise is in server-side development, distributed systems, and backend architecture.
+             I build scalable and reliable software systems, design robust APIs, and develop high-performance applications. My experience includes backend development, distributed systems, and designing maintainable software architectures.
             </p>
 
             <div className="space-y-4 pt-4">
               <p className="text-sm text-gray-500 uppercase tracking-wider font-medium">
-                Core Backend Skills:
+              Core Software Engineering Skills :
               </p>
               <div className="flex flex-wrap gap-3">
                 {skills.map((skill, index) => (

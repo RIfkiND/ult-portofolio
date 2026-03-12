@@ -84,7 +84,7 @@ export default function Hero(id: { id: string }) {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.4 }}
             >
-              Backend & DevOps Engineer
+              Software Engineer
             </motion.p>
 
             {/* Personal introduction */}
@@ -94,7 +94,7 @@ export default function Hero(id: { id: string }) {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.5 }}
             >
-              Hi👋, I&apos;m Rifki Nauval Dzaki from Telkom University, majoring in Software Engineering — a passionate software engineer specializing in backend and DevOps. I thrive on building scalable systems and automating workflows to deliver real business value.
+              Hi 👋, I'm Rifki Nauval Dzaki, a Software Engineering student at Telkom University and a passionate Software Engineer. I'm interested in backend development and DevOps, and I enjoy building scalable systems and automating workflows to deliver real business value.
             </motion.p>
 
             {/* Main heading */}
