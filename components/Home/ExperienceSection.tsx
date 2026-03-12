@@ -137,13 +137,13 @@ export default function ExperienceSection(id: { id: string }) {
                 {/* <p className="text-zinc-400 leading-relaxed mb-4">
                   With 1 years of industry experience and a foundation in technology that began in vocational high school, I've built scalable systems and APIs, collaborating with talented engineers to deliver products used by many.
                 </p> */}
-                <a
+                {/* <a
                   href="#"
                   className="inline-flex items-center gap-2 text-zinc-100 hover:text-emerald-400 transition-colors font-medium group"
                 >
                   Let's Connect
                   <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </a>
+                </a> */}
               </>
             ) : (
               <p className="text-zinc-400 leading-relaxed mb-4">
