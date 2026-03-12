@@ -9,6 +9,7 @@ interface Project {
   title: string;
   description: string;
   imageUrl: string;
+  videoUrl?: string;
   techStack: string[];
   link?: string;
 }
@@ -37,28 +38,21 @@ const projects: Project[] = [
     title: "Portfolio Website (This Site)",
     description:
       "A personal portfolio site showcasing projects, skills, and professional background, with a modern, responsive design.",
-    imageUrl: "",
+    imageUrl: "/projects/portofolio.png",
     techStack: ["Next.js", "React", "Tailwind CSS", "Vercel"],
     link: "/"
   },
   {
     id: 4,
-    title: "Hasilbumi E-Commerce Backend",
+    title: "Hasilbumi E-Commerce ",
     description:
       "Hasilbumi is an agricultural platform where I handled all backend and DevOps responsibilities, including API, database, and infrastructure.",
     imageUrl: "",
+    videoUrl: "/vidios/hasilbumi.mp4",
     techStack: ["Laravel", "Payment Gateway", "React",  "Stripe"],
     link: "https://www.linkedin.com/in/rifki-nd/details/projects/1307333513/multiple-media-viewer/?locale=in_ID&profileId=ACoAAEeVC8oBE5xXklO_HJHfEKRPlrpTvI8oqVI&treasuryMediaId=1727884187244"
   },
-  {
-    id: 5,
-    title: "Codeout (Competition, 7th Telkom University)",
-    description:
-      "Codeout is a collaborative coding challenge platform with live code execution, lobbies for competition, and real-time feedback, built for developer skill improvement. This project was created for the final round of a software development competition at Telkom University.",
-    imageUrl: "",
-    techStack: ["SvelteKit", "Supabase", "Piston API", "shadcn/ui"],
-    link: "https://codeout-app.vercel.app/"
-  },
+
 ];
 
 export default function ProjectShowcase(id : { id: string }) {
@@ -90,7 +84,16 @@ export default function ProjectShowcase(id : { id: string }) {
                 {/* Image Section */}
                 <div className="w-full md:w-1/2">
                   <div className="relative aspect-video rounded-xl overflow-hidden shadow-lg">
-                    {project.imageUrl ? (
+                    {project.videoUrl ? (
+                      <video
+                        src={project.videoUrl}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                      />
+                    ) : project.imageUrl ? (
                       <Image
                         src={project.imageUrl}
                         alt={project.title}

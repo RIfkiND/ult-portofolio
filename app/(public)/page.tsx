@@ -9,9 +9,9 @@ export default function HomePage() {
     <div className='min-h-screen'>
       <Hero id='home' />
       <Skill id='skill' />
-     <ExperienceSection id='experience' />
-    <LearnSection id= 'learn'/>
-     <ProjectSection id='project'/>
+      <ExperienceSection id='experience' />
+      <LearnSection id= 'learn'/>
+      <ProjectSection id='project'/>
     </div>
   );
 }

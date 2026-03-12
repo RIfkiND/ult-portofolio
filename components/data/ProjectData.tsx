@@ -3,6 +3,7 @@ export interface Project {
   title: string;
   description: string;
   imageUrl: string;
+  videoUrl?: string;
   techStack: string[];
   link?: string;
   github?: string;
@@ -35,7 +36,7 @@ export const projects: Project[] = [
     title: "Portfolio Website",
     description:
       "A personal portfolio site showcasing projects, skills, and professional background, with a modern, responsive design and smooth animations.",
-    imageUrl: "",
+    imageUrl: "/projects/portofolio.png",
     techStack: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
     link: "/",
     category: "Frontend",
@@ -46,6 +47,7 @@ export const projects: Project[] = [
     description:
       "Hasilbumi is an agricultural platform where I handled all backend and DevOps responsibilities, including API development, database optimization, and infrastructure management.",
     imageUrl: "",
+    videoUrl: "/vidios/hasilbumi.mp4",
     techStack: ["Laravel", "Payment Gateway", "Vue", "Stripe", "Team Lead"],
     link: "https://www.linkedin.com/in/rifki-nd/details/projects/1307333513/multiple-media-viewer/?locale=in_ID&profileId=ACoAAEeVC8oBE5xXklO_HJHfEKRPlrpTvI8oqVI&treasuryMediaId=1727884187244",
     category: "Full Stack",

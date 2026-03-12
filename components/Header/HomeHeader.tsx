@@ -32,7 +32,7 @@ export default function HomeHeader() {
   }, []);
 
   return (
-    <header className="w-full md:sticky md:top-0 z-40 font-inter">
+    <header className="w-full md:sticky md:top-0 z-40 font-intre ">
       <div className="container mx-auto px-6 lg:px-8 pt-10">
         <nav className="flex items-center justify-between pb-6">
           {/* Logo (always left) */}

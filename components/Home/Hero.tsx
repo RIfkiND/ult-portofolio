@@ -124,7 +124,7 @@ export default function Hero(id: { id: string }) {
                   Cloud-native backend specialist.<br />Automation, APIs, CI/CD.
                 </p>
                 <motion.a
-                  href="/cv.pdf"
+                  href="/cv/CV_Rifki.pdf"
                   download
                   whileHover={{ scale: 1.06 }}
                   whileTap={{ scale: 0.97 }}

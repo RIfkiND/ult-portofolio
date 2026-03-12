@@ -92,7 +92,16 @@ export default function ProjectGallery() {
               >
                 {/* Image side */}
                 <div className="relative md:w-1/2 aspect-video overflow-hidden bg-zinc-800 shrink-0">
-                  {current.imageUrl ? (
+                  {current.videoUrl ? (
+                    <video
+                      src={current.videoUrl}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : current.imageUrl ? (
                     <Image
                       src={current.imageUrl}
                       alt={current.title}
@@ -181,7 +190,16 @@ export default function ProjectGallery() {
               >
                 {/* Image Container */}
                 <div className="relative aspect-video overflow-hidden bg-zinc-800">
-                  {project.imageUrl ? (
+                  {project.videoUrl ? (
+                    <video
+                      src={project.videoUrl}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  ) : project.imageUrl ? (
                     <Image
                       src={project.imageUrl}
                       alt={project.title}
