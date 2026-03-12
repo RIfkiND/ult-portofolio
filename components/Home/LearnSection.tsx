@@ -42,7 +42,7 @@ export default function LearnSection(id : { id: string }) {
           >
 
             <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight text-balance">
-              <span className="font-bold text-white">Backend Specialist</span>
+              <span className="font-bold text-white">Software Engineer</span>
             </h2>
 
             <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
@@ -108,3 +108,4 @@ export default function LearnSection(id : { id: string }) {
     </section>
   );
 }
+
