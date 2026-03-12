@@ -46,7 +46,7 @@ export const projects: Project[] = [
     description:
       "Hasilbumi is an agricultural platform where I handled all backend and DevOps responsibilities, including API development, database optimization, and infrastructure management.",
     imageUrl: "",
-    techStack: ["Laravel", "Payment Gateway", "React", "Stripe", "Team Lead"],
+    techStack: ["Laravel", "Payment Gateway", "Vue", "Stripe", "Team Lead"],
     link: "https://www.linkedin.com/in/rifki-nd/details/projects/1307333513/multiple-media-viewer/?locale=in_ID&profileId=ACoAAEeVC8oBE5xXklO_HJHfEKRPlrpTvI8oqVI&treasuryMediaId=1727884187244",
     category: "Full Stack",
   },
@@ -54,7 +54,7 @@ export const projects: Project[] = [
     id: 5,
     title: "Codeout",
     description:
-      "Codeout is a collaborative coding challenge platform with live code execution, lobbies for competition, and real-time feedback, built for developer skill improvement. Created for Telkom University competition (7th place).",
+      "Codeout is a collaborative coding challenge platform with live code execution, lobbies for competition, and real-time feedback, built for developer skill improvement. Created for SEVENTH competetion at telkom unieversity manage to get into finalis round.",
     imageUrl: "",
     techStack: ["SvelteKit", "Supabase", "Piston API", "shadcn/ui", "Team Lead"],
     link: "https://codeout-app.vercel.app/",
@@ -89,3 +89,4 @@ export const projects: Project[] = [
   },
 
 ];
+
