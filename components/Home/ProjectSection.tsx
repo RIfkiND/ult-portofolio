@@ -49,7 +49,7 @@ const projects: Project[] = [
       "Hasilbumi is an agricultural platform where I handled all backend and DevOps responsibilities, including API, database, and infrastructure.",
     imageUrl: "",
     videoUrl: "/vidios/hasilbumi.mp4",
-    techStack: ["Laravel", "Payment Gateway", "React",  "Stripe"],
+    techStack: ["Laravel", "Payment Gateway", "Vue",  "Stripe"],
     link: "https://www.linkedin.com/in/rifki-nd/details/projects/1307333513/multiple-media-viewer/?locale=in_ID&profileId=ACoAAEeVC8oBE5xXklO_HJHfEKRPlrpTvI8oqVI&treasuryMediaId=1727884187244"
   },
 
@@ -142,3 +142,4 @@ export default function ProjectShowcase(id : { id: string }) {
     </section>
   );
 }
+

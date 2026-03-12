@@ -86,9 +86,10 @@ export const projects: Project[] = [
     description:
       "A personal finance management app for students, featuring expense tracking, budget planning, income logging, and spending insights to help manage day-to-day finances effectively.",
     imageUrl: "",
-    techStack: ["Next.js", "Laravel", "PostgreSQL", "Tailwind CSS"],
+    techStack: ["Next.js", "PostgreSQL", "Tailwind CSS"],
     category: "Full Stack",
   },
 
 ];
+
 
