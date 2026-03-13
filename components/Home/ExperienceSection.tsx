@@ -147,7 +147,7 @@ export default function ExperienceSection(id: { id: string }) {
               </>
             ) : (
               <p className="text-zinc-400 leading-relaxed mb-4">
-                Here is a summary of my education. (Replace with your real education data.)
+                Here is a summary of my education.
               </p>
             )}
           </div>
@@ -337,6 +337,7 @@ export default function ExperienceSection(id: { id: string }) {
     </div>
   )
 }
+
 
 
 
