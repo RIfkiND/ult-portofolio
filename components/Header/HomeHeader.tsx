@@ -45,8 +45,8 @@ export default function HomeHeader() {
               <span className="text-4xl font-black">Rifki</span>
               <div className="h-8 w-px bg-white/30" />
               <div className="flex flex-col text-sm leading-tight">
-                <span className="font-bold">Backend</span>
-                <span className="font-normal">Devops</span>
+                <span className="font-bold">Software</span>
+                <span className="font-normal">Engineer</span>
               </div>
               <span className="ml-1 text-xs">®</span>
             </motion.div>
