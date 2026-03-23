@@ -98,6 +98,12 @@ export const certificates: CertificateItem[] = [
     score: "",
     url: "/certificates/bnsp.pdf",
   },
+   {
+    name: "ProblemSolving(intermediate) Hackerank",
+    score: "",
+    url: "https://www.hackerrank.com/certificates/iframe/8e94d3bd4acf",
+  },
+  
 ];
 
 export const competitions: CompetitionItem[] = [
