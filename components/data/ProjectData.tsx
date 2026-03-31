@@ -49,7 +49,7 @@ export const projects: Project[] = [
     imageUrl: "",
     videoUrl: "/vidios/hasilbumi.mp4",
     techStack: ["Laravel", "Payment Gateway", "Vue", "Stripe", "Team Lead"],
-    link: "https://www.linkedin.com/in/rifki-nd/details/projects/1307333513/multiple-media-viewer/?locale=in_ID&profileId=ACoAAEeVC8oBE5xXklO_HJHfEKRPlrpTvI8oqVI&treasuryMediaId=1727884187244",
+    link: "https://github.com/RIfkiND/HasilBumi",
     category: "Full Stack",
   },
   {
@@ -58,7 +58,13 @@ export const projects: Project[] = [
     description:
       "Codeout is a collaborative coding challenge platform with live code execution, lobbies for competition, and real-time feedback, built for developer skill improvement. Created for SEVENTH competetion at telkom unieversity manage to get into finalis round.",
     imageUrl: "",
-    techStack: ["SvelteKit", "Supabase", "Piston API", "shadcn/ui", "Team Lead"],
+    techStack: [
+      "SvelteKit",
+      "Supabase",
+      "Piston API",
+      "shadcn/ui",
+      "Team Lead",
+    ],
     link: "https://codeout-app.vercel.app/",
     category: "Full Stack",
   },
@@ -68,7 +74,14 @@ export const projects: Project[] = [
     description:
       "A full-featured search engine built with Golang and Supabase, featuring a custom web crawler, TF-IDF and BM25 ranking algorithms for relevance scoring, real-time autocomplete, and query suggestions powered by prefix indexing.",
     imageUrl: "/projects/kisearch.png",
-    techStack: ["NextJs","Golang", "Supabase", "TF-IDF", "BM25", "Web Crawler"],
+    techStack: [
+      "NextJs",
+      "Golang",
+      "Supabase",
+      "TF-IDF",
+      "BM25",
+      "Web Crawler",
+    ],
     link: "https://github.com/RIfkiND/search_engine",
     category: "Backend",
   },
@@ -111,7 +124,6 @@ export const projects: Project[] = [
     link: "https://github.com/RIfkiND/go_rest_api_template",
     category: "Backend",
   },
-
 ];
 
 

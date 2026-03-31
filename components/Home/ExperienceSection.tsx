@@ -221,13 +221,6 @@ export default function ExperienceSection(id: { id: string }) {
                       </p>
                     </div>
                   </div>
-
-                  {/* Category Badge */}
-                  <div className="lg:col-span-3 flex items-center justify-start lg:justify-end">
-                    <span className="px-4 py-1.5 rounded-full text-sm font-medium bg-zinc-100 text-zinc-900">
-                      Education
-                    </span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -251,11 +244,11 @@ export default function ExperienceSection(id: { id: string }) {
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
                     {/* Icon & Title */}
                     <div className="lg:col-span-4 flex items-center gap-4">
-                      <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-purple-400/10 to-pink-400/10 flex items-center justify-center border border-white/10 group-hover:border-emerald-400/30 transition-colors">
+                      <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br  flex items-center justify-center border border-white/10 transition-colors">
                         <ArrowUpRight className="w-8 h-8 text-zinc-400 group-hover:text-emerald-400 transition-colors" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-zinc-100 group-hover:text-emerald-400 transition-colors">
+                        <h4 className="font-semibold text-zinc-100  transition-colors">
                           {cert.name}
                         </h4>
                         {cert.score && (
@@ -272,14 +265,6 @@ export default function ExperienceSection(id: { id: string }) {
                         Professional certification demonstrating expertise and
                         commitment to continuous learning
                       </p>
-                    </div>
-
-                    {/* Category Badge */}
-                    <div className="lg:col-span-3 flex items-center justify-start lg:justify-end gap-3">
-                      <span className="px-4 py-1.5 rounded-full text-sm font-medium bg-zinc-100 text-zinc-900">
-                        Certificate
-                      </span>
-                      <ArrowRight className="w-5 h-5 text-zinc-600 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
                     </div>
                   </div>
                 </a>
@@ -306,7 +291,7 @@ export default function ExperienceSection(id: { id: string }) {
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
                     <div className="lg:col-span-4 flex items-center gap-4">
-                      <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-zinc-800 border border-white/10">
+                      <div className="relative w-16 h-16 rounded-xl overflow-hidden  border border-white/10">
                         {competition.imageUrl ? (
                           <Image
                             src={competition.imageUrl}
@@ -316,7 +301,7 @@ export default function ExperienceSection(id: { id: string }) {
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center">
-                            <ArrowUpRight className="w-6 h-6 text-zinc-500" />
+                            <ArrowUpRight className="w-8 h-8 text-zinc-400 group-hover:text-emerald-400 transition-colors" />
                           </div>
                         )}
                       </div>
@@ -334,13 +319,6 @@ export default function ExperienceSection(id: { id: string }) {
                       <p className="text-zinc-400 mb-3">
                         {competition.description}
                       </p>
-                    </div>
-
-                    <div className="lg:col-span-3 flex items-center justify-start lg:justify-end">
-                      <span className="px-4 py-1.5 rounded-full text-sm font-medium bg-zinc-100 text-zinc-900">
-                        {competition.result}
-                      </span>
-                      <ArrowRight className="w-5 h-5 text-zinc-600 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
                     </div>
                   </div>
                 </a>

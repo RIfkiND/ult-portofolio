@@ -85,12 +85,12 @@ export const education: EducationItem = {
 export const certificates: CertificateItem[] = [
   {
     name: "TOEIC Certificate",
-    score: "TOEIC 800",
+    score: "Score 800",
     url: "/certificates/toeic.jpeg",
   },
   {
     name: "TOEFL Certificate",
-    score: "TOEFL 520",
+    score: "Score 520",
     url: "/certificates/toefl.pdf",
   },
   {
@@ -98,18 +98,17 @@ export const certificates: CertificateItem[] = [
     score: "",
     url: "/certificates/bnsp.pdf",
   },
-   {
+  {
     name: "ProblemSolving(intermediate) Hackerank",
     score: "",
     url: "https://www.hackerrank.com/certificates/iframe/8e94d3bd4acf",
   },
-  
 ];
 
 export const competitions: CompetitionItem[] = [
   {
     id: 1,
-    title: "SEVENTH Competition - Codeout",
+    title: "SEVENTH Competition - Finalist",
     organizer: "Telkom University",
     date: "2025",
     result: "Finalist",

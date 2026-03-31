@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight, Github, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { projects } from "@/components/data/ProjectData";
@@ -78,17 +79,15 @@ export default function ProjectGallery() {
           {/* Slide */}
           <div className="relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/40">
             <AnimatePresence custom={direction} mode="wait">
-              <motion.a
+              <motion.div
                 key={current.id}
                 custom={direction}
-              
+
                 initial="enter"
                 animate="center"
                 exit="exit"
-                href={current.link ?? "#"}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="group flex flex-col md:flex-row w-full"
+                variants={variants}
               >
                 {/* Image side */}
                 <div className="relative md:w-1/2 aspect-video overflow-hidden bg-zinc-800 shrink-0">
@@ -132,11 +131,26 @@ export default function ProjectGallery() {
                       </span>
                     ))}
                   </div>
-                  <div className="inline-flex items-center gap-2 text-brand font-medium text-sm group-hover:gap-3 transition-all">
-                    View Project <ArrowUpRight className="w-4 h-4" />
+                  <div className="inline-flex items-center gap-4">
+                    <Link
+                      href={`/project/${current.id}`}
+                      className="inline-flex items-center gap-2 text-brand font-medium text-sm hover:gap-3 transition-all"
+                    >
+                      View Details <ArrowUpRight className="w-4 h-4" />
+                    </Link>
+                    {current.link && (
+                      <a
+                        href={current.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-zinc-400 font-medium text-sm hover:text-white transition-all"
+                      >
+                        Live Project <ExternalLink className="w-4 h-4" />
+                      </a>
+                    )}
                   </div>
                 </div>
-              </motion.a>
+              </motion.div>
             </AnimatePresence>
           </div>
         </motion.div>
@@ -178,16 +192,19 @@ export default function ProjectGallery() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
-              <motion.div
+              <Link
+                href={`/project/${project.id}`}
                 key={project.id}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 16 }}
-                transition={{ duration: 0.25, delay: index * 0.04, ease: "easeOut" }}
-                onHoverStart={() => setHoveredId(project.id)}
-                onHoverEnd={() => setHoveredId(null)}
-                className="group relative bg-zinc-900/50 rounded-2xl overflow-hidden border border-zinc-800 hover:border-white/30 transition-colors duration-300"
               >
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 16 }}
+                  transition={{ duration: 0.25, delay: index * 0.04, ease: "easeOut" }}
+                  onHoverStart={() => setHoveredId(project.id)}
+                  onHoverEnd={() => setHoveredId(null)}
+                  className="group relative bg-zinc-900/50 rounded-2xl overflow-hidden border border-zinc-800 hover:border-white/30 transition-colors duration-300 h-full"
+                >
                 {/* Image Container */}
                 <div className="relative aspect-video overflow-hidden bg-zinc-800">
                   {project.videoUrl ? (
@@ -222,26 +239,26 @@ export default function ProjectGallery() {
                     className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center gap-4"
                   >
                     {project.link && (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open(project.link, "_blank");
+                        }}
                         className="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white hover:text-zinc-900 transition-colors"
-                        onClick={(e) => e.stopPropagation()}
                       >
                         <ExternalLink className="w-5 h-5" />
-                      </a>
+                      </button>
                     )}
                     {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open(project.github, "_blank");
+                        }}
                         className="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white hover:text-zinc-900 transition-colors"
-                        onClick={(e) => e.stopPropagation()}
                       >
                         <Github className="w-5 h-5" />
-                      </a>
+                      </button>
                     )}
                   </motion.div>
                 </div>
@@ -277,13 +294,14 @@ export default function ProjectGallery() {
                   </div>
                 </div>
 
-                {/* Category Badge */}
-                <div className="absolute top-4 right-4">
-                  <span className="px-3 py-1 text-xs font-medium bg-zinc-900/90 backdrop-blur-sm text-white rounded-full border border-white/30">
-                    {project.category}
-                  </span>
-                </div>
-              </motion.div>
+                  {/* Category Badge */}
+                  <div className="absolute top-4 right-4">
+                    <span className="px-3 py-1 text-xs font-medium bg-zinc-900/90 backdrop-blur-sm text-white rounded-full border border-white/30">
+                      {project.category}
+                    </span>
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </AnimatePresence>
         </div>
