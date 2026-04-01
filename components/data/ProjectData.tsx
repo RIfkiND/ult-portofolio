@@ -124,6 +124,27 @@ export const projects: Project[] = [
     link: "https://github.com/RIfkiND/go_rest_api_template",
     category: "Backend",
   },
+  {
+    id: 11,
+    title: "Golang Auth JWT Template for SSO Apps",
+    description:
+      "A production-ready authentication starter built with Go, Gin, JWT, PostgreSQL, and multi-provider SSO. Includes email/password auth, OAuth providers (Google, Facebook, GitHub), Keycloak integration, password reset, email verification, and a clear service/repository architecture for SaaS and B2B apps.",
+    imageUrl: "",
+    techStack: [
+      "Golang",
+      "Gin",
+      "JWT",
+      "PostgreSQL",
+      "GORM",
+      "OAuth2",
+      "Google",
+      "Facebook",
+      "GitHub",
+      "Keycloak",
+      "Resend",
+    ],
+    category: "Backend",
+  },
 ];
 
 
