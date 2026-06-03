@@ -11,7 +11,7 @@ export default function HomePage() {
       <Skill id='skill' />
       <ExperienceSection id='experience' />
       <LearnSection id= 'learn'/>
-      <ProjectSection id='project'/>
+      <ProjectSection  id='project'/>
     </div>
   );
 }

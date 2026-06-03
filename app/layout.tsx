@@ -27,9 +27,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning   >
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${prataSerif.variable} ${interSans.variable} antialiased`}
+        className={`${prataSerif.variable} ${interSans.variable} font-sans antialiased`}
       >
           <ThemeProvider
             attribute="class"

@@ -58,7 +58,7 @@ const projects: Project[] = [
 export default function ProjectShowcase(id : { id: string }) {
   return (
     <section className="py-16 px-4 md:px-8 lg:px-16">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-[1400px] mx-auto">
          <span className="text-brand text-sm font-medium tracking-wide">
               • Project
             </span>

@@ -1,19 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight, Github, Linkedin, Mail, Code2 } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Hero(id: { id: string }) {
   return (
     <motion.section
       id={id.id}
-      className="w-full min-h-screen relative font-prata scroll-mt-20"
+      className="w-full min-h-screen relative font-sans scroll-mt-20"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
     >
-      <div className="container mx-auto px-6 lg:px-8 py-20">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-0 min-h-[80vh] items-center relative">
           {/* Left Side - Image */}
           <motion.div
@@ -53,11 +53,6 @@ export default function Hero(id: { id: string }) {
                   <Mail className="w-7 h-7 text-white/80" />
                 </button>
               </a>
-              <a href="https://leetcode.com/u/RifkiND/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode">
-                <button className="rounded-full bg-neutral-900/80 hover:bg-neutral-800 border border-white/10 p-2 transition-colors">
-                  <Code2 className="w-7 h-7 text-white/80" />
-                </button>
-              </a>
             </div>
           </motion.div>
 
@@ -71,7 +66,7 @@ export default function Hero(id: { id: string }) {
 
           {/* Right Side - Content */}
           <motion.div
-            className="flex flex-col justify-center lg:pl-16 space-y-8"
+            className="flex flex-col justify-center lg:pl-16 space-y-4 md:space-y-6"
             initial={{ x: 80, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -79,37 +74,27 @@ export default function Hero(id: { id: string }) {
 
             {/* Top tagline */}
             <motion.p
-              className="text-[#7ec47e] text-sm lg:text-base tracking-wide"
+              className="text-[#8ddd8d] text-xs lg:text-sm tracking-[0.2em] uppercase font-semibold"
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.4 }}
             >
-              Software Engineer
-            </motion.p>
-
-            {/* Personal introduction */}
-            <motion.p
-              className="text-white/90 text-lg lg:text-xl max-w-2xl"
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.5 }}
-            >
-              Hi 👋, I'm Rifki Nauval Dzaki, a Software Engineering student at Telkom University and a passionate Software Engineer. I'm interested in backend development and DevOps, and I enjoy building scalable systems and automating workflows to deliver real business value.
+              API & Integration Specialist
             </motion.p>
 
             {/* Main heading */}
             <motion.h1
-              className="text-6xl lg:text-7xl xl:text-8xl font-normal text-white leading-[0.95] tracking-tight"
+              className="text-5xl lg:text-6xl xl:text-[5.5rem] font-serif font-normal text-white leading-[1.05] tracking-tight"
               initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Delivering scalable,<br />reliable systems
+              Architecting<br />seamless<br />integrations
             </motion.h1>
 
             {/* Bottom content */}
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8"
+              className="flex flex-col sm:flex-row gap-8 sm:gap-12 pt-6 md:pt-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -120,8 +105,8 @@ export default function Hero(id: { id: string }) {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.7, delay: 1 }}
               >
-                <p className="text-white text-base lg:text-lg leading-relaxed">
-                  Cloud-native backend specialist.<br />Automation, APIs, CI/CD.
+                <p className="text-white text-base lg:text-lg leading-relaxed font-light">
+                  Specialized in high-performance APIs.<br />Microservices & Cloud architecture.
                 </p>
                 <motion.a
                   href="/cv/CV_Rifki.pdf"
@@ -143,8 +128,8 @@ export default function Hero(id: { id: string }) {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.7, delay: 1.2 }}
               >
-                <p className="text-gray-400 text-sm lg:text-base leading-relaxed">
-                  Let’s build robust, efficient solutions together.
+                <p className="text-white/60 text-sm lg:text-base leading-relaxed font-light">
+                  Let’s connect your systems seamlessly.
                 </p>
               </motion.div>
             </motion.div>

@@ -13,39 +13,32 @@ const logos = [
 export default function SkillSection(id : { id: string }) {
   return (
     <section id={id.id} className="w-full pt-24 sm:pt-32 px-2 sm:px-4 relative scroll-mt-20">
-      {/* Radial gradient at bottom right */}
-      <div 
-        className="absolute bottom-0 right-0 w-[180px] h-[180px] sm:w-[300px] sm:h-[300px] md:w-[500px] md:h-[500px] lg:w-[650px] lg:h-[700px] pointer-events-none "
-        style={{
-          background: 'radial-gradient(circle at bottom right, rgba(35, 46, 35) 0%, transparent 60%)',
-        }}
-      />
-      <div className="mx-auto max-w-md sm:max-w-xl md:max-w-3xl lg:max-w-5xl">
-        <div className="relative rounded-full sm:rounded-full border border-white/[0.08] bg-neutral-950 p-3 sm:p-6 md:p-10 overflow-hidden">
+      <div className="mx-auto max-w-[1200px]">
+        <div className="relative rounded-full border border-white/[0.08] bg-[#0a0a0a]/40 backdrop-blur-md py-12 px-6 sm:py-20 sm:px-12 md:py-20 md:px-20 overflow-hidden">
           {/* Subtle top gradient border effect */}
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          <div className="relative flex flex-wrap items-center justify-center gap-1.5 sm:gap-6 md:gap-10 lg:gap-16">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          <div className="relative flex items-center justify-between w-full">
             {/* Mobile: only show JavaScript, Go, PHP */}
-            <div className="flex sm:hidden w-full items-center justify-center gap-1.5">
+            <div className="flex sm:hidden w-full items-center justify-between px-2">
               {[logos[0], logos[2], logos[1]].map((logo, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-0.5 text-white/60 hover:text-white/80 transition-colors duration-300 min-w-[48px] justify-center"
+                  className="flex items-center gap-2 text-white/50 hover:text-white transition-all duration-500"
                 >
-                  <logo.icon className="h-4 w-4" />
-                  <span className="text-xs font-medium whitespace-nowrap">{logo.name}</span>
+                  <logo.icon className="h-5 w-5" />
+                  <span className="text-sm font-bold tracking-tight">{logo.name}</span>
                 </div>
               ))}
             </div>
-            {/* Desktop: show all */}
-            <div className="hidden sm:flex flex-wrap items-center justify-center gap-6 md:gap-10 lg:gap-16 w-full">
+            {/* Desktop: show all evenly spaced */}
+            <div className="hidden sm:flex items-center justify-between w-full">
               {logos.map((logo, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-2 text-white/60 hover:text-white/80 transition-colors duration-300 min-w-[100px] md:min-w-[120px] justify-center"
+                  className="flex items-center gap-3 text-white/50 hover:text-white transition-all duration-500 cursor-default group"
                 >
-                  <logo.icon className="h-7 w-7 md:h-8 md:w-8 lg:h-9 lg:w-9" />
-                  <span className="text-base md:text-lg font-medium whitespace-nowrap">{logo.name}</span>
+                  <logo.icon className="h-7 w-7 md:h-8 md:w-8 lg:h-[34px] lg:w-[34px] transition-transform duration-500 group-hover:-translate-y-1" />
+                  <span className="text-base md:text-xl lg:text-2xl font-bold tracking-tighter">{logo.name}</span>
                 </div>
               ))}
             </div>

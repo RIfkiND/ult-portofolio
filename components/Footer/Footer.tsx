@@ -1,7 +1,14 @@
+"use client";
+
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { FaInstagram, FaGithub, FaLinkedinIn } from "react-icons/fa"
 
 export default function Footer() {
+  const pathname = usePathname();
+  // Use light background for contact page to seamlessly blend in
+  const bgClass = pathname === "/contact" ? "bg-[#f5f5f5]" : "bg-[#111111]";
+  
   const navRows = [
     { left: { label: "About", href: "/about" }, right: { label: "Projects", href: "/project" } },
     { left: { label: "Experience", href: "/experience" }, right: { label: "Contact", href: "mailto:rifkinauvaldzaki08@gmail.com" } },
@@ -14,31 +21,30 @@ export default function Footer() {
   ];
 
   return (
-    <section className="bg-white w-full">
-      <footer className="w-full max-w-5xl mx-auto pt-24 sm:pt-32 px-4 md:px-8">
-        <div className="bg-[#141414] rounded-sm px-20 py-14 md:px-16 md:py-16">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12">
+    <section className={`${bgClass} w-full pb-8 transition-colors duration-300`}>
+      <footer className="w-full max-w-[1400px] mx-auto pt-24 sm:pt-32 px-4 md:px-8">
+        <div className="bg-[#111111] border border-white/5 shadow-2xl rounded-[10px] px-8 py-16 md:px-16 md:py-24 lg:px-24">
+          <div className="max-w-[1400px] mx-auto">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-16">
             {/* Left Section - Logo and Tagline */}
-            <div className="flex flex-col gap-8 lg:max-w-xs">
+            <div className="flex flex-col gap-10 lg:max-w-md">
               {/* Logo */}
               <div className="flex items-center gap-3">
                 {/* Text Logo for Rifki */}
-                <span className="text-white text-3xl font-extrabold tracking-tight select-none font-serif">Rifki</span>
-                <div className="h-7 w-px bg-white/40 mx-1" />
+                <span className="text-white text-4xl md:text-5xl font-extrabold tracking-tight select-none font-serif">Rifki</span>
+                <div className="h-8 w-px bg-white/40 mx-2" />
                 <div className="flex items-center gap-1">
-                  <span className="text-white text-sm font-medium leading-tight">
+                  <span className="text-white text-base md:text-lg font-medium leading-tight">
                     ND
                     <br />
-                    
                   </span>
-                  <span className="text-white/50 text-[10px] ml-1 self-start mt-0.5">®</span>
+                  <span className="text-white/50 text-xs ml-1 self-start mt-0.5">®</span>
                 </div>
               </div>
 
               {/* Tagline */}
-              <h2 className="text-[1.75rem] md:text-[2rem] text-[#a8a8a8] font-serif italic leading-[1.2] tracking-tight">
-                Contact me here.
+              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] text-[#d4d4d4] font-serif leading-[1.15] tracking-tight">
+                Software engineered for the modern web.
               </h2>
             </div>
 

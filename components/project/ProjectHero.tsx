@@ -7,7 +7,7 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 export default function ProjectHero() {
   return (
     <section className="relative bg-zinc-950 overflow-hidden pt-10 pb-24 px-6 lg:px-8 border-b border-zinc-800/60">
-      <div className="container mx-auto max-w-7xl relative z-10">
+      <div className="max-w-[1400px] mx-auto relative z-10">
 
         {/* Back link */}
         <motion.div

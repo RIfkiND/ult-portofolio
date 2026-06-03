@@ -69,7 +69,7 @@ export default function TechMarquee() {
   return (
     <section className="bg-zinc-950 py-14 border-y border-zinc-800/50 overflow-hidden">
       {/* Label */}
-      <div className="container mx-auto max-w-7xl px-6 lg:px-8 mb-5">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-8 mb-5">
         <p className="text-zinc-600 text-xs uppercase tracking-[0.2em] font-medium">
           Technologies I Work With
         </p>

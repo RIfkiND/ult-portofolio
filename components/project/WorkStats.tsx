@@ -32,7 +32,7 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
 export default function WorkStats() {
   return (
     <section className="bg-zinc-950 border-t border-zinc-800/50 py-24 px-6 lg:px-8">
-      <div className="container mx-auto max-w-7xl">
+      <div className="max-w-[1400px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
           {/* Left — editorial text */}

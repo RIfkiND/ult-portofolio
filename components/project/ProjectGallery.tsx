@@ -36,7 +36,7 @@ export default function ProjectGallery() {
 
   return (
     <section className="bg-zinc-950 text-white py-20 px-6 lg:px-8">
-      <div className="container mx-auto max-w-7xl">
+      <div className="max-w-[1400px] mx-auto">
 
         {/* Featured Carousel */}
         <motion.div

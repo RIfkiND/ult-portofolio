@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import TraceableStory from "./TraceableStory";
 
 const skills = [
   "JavaScript",
@@ -26,12 +26,12 @@ export default function LearnSection(id : { id: string }) {
         className="absolute top-0 left-0 w-[180px] h-[180px] sm:w-[300px] sm:h-[300px] md:w-[500px] md:h-[500px] lg:w-[650px] lg:h-[650px] pointer-events-none z-0"
         style={{
           background:
-            "radial-gradient(circle at top left, rgba(35, 46, 35)0%, transparent 60%)",
+            "radial-gradient(circle at top left, rgba(35, 46, 35) 0%, transparent 40%)",
         }}
       />
  
       {/* Main hero content */}
-       <div className="max-w-7xl mx-auto py-16 px-6 md:px-12 lg:px-20">
+       <div className="max-w-[1400px] mx-auto py-16 px-6 md:px-12 lg:px-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Left Content */}
           <motion.div
@@ -41,8 +41,8 @@ export default function LearnSection(id : { id: string }) {
             className="space-y-8"
           >
 
-            <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight text-balance">
-              <span className="font-bold text-white">Software Engineer</span>
+            <h2 className="text-5xl md:text-6xl lg:text-[5.5rem] leading-[1.05] text-balance font-serif font-normal tracking-tight mb-2">
+              <span className="text-white">Software Engineer</span>
             </h2>
 
             <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
@@ -69,39 +69,16 @@ export default function LearnSection(id : { id: string }) {
             </div>
           </motion.div>
 
-          {/* Right Content - Animated Pills */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="flex items-end gap-4 md:gap-6">
-              {categories.map((category, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.15 }}
-                  className="flex flex-col items-center gap-4"
-                >
-                  {/* Pill Bar */}
-                  <motion.div
-                    className={`${category.color} rounded-full w-16 md:w-20 relative flex items-end justify-center pb-4`}
-                    style={{ height: `${category.height}px` }}
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    {/* Arrow icon at bottom */}
-                    <motion.div
-                      className="cursor-pointer"
-                      whileHover={{ scale: 1.2, y: -4 }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    >
-                      <ArrowUpRight className="w-6 h-6 md:w-7 md:h-7 text-[#0a0a0a]" />
-                    </motion.div>
-                  </motion.div>
-
-                  {/* Category Label removed, pill bar only */}
-                </motion.div>
-              ))}
-            </div>
+          {/* Right Content - Traceable Story */}
+          <div className="flex justify-center lg:justify-end items-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="w-full"
+            >
+              <TraceableStory />
+            </motion.div>
           </div>
         </div>
       </div>

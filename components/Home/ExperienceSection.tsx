@@ -9,7 +9,7 @@ import {
   education,
   experiences,
 } from "../data/ExperienceData";
-
+import {motion} from 'framer-motion';
 const INITIAL_DISPLAY_COUNT = 3;
 
 export default function ExperienceSection(id: { id: string }) {
@@ -29,24 +29,31 @@ export default function ExperienceSection(id: { id: string }) {
       id={id.id}
       className="relative min-h-screen text-zinc-100 py-20 px-6 md:px-12 lg:px-20 scroll-mt-20"
     >
-      {/* Top right gradient */}
-      <div
-        className="absolute top-0 right-0 w-[180px] h-[180px] sm:w-[300px] sm:h-[300px] md:w-[500px] md:h-[500px] lg:w-[650px] lg:h-[650px] pointer-events-none z-0"
+      {/* Right middle gradient */}
+      <motion.div
+        initial={{ opacity: 0, x: 200 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        className="absolute top-1/2 -translate-y-1/2 right-0 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] md:w-[700px] md:h-[700px] lg:w-[1200px] lg:h-[1200px] pointer-events-none z-0"
         style={{
           background:
-            "radial-gradient(circle at top right, rgba(35, 46, 35) 0%, transparent 60%)",
-          transform: "scaleX(1)",
+            "radial-gradient(circle at right center, rgba(35, 46, 35) 0%, transparent 40%)",
         }}
       />
-      {/* Bottom left gradient (fixed: only at bottom left) */}
-      <div
+      {/* Bottom left gradient */}
+      <motion.div
+        initial={{ opacity: 0, x: -200 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
         className="absolute bottom-0 left-0 w-[180px] h-[180px] sm:w-[300px] sm:h-[300px] md:w-[500px] md:h-[500px] lg:w-[650px] lg:h-[650px] pointer-events-none z-0"
         style={{
           background:
-            "radial-gradient(circle at bottom left, rgba(35, 46, 35) 0%, transparent 60%)",
+            "radial-gradient(circle at bottom left, rgba(35, 46, 35) 0%, transparent 40%)",
         }}
       />
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-[1400px] mx-auto">
         {/* Header */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           <div>
@@ -145,7 +152,7 @@ export default function ExperienceSection(id: { id: string }) {
                     </div>
 
                     {/* Location (was tags) */}
-                    <div className="lg:col-span-3 flex items-center justify-start lg:justify-end">
+                    <div className="lg:col-span-3 flex items-center justify-start mt-4 lg:mt-0">
                       <span className="px-4 py-1.5 rounded-full text-sm font-medium bg-zinc-100 text-zinc-900">
                         {exp.location}
                       </span>

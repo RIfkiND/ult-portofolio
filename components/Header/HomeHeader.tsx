@@ -1,27 +1,42 @@
 "use client";
 
-import Link from "next/link";
+import { TransitionLink } from "@/components/ui/TransitionLink";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-import { ArrowRight, Linkedin, Mail, Github } from "lucide-react";
-import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, ChevronDown } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
 import {
   MobileNav,
   MobileNavHeader,
   MobileNavMenu,
   MobileNavToggle,
 } from "@/components/ui/Mobile Header";
+import { AnimatedButton } from "@/components/ui/AnimatedButton";
 
 export default function HomeHeader() {
   const [isHovered, setIsHovered] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [hideLogo, setHideLogo] = useState(false);
+  const [isOfferHovered, setIsOfferHovered] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   const pathname = usePathname();
   const isHome = pathname === "/";
 
   // Prefix hash links with "/" when not on home page
   const navHref = (hash: string) => (isHome ? hash : `/${hash}`);
+
+  const handleMouseEnterOffer = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setIsOfferHovered(true);
+  };
+
+  const handleMouseLeaveOffer = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsOfferHovered(false);
+    }, 150);
+  };
 
   useEffect(() => {
     const onScroll = () => {
@@ -31,109 +46,88 @@ export default function HomeHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+
+  const isContact = pathname === "/contact";
+
+  // The logo and header text should turn dark on the contact page
+  const logoTextColor = isContact ? "text-[#111111]" : "text-white";
+  const logoDividerColor = isContact ? "bg-black/30" : "bg-white/30";
+  
+  // The container border should be dark on the contact page
+  const containerBorderColor = isContact ? "border-black" : "border-white/10";
+  const containerBorderSecondary = isContact ? "" : "border-[#1c1c1c]";
+  
+  // Mega menu background
+  const megaMenuBg = isContact ? "bg-transparent border-black shadow-xl" : "bg-black/40 border-white/20";
+
+  // The header background is always transparent
+  const headerBgClass = "bg-transparent";
+
+  useEffect(() => {
+    // When the route changes, animate the header back in!
+    gsap.fromTo("#main-header", 
+      { opacity: 0, y: -20 },
+      { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", clearProps: "all" }
+    );
+  }, [pathname]);
+
   return (
-    <header className="w-full md:sticky md:top-0 z-40 font-intre ">
-      <div className="container mx-auto px-6 lg:px-8 pt-10">
-        <nav className="flex items-center justify-between pb-6">
+    <header id="main-header" className={`w-full z-40 font-sans transition-all duration-300 ${headerBgClass} ${isContact ? 'absolute top-0 left-0' : 'md:sticky md:top-0'}`}>
+      <div className="w-full px-6 md:px-10 lg:px-14 xl:px-20 pt-12">
+        <nav className="flex items-center justify-between pb-6 relative"> 
           {/* Logo (always left) */}
-          <Link href="/" className="flex items-center gap-4">
+          <TransitionLink href="/" className="flex items-center gap-4">
             <motion.div
-              className="text-white font-bold text-2xl flex items-center gap-2"
+              className={`${logoTextColor} font-bold text-2xl flex items-center gap-2`}
               animate={{ opacity: hideLogo ? 0 : 1, y: hideLogo ? -30 : 0 }}
               transition={{ duration: 0.3 }}
             >
-              <span className="text-4xl font-black">Rifki</span>
-              <div className="h-8 w-px bg-white/30" />
+              <span className="text-6xl font-black">Rifki</span>
+              <div className={`h-8 w-px ${logoDividerColor}`} />
               <div className="flex flex-col text-sm leading-tight">
                 <span className="font-bold">Software</span>
                 <span className="font-normal">Engineer</span>
               </div>
               <span className="ml-1 text-xs">®</span>
             </motion.div>
-          </Link>
+          </TransitionLink>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-2  border-white/10 rounded-md p-2 border border-[#1c1c1c] backdrop-blur-md">
-            <Link
-              href={navHref("#about")}
-              className="text-white hover:text-white transition-colors text-sm uppercase tracking-wider font-normal rounded-md px-5 py-2.5 bg-neutral-800 hover:bg-zinc-800/50"
-              scroll={false}
+          <div className={`hidden md:flex items-center gap-4 rounded-md p-2 border ${containerBorderColor} backdrop-blur-md ${containerBorderSecondary}`}>
+            <div 
+              onMouseEnter={handleMouseEnterOffer}
+              onMouseLeave={handleMouseLeaveOffer}
             >
-              About Me
-            </Link>
-            <Link
+              <button
+                type="button"
+                className="text-white disabled:text-white transition-colors text-base uppercase tracking-wider font-normal rounded-md px-6 py-3 flex items-center gap-2 cursor-default bg-neutral-800"
+              >
+                What i Offer
+                <motion.div
+                  animate={{ rotate: isOfferHovered ? 180 : 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  <ChevronDown className="w-4 h-4 text-white/70" strokeWidth={2.5} />
+                </motion.div>
+              </button>
+            </div>
+            <TransitionLink
               href="/project"
-              className={`text-white hover:text-white transition-colors text-sm uppercase tracking-wider font-normal rounded-md px-5 py-2.5 hover:bg-zinc-800/50 ${pathname === "/project" ? "bg-neutral-800/40" : "bg-neutral-800"}`}
+              className={`text-white hover:text-white transition-colors text-base uppercase tracking-wider font-normal rounded-md px-6 py-3 hover:bg-zinc-800/50 ${pathname === "/project" ? "bg-neutral-800/40" : "bg-neutral-800"}`}
             >
               Project
-            </Link>
-            <Link
+            </TransitionLink>
+            <TransitionLink
               href={navHref("#experience")}
-              className="text-white hover:text-white transition-colors text-sm uppercase tracking-wider font-normal rounded-md px-5 py-2.5 bg-neutral-800 hover:bg-zinc-800/50"
+              className="text-white hover:text-white transition-colors text-base uppercase tracking-wider font-normal rounded-md px-6 py-3 bg-neutral-800 hover:bg-zinc-800/50"
               scroll={false}
             >
               Experience
-            </Link>
-            <div className="h-6 w-px bg-white/10 mx-4" />
-            <Dialog>
-              <DialogTrigger asChild>
-                <motion.div
-                  onHoverStart={() => setIsHovered(true)}
-                  onHoverEnd={() => setIsHovered(false)}
-                  className="relative cursor-pointer rounded-full overflow-hidden mr-1"
-                  style={{ width: '180px', height: '50px' }}
-                  tabIndex={0}
-                  role="button"
-                >
-                  <motion.div
-                    className="absolute inset-0 rounded-full"
-                    animate={{ backgroundColor: isHovered ? '#8ddd8d' : '#171717' }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                  />
-                  <motion.span
-                    className="absolute top-1/2 -translate-y-1/2 uppercase text-sm font-normal tracking-wider z-10"
-                    animate={{ x: isHovered ? 18 : 65, color: isHovered ? '#1a1a1a' : '#fff' }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                  >
-                    Contact
-                  </motion.span>
-                  <motion.div
-                    className="absolute top-1/2 -translate-y-1/2 rounded-full flex items-center justify-center z-10"
-                    style={{ width: '42px', height: '42px' }}
-                    animate={{ x: isHovered ? 130 : 8, backgroundColor: isHovered ? '#1a1a1a' : '#8ddd8d' }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                  >
-                    <ArrowRight className="h-5 w-5" strokeWidth={2.5} style={{ color: isHovered ? '#fff' : '#1a1a1a' }} />
-                  </motion.div>
-                </motion.div>
-              </DialogTrigger>
-              <DialogContent className="bg-zinc-900/70 backdrop-blur-lg rounded-2xl shadow-xl p-8 w-[90vw] max-w-md flex flex-col items-center border border-white/10">
-                <DialogTitle className="sr-only">Contact Links</DialogTitle>
-                <div className="flex flex-row gap-6 w-full justify-center mt-2">
-                  <a
-                    href="https://www.linkedin.com/in/rifki-nd" target="_blank" rel="noopener noreferrer"
-                    className="rounded-full bg-zinc-800 hover:bg-brand/20 border border-white/10 p-4 transition-colors flex items-center justify-center"
-                    aria-label="LinkedIn"
-                  >
-                    <Linkedin className="w-7 h-7 text-brand" />
-                  </a>
-                  <a
-                    href="mailto:rifkinauvaldzaki08@gmail.com"
-                    className="rounded-full bg-zinc-800 hover:bg-brand/20 border border-white/10 p-4 transition-colors flex items-center justify-center"
-                    aria-label="Email"
-                  >
-                    <Mail className="w-7 h-7 text-brand" />
-                  </a>
-                  <a
-                    href="https://github.com/RIfkiND" target="_blank" rel="noopener noreferrer"
-                    className="rounded-full bg-zinc-800 hover:bg-brand/20 border border-white/10 p-4 transition-colors flex items-center justify-center"
-                    aria-label="GitHub"
-                  >
-                    <Github className="w-7 h-7 text-brand" />
-                  </a>
-                </div>
-              </DialogContent>
-            </Dialog>
+            </TransitionLink>
+            <div className={`h-6 w-px mx-4 ${isContact ? 'bg-black/10' : 'bg-white/10'}`} />
+            <TransitionLink href="/contact">
+              <AnimatedButton className="mr-1" />
+            </TransitionLink>
           </div>
           {/* Mobile nav - hamburger at far right */}
           <div className="md:hidden flex items-center justify-end flex-1 relative z-50">
@@ -143,19 +137,111 @@ export default function HomeHeader() {
                   <MobileNavToggle isOpen={menuOpen} onClick={() => setMenuOpen((v) => !v)} />
                 </div>
               </MobileNavHeader>
-              <MobileNavMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} className="mx-auto left-1/2 -translate-x-1/2 w-64">
-                <Link href={navHref("#about")} scroll={false} onClick={() => setMenuOpen(false)}>
-                  About Me
-                </Link>
-                <Link href="/project" onClick={() => setMenuOpen(false)}>
+              <MobileNavMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} className="right-0 left-auto translate-x-0 w-56 mt-4">
+                <TransitionLink 
+                  href={navHref("#about")} 
+                  scroll={false} 
+                  onClick={() => setMenuOpen(false)}
+                  className="w-full text-white text-base uppercase tracking-wider font-medium hover:text-[#8ddd8d] transition-colors border-b border-white/10 pb-4"
+                >
+                  What i Offer
+                </TransitionLink>
+                <TransitionLink 
+                  href="/project" 
+                  onClick={() => setMenuOpen(false)}
+                  className="w-full text-white text-base uppercase tracking-wider font-medium hover:text-[#8ddd8d] transition-colors border-b border-white/10 pb-4"
+                >
                   Project
-                </Link>
-                <Link href={navHref("#experience")} scroll={false} onClick={() => setMenuOpen(false)}>
+                </TransitionLink>
+                <TransitionLink 
+                  href={navHref("#experience")} 
+                  scroll={false} 
+                  onClick={() => setMenuOpen(false)}
+                  className="w-full text-white text-base uppercase tracking-wider font-medium hover:text-[#8ddd8d] transition-colors pb-2"
+                >
                   Experience
-                </Link>
+                </TransitionLink>
               </MobileNavMenu>
             </MobileNav>
           </div>
+          
+          {/* Desktop Mega Menu Dropdown */}
+          <AnimatePresence>
+            {isOfferHovered && (
+              <motion.div
+                onMouseEnter={handleMouseEnterOffer}
+                onMouseLeave={handleMouseLeaveOffer}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={{
+                  hidden: { opacity: 0, y: 10 },
+                  visible: { 
+                    opacity: 1, y: 0,
+                    transition: { duration: 0.3, ease: "easeOut", staggerChildren: 0.1, delayChildren: 0.1 }
+                  },
+                  exit: { 
+                    opacity: 0, y: 20,
+                    transition: { duration: 0.2, ease: "easeIn", staggerChildren: 0.05, staggerDirection: -1 }
+                  }
+                }}
+                className="absolute top-[100%] left-0 w-full pt-6 z-50 hidden md:block"
+              > 
+                {/* Glassy Background Container */}
+                <div className={`flex gap-6 w-full rounded-[6px] p-6 border backdrop-blur-md ${megaMenuBg}`}>
+                  
+                  {/* Green Card */}
+                  <motion.div 
+                    variants={{ hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }, exit: { opacity: 0, y: 50, transition: { duration: 0.3, ease: "easeIn" } } }} 
+                    className="flex-1"
+                  >
+                    <TransitionLink href="/offer/backend" className="h-full bg-[#8ddd8d] text-black p-8 rounded-[24px] flex flex-col justify-between group hover:scale-[1.03] transition-transform min-h-[240px] shadow-2xl block">
+                      <div>
+                        <h3 className="text-3xl font-bold mb-3 leading-tight font-sans">Backend<br/>Architecture</h3>
+                        <p className="text-sm font-medium opacity-80 max-w-[80%]">Robust APIs, microservices, and scalable database designs.</p>
+                      </div>
+                      <div className="self-end mt-4 border border-black/20 rounded-full p-3 group-hover:bg-black/10 transition-colors">
+                        <ArrowRight className="w-5 h-5" />
+                      </div>
+                    </TransitionLink>
+                  </motion.div>
+                  
+                  {/* Yellow Card */}
+                  <motion.div 
+                    variants={{ hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }, exit: { opacity: 0, y: 50, transition: { duration: 0.3, ease: "easeIn" } } }} 
+                    className="flex-1"
+                  >
+                    <TransitionLink href={navHref("#about")} className="h-full bg-[#f4e04d] text-black p-8 rounded-[24px] flex flex-col justify-between group hover:scale-[1.03] transition-transform min-h-[240px] shadow-2xl block">
+                      <div>
+                        <h3 className="text-3xl font-bold mb-3 leading-tight font-sans">DevOps &<br/>Infrastructure</h3>
+                        <p className="text-sm font-medium opacity-80 max-w-[80%]">Automated pipelines, Docker, and reliable cloud deployments.</p>
+                      </div>
+                      <div className="self-end mt-4 border border-black/20 rounded-full p-3 group-hover:bg-black/10 transition-colors">
+                        <ArrowRight className="w-5 h-5" />
+                      </div>
+                    </TransitionLink>
+                  </motion.div>
+
+                  {/* Blue Card */}
+                  <motion.div 
+                    variants={{ hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }, exit: { opacity: 0, y: 50, transition: { duration: 0.3, ease: "easeIn" } } }} 
+                    className="flex-1"
+                  >
+                    <TransitionLink href={navHref("#about")} className="h-full bg-[#6b66ff] text-white p-8 rounded-[24px] flex flex-col justify-between group hover:scale-[1.03] transition-transform min-h-[240px] shadow-2xl block">
+                      <div>
+                        <h3 className="text-3xl font-bold mb-3 leading-tight font-sans">Distributed<br/>Systems</h3>
+                        <p className="text-sm font-medium opacity-80 max-w-[80%]">High-performance applications handling millions of requests.</p>
+                      </div>
+                      <div className="self-end mt-4 border border-white/20 rounded-full p-3 group-hover:bg-white/10 transition-colors">
+                        <ArrowRight className="w-5 h-5" />
+                      </div>
+                    </TransitionLink>
+                  </motion.div>
+
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </nav>
       </div>
     </header>

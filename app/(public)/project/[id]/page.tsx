@@ -37,7 +37,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
     <div className="min-h-screen bg-zinc-950 text-white">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-10 pb-24 px-6 lg:px-8 border-b border-zinc-800/60">
-        <div className="container mx-auto max-w-7xl relative z-10">
+        <div className="max-w-[1400px] mx-auto relative z-10">
           {/* Back link */}
           <motion.div
             initial={{ opacity: 0, x: -16 }}
@@ -190,7 +190,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
       {/* Related Projects Navigation */}
       {(prevProject || nextProject) && (
         <section className="border-t border-zinc-800/60 py-16 px-6 lg:px-8">
-          <div className="container mx-auto max-w-7xl">
+          <div className="max-w-[1400px] mx-auto">
             <p className="text-xs uppercase tracking-widest text-zinc-500 font-medium mb-8">
               Explore More
             </p>
