@@ -48,7 +48,7 @@ export default function TraceableStory() {
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.4 + index * 0.5 }}
-              className="absolute left-[23px] top-2 w-2.5 h-2.5 rounded-full bg-zinc-950 border border-white/50 z-10 transition-all duration-300 group-hover:border-[#8ddd8d] group-hover:shadow-[0_0_12px_#8ddd8d] group-hover:scale-150"
+              className="absolute left-[23px] top-2 w-2.5 h-2.5 rounded-full bg-primary border border-white/50 z-10 transition-all duration-300 group-hover:border-[#8ddd8d] group-hover:shadow-[0_0_12px_#8ddd8d] group-hover:scale-150"
             />
             
             {/* Content */}
@@ -75,3 +75,4 @@ export default function TraceableStory() {
     </div>
   );
 }
+

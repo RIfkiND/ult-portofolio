@@ -34,7 +34,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
   const nextProject = projectIndex < projects.length - 1 ? projects[projectIndex + 1] : null;
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-primary text-white">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-10 pb-24 px-6 lg:px-8 border-b border-zinc-800/60">
         <div className="max-w-[1400px] mx-auto relative z-10">

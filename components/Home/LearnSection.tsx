@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion";
-import TraceableStory from "./TraceableStory";
+import GsapIntroVisual from "./GsapIntroVisual";
 
 const skills = [
   "JavaScript",
@@ -42,11 +42,11 @@ export default function LearnSection(id : { id: string }) {
           >
 
             <h2 className="text-5xl md:text-6xl lg:text-[5.5rem] leading-[1.05] text-balance font-serif font-normal tracking-tight mb-2">
-              <span className="text-white">Software Engineer</span>
+              <span className="text-white">Hi, I'm Rifki.</span>
             </h2>
 
             <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
-             I build scalable and reliable software systems, design robust APIs, and develop high-performance applications. My experience includes backend development, distributed systems, and designing maintainable software architectures.
+             I am a passionate Software Engineer from Indonesia with a deep focus on crafting robust backend architectures and scalable applications. I thrive on solving complex algorithmic challenges and transforming ideas into highly performant digital realities.
             </p>
 
             <div className="space-y-4 pt-4">
@@ -69,16 +69,9 @@ export default function LearnSection(id : { id: string }) {
             </div>
           </motion.div>
 
-          {/* Right Content - Traceable Story */}
-          <div className="flex justify-center lg:justify-end items-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="w-full"
-            >
-              <TraceableStory />
-            </motion.div>
+          {/* Right Content - GSAP Visual */}
+          <div className="flex justify-center items-center w-full">
+            <GsapIntroVisual />
           </div>
         </div>
       </div>

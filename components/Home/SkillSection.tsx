@@ -13,8 +13,8 @@ const logos = [
 export default function SkillSection(id : { id: string }) {
   return (
     <section id={id.id} className="w-full pt-24 sm:pt-32 px-2 sm:px-4 relative scroll-mt-20">
-      <div className="mx-auto max-w-[1200px]">
-        <div className="relative rounded-full border border-white/[0.08] bg-[#0a0a0a]/40 backdrop-blur-md py-12 px-6 sm:py-20 sm:px-12 md:py-20 md:px-20 overflow-hidden">
+      <div className="mx-auto max-w-[1100px]">
+        <div className="relative rounded-full border border-white/[0.08] bg-primary/40 backdrop-blur-md py-12 px-6 sm:py-20 sm:px-12 md:py-20 md:px-20 overflow-hidden">
           {/* Subtle top gradient border effect */}
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
           <div className="relative flex items-center justify-between w-full">

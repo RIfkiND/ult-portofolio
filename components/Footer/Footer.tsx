@@ -6,8 +6,20 @@ import { FaInstagram, FaGithub, FaLinkedinIn } from "react-icons/fa"
 
 export default function Footer() {
   const pathname = usePathname();
-  // Use light background for contact page to seamlessly blend in
-  const bgClass = pathname === "/contact" ? "bg-[#f5f5f5]" : "bg-[#111111]";
+  // List of pages that require a dark/transparent background
+  const darkPages = [
+    
+    "/offer/backend",
+  ];
+
+  // List of pages that require a light background
+  const lightPages = [
+    "/",
+    "/contact",
+  ];
+
+  // Apply transparent background if the page is in darkPages, otherwise default to light
+  const bgClass = darkPages.includes(pathname) ? "bg-transparent" : "bg-[#f5f5f5]";
   
   const navRows = [
     { left: { label: "About", href: "/about" }, right: { label: "Projects", href: "/project" } },
@@ -21,9 +33,9 @@ export default function Footer() {
   ];
 
   return (
-    <section className={`${bgClass} w-full pb-8 transition-colors duration-300`}>
-      <footer className="w-full max-w-[1400px] mx-auto pt-24 sm:pt-32 px-4 md:px-8">
-        <div className="bg-[#111111] border border-white/5 shadow-2xl rounded-[10px] px-8 py-16 md:px-16 md:py-24 lg:px-24">
+    <section className={`${bgClass} w-full transition-colors duration-300`}>
+      <footer className="w-full max-w-[1750] mx-auto pt-24 sm:pt-32 px-4 md:px-8">
+        <div className="bg-primary border border-white/5 shadow-2xl rounded-[10px] px-8 py-16 md:px-16 md:py-24 lg:px-24">
           <div className="max-w-[1400px] mx-auto">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-16">
             {/* Left Section - Logo and Tagline */}
@@ -95,15 +107,16 @@ export default function Footer() {
         </div>
 
         {/* Bottom Legal Link */}
-        <div className="text-center mt-8">
+        <div className="text-center pb-8">
           <Link
             href="/privacy-policy"
-            className="text-[#6a6a6a] hover:text-[#8a8a8a] transition-colors text-sm"
+            className="text-[#6a6a6a] hover:text-[#8a8a8a] transition-colors text-md tex-bold"
           >
-            Privacy Policy
+            Legal Notice
           </Link>
         </div>
       </footer>
     </section>
   )
 }
+
