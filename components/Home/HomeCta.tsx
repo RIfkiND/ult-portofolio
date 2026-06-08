@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
+import { ArrowRight, Video, CalendarDays } from "lucide-react";
 import { TransitionLink } from "@/components/ui/TransitionLink";
 
 export default function HomeCta() {
@@ -55,23 +54,37 @@ export default function HomeCta() {
           <div className="relative w-full max-w-[550px] xl:max-w-[650px] aspect-[2/1] bg-[#1a1a1a] rounded-[300px] p-3 md:p-5 flex items-center justify-between shadow-2xl gap-3">
             
             {/* Left Circle */}
-            <div className="relative w-1/2 aspect-square bg-[#5264d1] rounded-full overflow-hidden shadow-inner">
-              <Image 
-                src="/photos/rifki-profile.jpg" 
-                alt="Rifki" 
-                fill 
-                className="object-cover object-center scale-110"
-              />
+            <div className="relative w-1/2 aspect-square bg-[#5264d1] rounded-full overflow-hidden shadow-inner flex items-center justify-center">
+              <motion.div
+                animate={{ 
+                  y: [0, -10, 0],
+                  rotate: [0, -5, 5, 0] 
+                }}
+                transition={{ 
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <Video className="w-20 h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 text-white/90" strokeWidth={1.5} />
+              </motion.div>
             </div>
             
             {/* Right Circle */}
-            <div className="relative w-1/2 aspect-square bg-[#8ddd8d] rounded-full overflow-hidden shadow-inner">
-              <Image 
-                src="/photos/rifki-profile.jpg" 
-                alt="Rifki Alt" 
-                fill 
-                className="object-cover object-top scale-[1.3] grayscale mix-blend-multiply opacity-90"
-              />
+            <div className="relative w-1/2 aspect-square bg-[#8ddd8d] rounded-full overflow-hidden shadow-inner flex items-center justify-center">
+              <motion.div
+                animate={{ 
+                  y: [0, 10, 0],
+                  rotate: [0, 5, -5, 0] 
+                }}
+                transition={{ 
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <CalendarDays className="w-20 h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 text-[#111111]/80" strokeWidth={1.5} />
+              </motion.div>
             </div>
             
           </div>

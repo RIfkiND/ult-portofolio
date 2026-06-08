@@ -51,7 +51,7 @@ export default function TechStackSection({ id }: TechStackSectionProps) {
       className="w-full py-40 px-6 lg:px-12 overflow-hidden relative"
     >
       <div className="max-w-[1400px] mx-auto text-center relative z-10 px-4">
-        <ScrollRevealText text="We master the subtleties of diverse ecosystems and activate creative solutions" />
+        <ScrollRevealText text="I master the subtleties of diverse ecosystems and activate creative solutions" />
       </div>
 
       {/* Floating Tags */}

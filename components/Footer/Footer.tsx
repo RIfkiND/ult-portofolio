@@ -9,7 +9,7 @@ export default function Footer() {
   // List of pages that require a dark/transparent background
   const darkPages = [
     
-    "/offer/backend",
+    "/about-me",
   ];
 
   // List of pages that require a light background
@@ -56,7 +56,7 @@ export default function Footer() {
 
               {/* Tagline */}
               <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] text-[#d4d4d4] font-serif leading-[1.15] tracking-tight">
-                Software engineered for the modern web.
+                Software Engineer.
               </h2>
             </div>
 

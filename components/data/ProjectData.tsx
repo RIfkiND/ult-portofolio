@@ -8,6 +8,8 @@ export interface Project {
   link?: string;
   github?: string;
   category: string;
+  systemDesignUrl?: string;
+  additionalImages?: string[];
 }
 
 export const projects: Project[] = [

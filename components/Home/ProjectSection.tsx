@@ -11,6 +11,7 @@ interface Project {
   videoUrl?: string;
   techStack: string[];
   link?: string;
+  isGithub?: boolean;
   tagPrefix?: string;
   tagHighlighted?: string;
 }
@@ -34,20 +35,21 @@ const projects: Project[] = [
       "EDP Kejuruan is a real-time monitoring and evaluation platform for vocational teacher training, featuring live dashboards, comprehensive reporting, and user management.",
     imageUrl: "/projects/diklat.png",
     techStack: ["Backend", "API", "Server", "CI/CD"],
-    link: "https://edp.kejuruan.id/",
+    link: "https://github.com/RIfkiND/diklat",
+    isGithub: true,
     tagPrefix: "for",
     tagHighlighted: "BMTI Bandung",
   },
   {
     id: 3,
-    title: "Portfolio Website",
+    title: "Koupii LMS",
     description:
-      "A personal portfolio site showcasing projects, skills, and professional background, with a modern, responsive design.",
-    imageUrl: "/projects/portofolio.png",
-    techStack: ["Next.js", "React", "Tailwind CSS", "Vercel"],
-    link: "/",
-    tagPrefix: "",
-    tagHighlighted: "Personal Project",
+      "A freelance backend project developed for Mager Coding (Vietnam), featuring a robust Laravel REST API and advanced Voice/AI integration.",
+    imageUrl: "/projects/Koupii-app.svg",
+    techStack: ["Laravel", "REST API", "Voice/AI", "Backend"],
+    link: "https://koupii.com/en",
+    tagPrefix: "for",
+    tagHighlighted: "Mager Coding",
   },
   {
     id: 4,
@@ -57,20 +59,32 @@ const projects: Project[] = [
     imageUrl: "",
     videoUrl: "/vidios/hasilbumi.mp4",
     techStack: ["Laravel", "Payment Gateway", "Vue", "Stripe"],
-    link: "https://www.linkedin.com/in/rifki-nd/details/projects/1307333513/"
+    link: "https://github.com/RIfkiND/HasilBumi",
+    isGithub: true
   },
 ];
 
 export default function ProjectSection({ id }: { id?: string }) {
   return (
     <section id={id} className="py-24 px-6 md:px-12 lg:px-20">
+       <motion.div
+        initial={{ opacity: 0, x: -200 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        className="absolute top-1/2 -translate-y-1/2 left-0 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] md:w-[700px] md:h-[700px] lg:w-[1200px] lg:h-[1200px] pointer-events-none z-0"
+        style={{
+          background:
+            "radial-gradient(circle at left center, rgba(35, 46, 35, 0.8) 0%, transparent 40%)",
+        }}
+      />
       <div className="max-w-[1400px] mx-auto">
         <div className="mb-16">
           <span className="text-[#8ddd8d] text-sm font-medium tracking-wide uppercase mb-2 block">
             Selected Works
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white tracking-tight">
-            Our Projects
+            My Projects
           </h2>
         </div>
 

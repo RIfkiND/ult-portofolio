@@ -97,13 +97,14 @@ function latLngToVector3(
   radius: number,
 ): THREE.Vector3 {
   const phi = (90 - lat) * (Math.PI / 180);
-  const theta = (lng + 180) * (Math.PI / 180);
+  // Empirically calibrated mapping to align with the texture
+  const theta = (-lng + 337.6) * (Math.PI / 180);
 
-  const x = -(radius * Math.sin(phi) * Math.cos(theta));
-  const z = radius * Math.sin(phi) * Math.sin(theta);
-  const y = radius * Math.cos(phi);
-
-  return new THREE.Vector3(x, y, z);
+  return new THREE.Vector3(
+    radius * Math.sin(phi) * Math.sin(theta), // x
+    radius * Math.cos(phi),                   // y
+    radius * Math.sin(phi) * Math.cos(theta)  // z
+  );
 }
 
 // ============================================================================
@@ -229,8 +230,8 @@ function Marker({
             style={{
               width: `${(marker.size || defaultSize) * 500}px`,
               height: `${(marker.size || defaultSize) * 500}px`,
-              minWidth: "28px",
-              minHeight: "28px",
+              minWidth: "12px",
+              minHeight: "12px",
               maxWidth: "40px",
               maxHeight: "40px",
             }}

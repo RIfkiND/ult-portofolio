@@ -252,14 +252,14 @@ export default function CapabilitiesSection({ id }: CapabilitiesSectionProps) {
         <div className="w-full xl:w-[30%] space-y-8 xl:sticky xl:top-40">
           <div className="space-y-6">
             <p className="text-[#8ddd8d] text-sm tracking-[0.2em] uppercase font-semibold">
-              Creativity & Business
+              My Expertise
             </p>
             <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.1] text-white">
-              An architecture in line with your development goals
+              Architecting solutions for modern challenges
             </h2>
             <p className="text-white/50 text-base md:text-lg font-light leading-relaxed max-w-md">
-              Every system is unique, but all are built step by step. Our
-              solutions adjust to your development phase to accompany your
+              Every system is unique, but all are built step by step. My
+              skill set adjusts to project needs to accompany your
               ambitions with finesse.
             </p>
           </div>

@@ -12,8 +12,8 @@ const PIN_ICON = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://ww
 // Single marker: "I'm here" at Indonesia
 const locationMarker: GlobeMarker[] = [
   {
-    lat: -6.9733,
-    lng: 107.6304,
+    lat: -7.3274,
+    lng: 108.3533,
     src: PIN_ICON,
     label: "I'm here 📍",
   },
@@ -36,8 +36,8 @@ const contactLinks = [
   {
     icon: FaInstagram,
     label: "Instagram",
-    href: "https://instagram.com",
-    username: "@rifki",
+    href: "https://www.instagram.com/rifkinauvaldzaki/",
+    username: "@rifkinauvaldzaki",
   },
   {
     icon: HiOutlineMail,
@@ -56,9 +56,9 @@ export default function ContactPage() {
           {/* Left Content */}
           <div className="w-full lg:w-1/2 z-10 flex flex-col gap-14">
             <h1 className="font-serif text-[3.5rem] sm:text-[5.5rem] lg:text-[6.5rem] leading-[0.9] text-[#111111] tracking-tight">
-              Ready to<br />
-              integrate APIs<br />
-              &amp; AI?
+              Let&apos;s build<br />
+              your next<br />
+              big project.
             </h1>
 
             <div className="h-px w-full max-w-xl bg-black/10" />
@@ -66,9 +66,9 @@ export default function ContactPage() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-12 sm:gap-20">
               {/* First Action */}
-              <div className="flex items-center gap-6 group cursor-pointer">
+              <a href="mailto:rifkinauvaldzaki08@gmail.com" className="flex items-center gap-6 group cursor-pointer">
                 <p className="text-xl sm:text-2xl text-black/70 max-w-[200px] font-sans leading-tight">
-                  Let&apos;s take 30 minutes to talk about your challenges!
+                  Let&apos;s talk about your technical challenges!
                 </p>
                 <AnimatedButton
                   width="140px"
@@ -82,13 +82,13 @@ export default function ContactPage() {
                   iconDefaultColor="#5ceb5c"
                   iconHoverColor="#1a1a1a"
                 />
-              </div>
+              </a>
 
               {/* Second Action */}
-              <div className="flex items-center gap-6 group cursor-pointer">
+              <a href="mailto:rifkinauvaldzaki08@gmail.com" className="flex items-center gap-6 group cursor-pointer">
                 <p className="text-xl sm:text-2xl text-black/70 max-w-[140px] font-sans leading-tight">
-                  No time?<br />
-                  Write to us.
+                  Have an idea?<br />
+                  Write to me.
                 </p>
                 <AnimatedButton
                   width="140px"
@@ -102,7 +102,7 @@ export default function ContactPage() {
                   iconDefaultColor="#5ceb5c"
                   iconHoverColor="#1a1a1a"
                 />
-              </div>
+              </a>
             </div>
 
             {/* Social Contact Links */}
@@ -130,7 +130,7 @@ export default function ContactPage() {
             <div className="w-full max-w-[600px] aspect-square relative">
               <Globe3D
                 className="h-full w-full"
-                markers={locationMarker}
+                // markers={locationMarker}
                 config={{
                   textureUrl: "https://unpkg.com/three-globe@2.31.0/example/img/earth-day.jpg",
                   showAtmosphere: false,
@@ -142,8 +142,8 @@ export default function ContactPage() {
                   ambientIntensity: 3.0,
                   pointLightIntensity: 1.0,
                   showWireframe: false,
-                  markerSize: 0.03,
-                  initialRotation: { x: 0.12, y: -1.88 },
+                  markerSize: 0.02,
+                  initialRotation: { x: -0.12, y: 4.01 },
                 }}
               />
             </div>

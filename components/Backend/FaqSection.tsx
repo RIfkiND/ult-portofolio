@@ -10,29 +10,29 @@ interface FaqSectionProps {
 
 const faqItems = [
   {
-    question: "Do meetings with you include coffee and croissants?",
+    question: "Do meetings with you include coffee?",
     answer:
-      "We believe productive meetings start with a warm atmosphere. While we can't guarantee pastries every time, we do ensure every session is collaborative, efficient, and focused on delivering real value for your project.",
+      "I believe productive meetings start with a warm atmosphere. While I can't guarantee coffee every time if we are remote, I do ensure every session is collaborative, efficient, and focused on delivering real value.",
   },
   {
-    question: "How long does a backend architecture last?",
+    question: "What is your main engineering focus?",
     answer:
-      "A well-designed backend architecture lasts about five years before needing a major refactor or redesign. This figure should obviously be adjusted according to the industry sector and the company's growth trajectory. A solid architecture can be viewed as a long-term investment.",
+      "My primary focus is backend architecture and systems engineering. I enjoy designing databases, building high-performance APIs in Go or Node, and managing infrastructure using modern DevOps practices.",
   },
   {
-    question: "Where can I find examples of your deliverables?",
+    question: "Where can I find examples of your work?",
     answer:
-      "You can explore our project portfolio to see real-world examples of backend systems we've built — from microservices architectures to high-performance APIs. Each project page includes technical details, architecture diagrams, and measurable outcomes.",
+      "You can explore my 'Project' page to see real-world examples of systems I've built. My GitHub also contains various open-source contributions and personal experiments.",
   },
   {
-    question: "Specifically, what do you deliver and in what formats?",
+    question: "What is your approach to learning new tech?",
     answer:
-      "We deliver production-ready code repositories, comprehensive API documentation, architecture decision records (ADRs), deployment configurations (Docker, CI/CD), database schemas, and monitoring dashboards. Everything is version-controlled and handoff-ready.",
+      "I am a lifelong learner. I usually start by reading the official documentation, building a small prototype to understand the edge cases, and then applying it to a real-world problem to solidify my understanding.",
   },
   {
-    question: "What does the first step of your support consist of?",
+    question: "How can we start working together?",
     answer:
-      "The first step is always a discovery session — a 30-minute deep dive into your current system, pain points, and goals. From there, we produce a technical roadmap with clear milestones, estimated timelines, and a transparent pricing structure.",
+      "The first step is always a quick chat—either via email or a discovery call. We can discuss your current system, your pain points, and how my skill set can help you achieve your goals.",
   },
 ];
 

@@ -21,10 +21,10 @@ export default function HeroSection({ id }: HeroSectionProps) {
         className="max-w-5xl mx-auto text-center space-y-8"
       >
         <p className="text-[#8ddd8d] text-sm md:text-base tracking-[0.2em] uppercase font-semibold">
-          Our Offer: Backend Architecture
+          About Me
         </p>
         <h1 className="text-5xl md:text-7xl lg:text-[6.5rem] font-serif font-normal text-white leading-[1.05] tracking-tight text-balance">
-          Robust architecture is the lever of your success
+          Hi, I'm Rifki. A Software Engineer and Api Specialist.
         </h1>
         <div className="pt-8">
           <TransitionLink href="/contact" className="cursor-pointer">
@@ -33,7 +33,7 @@ export default function HeroSection({ id }: HeroSectionProps) {
               whileTap={{ scale: 0.98 }}
               className="group cursor-pointer relative inline-flex items-center justify-between gap-8 pl-8 pr-3 py-3 bg-transparent border border-white/20 rounded-[14px] text-white hover:border-white/40 transition-all duration-500 overflow-hidden"
             >
-              <span className="text-base md:text-xl font-medium">Let's talk about it, make an appointment.</span>
+              <span className="text-base md:text-xl font-medium">Get in touch and let's build something great.</span>
               <div 
                 className="relative overflow-hidden w-12 h-12 md:w-14 md:h-14 rounded-[10px] bg-transparent border border-white/10 flex items-center justify-center transition-all duration-500 group-hover:text-black group-hover:border-transparent text-white/60"
               >
