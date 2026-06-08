@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
 
 interface Project {
   id: number;
@@ -12,6 +11,9 @@ interface Project {
   videoUrl?: string;
   techStack: string[];
   link?: string;
+  isGithub?: boolean;
+  tagPrefix?: string;
+  tagHighlighted?: string;
 }
 
 const projects: Project[] = [
@@ -22,68 +24,89 @@ const projects: Project[] = [
       "SINDARA is an integrated digital platform for Indonesian primary education teachers, offering digital guestbooks, professional consultations, numeracy/literacy modules, and interactive learning resources.",
     imageUrl: "/projects/sindara.png",
     techStack: ["SSO", "REST API", "Microservice", "Backend"],
-    link: "https://sindara.gurudikdas.kemendikdasmen.go.id/"
+    link: "https://sindara.gurudikdas.kemendikdasmen.go.id/",
+    tagPrefix: "for",
+    tagHighlighted: "Kemendikdas",
   },
   {
     id: 2,
-    title: "EDP Kejuruan (RTLBMTI)",
+    title: "EDP Kejuruan",
     description:
       "EDP Kejuruan is a real-time monitoring and evaluation platform for vocational teacher training, featuring live dashboards, comprehensive reporting, and user management.",
     imageUrl: "/projects/diklat.png",
-    techStack: ["Backend", "APi", "Server", "ci/cd"],
-    link: "https://edp.kejuruan.id/"
+    techStack: ["Backend", "API", "Server", "CI/CD"],
+    link: "https://github.com/RIfkiND/diklat",
+    isGithub: true,
+    tagPrefix: "for",
+    tagHighlighted: "BMTI Bandung",
   },
   {
     id: 3,
-    title: "Portfolio Website (This Site)",
+    title: "Koupii LMS",
     description:
-      "A personal portfolio site showcasing projects, skills, and professional background, with a modern, responsive design.",
-    imageUrl: "/projects/portofolio.png",
-    techStack: ["Next.js", "React", "Tailwind CSS", "Vercel"],
-    link: "/"
+      "A freelance backend project developed for Mager Coding (Vietnam), featuring a robust Laravel REST API and advanced Voice/AI integration.",
+    imageUrl: "/projects/Koupii-app.svg",
+    techStack: ["Laravel", "REST API", "Voice/AI", "Backend"],
+    link: "https://koupii.com/en",
+    tagPrefix: "for",
+    tagHighlighted: "Mager Coding",
   },
   {
     id: 4,
-    title: "Hasilbumi E-Commerce ",
+    title: "Hasilbumi",
     description:
       "Hasilbumi is an agricultural platform where I handled all backend and DevOps responsibilities, including API, database, and infrastructure.",
     imageUrl: "",
     videoUrl: "/vidios/hasilbumi.mp4",
-    techStack: ["Laravel", "Payment Gateway", "Vue",  "Stripe"],
-    link: "https://www.linkedin.com/in/rifki-nd/details/projects/1307333513/multiple-media-viewer/?locale=in_ID&profileId=ACoAAEeVC8oBE5xXklO_HJHfEKRPlrpTvI8oqVI&treasuryMediaId=1727884187244"
+    techStack: ["Laravel", "Payment Gateway", "Vue", "Stripe"],
+    link: "https://github.com/RIfkiND/HasilBumi",
+    isGithub: true
   },
-
 ];
 
-export default function ProjectShowcase(id : { id: string }) {
+export default function ProjectSection({ id }: { id?: string }) {
   return (
-    <section className="py-16 px-4 md:px-8 lg:px-16">
+    <section id={id} className="py-24 px-6 md:px-12 lg:px-20">
+       <motion.div
+        initial={{ opacity: 0, x: -200 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        className="absolute top-1/2 -translate-y-1/2 left-0 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] md:w-[700px] md:h-[700px] lg:w-[1200px] lg:h-[1200px] pointer-events-none z-0"
+        style={{
+          background:
+            "radial-gradient(circle at left center, rgba(35, 46, 35, 0.8) 0%, transparent 40%)",
+        }}
+      />
       <div className="max-w-[1400px] mx-auto">
-         <span className="text-brand text-sm font-medium tracking-wide">
-              • Project
-            </span>
-        <h2 className="text-3xl pt-2 md:text-4xl font-bold text-foreground text-lefth mb-12">
-          Featured Projects
-        </h2>
+        <div className="mb-16">
+          <span className="text-[#8ddd8d] text-sm font-medium tracking-wide uppercase mb-2 block">
+            Selected Works
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white tracking-tight">
+            My Projects
+          </h2>
+        </div>
 
-        <div className="flex flex-col gap-16 md:gap-24">
-          {projects.map((project, index) => {
-            const isEven = index % 2 === 0;
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
+          {projects.map((project) => {
+            const Wrapper = project.link ? "a" : "div";
+            const wrapperProps = project.link 
+              ? { href: project.link, target: "_blank", rel: "noopener noreferrer" } 
+              : {};
 
             return (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className={`flex flex-col ${
-                  isEven ? "md:flex-row" : "md:flex-row-reverse"
-                } gap-8 items-center`}
+                className="group flex flex-col"
               >
-                {/* Image Section */}
-                <div className="w-full md:w-1/2">
-                  <div className="relative aspect-video rounded-xl overflow-hidden shadow-lg">
+                <Wrapper {...wrapperProps} className="block w-full">
+                  {/* Image Container */}
+                  <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-3xl overflow-hidden bg-[#1a1a1a] mb-6 shadow-2xl">
                     {project.videoUrl ? (
                       <video
                         src={project.videoUrl}
@@ -91,48 +114,36 @@ export default function ProjectShowcase(id : { id: string }) {
                         loop
                         muted
                         playsInline
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     ) : project.imageUrl ? (
                       <Image
                         src={project.imageUrl}
                         alt={project.title}
                         fill
-                        className="object-cover transition-transform duration-300 hover:scale-105"
+                        className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                       />
-                    ) : (
-                      <div className="flex items-center justify-center w-full h-full bg-zinc-100 dark:bg-zinc-900">
-                        <span className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-zinc-300 dark:bg-zinc-800">
-                          <ArrowUpRight className="w-8 h-8 text-zinc-700 dark:text-zinc-200" />
-                        </span>
-                      </div>
-                    )}
+                    ) : null}
+                    
+                    {/* Subtle dark overlay that lifts on hover */}
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
                   </div>
-                </div>
+                </Wrapper>
 
-                {/* Text Section */}
-                <div className="w-full md:w-1/2 flex flex-col gap-4">
-                  <h3 className="text-2xl font-semibold text-foreground flex items-center gap-2">
-                    {project.link ? (
-                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center gap-1">
-                        {project.title}
-                        <ArrowUpRight className="w-4 h-4 inline-block text-primary/70" />
-                      </a>
-                    ) : project.title}
+                {/* Text Content */}
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between w-full px-2 gap-2">
+                  <h3 className="text-2xl md:text-3xl font-serif text-white group-hover:text-[#8ddd8d] transition-colors duration-300">
+                    {project.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    {project.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 text-sm font-medium bg-primary/10 text-primary rounded-full"
-                      >
-                        {tech}
+                  
+                  {project.tagHighlighted && (
+                    <span className="text-sm md:text-base font-medium text-white/50 tracking-wide flex items-center gap-1">
+                      {project.tagPrefix && <span>{project.tagPrefix}</span>}
+                      <span className="text-white/90 underline decoration-1 underline-offset-4">
+                        {project.tagHighlighted}
                       </span>
-                    ))}
-                  </div>
+                    </span>
+                  )}
                 </div>
               </motion.div>
             );
@@ -142,4 +153,3 @@ export default function ProjectShowcase(id : { id: string }) {
     </section>
   );
 }
-

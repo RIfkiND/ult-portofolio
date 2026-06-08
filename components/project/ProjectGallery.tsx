@@ -1,345 +1,212 @@
 "use client";
 
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpRight, Github, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { TransitionLink } from "@/components/ui/TransitionLink";
 import { useState } from "react";
-import { projects } from "@/components/data/ProjectData";
+import { projects, Project } from "@/components/data/ProjectData";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 const categories = ["All", "Backend", "DevOps", "Frontend", "Full Stack"];
 
-const featured = projects.slice(0, 3);
-
 export default function ProjectGallery() {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
-  const [featuredIndex, setFeaturedIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
+  const [hoveredProject, setHoveredProject] = useState<Project | null>(projects[0]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filteredProjects = selectedCategory === "All"
     ? projects
     : projects.filter(p => p.category === selectedCategory);
 
-  const paginate = (dir: number) => {
-    setDirection(dir);
-    setFeaturedIndex(i => (i + dir + featured.length) % featured.length);
-  };
+  const ITEMS_PER_PAGE = 3;
+  const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
+  const paginatedProjects = filteredProjects.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
 
-  const variants: Variants = {
-    enter: (d: number) => ({ x: d > 0 ? 60 : -60, opacity: 0 }),
-    center: { x: 0, opacity: 1, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
-    exit: (d: number) => ({ x: d > 0 ? -60 : 60, opacity: 0, transition: { duration: 0.25, ease: [0.4, 0, 1, 1] as [number, number, number, number] } }),
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    setCurrentPage(1);
   };
-
-  const current = featured[featuredIndex];
 
   return (
-    <section className="bg-zinc-950 text-white py-20 px-6 lg:px-8">
+    <section className="text-white py-32 px-6 lg:px-8 min-h-screen">
       <div className="max-w-[1400px] mx-auto">
-
-        {/* Featured Carousel */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-20"
-        >
-          <div className="flex items-center justify-between mb-6">
-            <p className="text-zinc-500 text-xs uppercase tracking-widest font-medium">Featured Projects</p>
-            <div className="flex items-center gap-3">
-              {/* Dot indicators */}
-              <div className="flex gap-1.5">
-                {featured.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => { setDirection(i > featuredIndex ? 1 : -1); setFeaturedIndex(i); }}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      i === featuredIndex ? "w-6 bg-white" : "w-1.5 bg-zinc-700 hover:bg-zinc-500"
-                    }`}
-                  />
-                ))}
-              </div>
-              {/* Arrow buttons */}
-              <button
-                onClick={() => paginate(-1)}
-                className="p-2 rounded-full border border-zinc-700 hover:border-white hover:bg-white/5 transition-all"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => paginate(1)}
-                className="p-2 rounded-full border border-zinc-700 hover:border-white hover:bg-white/5 transition-all"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
+        
+        {/* Top Header */}
+        <div className="relative z-50 flex flex-col mb-16 gap-8">
+          <div>
+            <h2 className="text-4xl md:text-6xl font-serif text-white mb-4">Selected Works</h2>
+            <p className="text-white/50 text-lg max-w-md">
+              A curated collection of backend architectures, scalable systems, and full-stack applications.
+            </p>
           </div>
+        </div>
 
-          {/* Slide */}
-          <div className="relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/40">
-            <AnimatePresence custom={direction} mode="wait">
-              <motion.div
-                key={current.id}
-                custom={direction}
+        {/* Main Interactive Layout */}
+        <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-16 relative">
+          
+          {/* Left Side - Project List */}
+          <div className="w-full lg:w-[45%] flex flex-col">
+            
+            {/* Mobile Filters (Hidden on Desktop) */}
+            <div className="lg:hidden flex flex-wrap gap-6 border-b border-white/10 pb-4 mb-10 w-fit">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => handleCategoryChange(category)}
+                  className={`text-sm tracking-widest uppercase transition-all duration-300 ${
+                    selectedCategory === category
+                      ? "text-[#8ddd8d] font-semibold"
+                      : "text-white/40 hover:text-white/80"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
 
-                initial="enter"
-                animate="center"
-                exit="exit"
-                className="group flex flex-col md:flex-row w-full"
-                variants={variants}
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={selectedCategory}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+                className="flex flex-col"
               >
-                {/* Image side */}
-                <div className="relative md:w-1/2 aspect-video overflow-hidden bg-zinc-800 shrink-0">
-                  {current.videoUrl ? (
-                    <video
-                      src={current.videoUrl}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  ) : current.imageUrl ? (
-                    <Image
-                      src={current.imageUrl}
-                      alt={current.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="flex items-center justify-center w-full h-full bg-zinc-900">
-                      <span className="text-8xl font-black text-zinc-800">{current.title.charAt(0)}</span>
-                    </div>
-                  )}
-                </div>
-                {/* Content side */}
-                <div className="flex flex-col justify-center p-8 md:p-12 flex-1">
-                  <span className="px-3 py-1 text-xs font-medium bg-brand/10 text-brand rounded-full border border-brand/20 w-fit mb-5">
-                    {current.category}
-                  </span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight group-hover:text-brand transition-colors">
-                    {current.title}
-                  </h2>
-                  <p className="text-zinc-400 leading-relaxed mb-8 max-w-lg">
-                    {current.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {current.techStack.map((tech) => (
-                      <span key={tech} className="px-3 py-1 text-xs font-medium bg-white/5 text-zinc-300 rounded-full border border-white/10">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="inline-flex items-center gap-4">
-                    <Link
-                      href={`/project/${current.id}`}
-                      className="inline-flex items-center gap-2 text-brand font-medium text-sm hover:gap-3 transition-all"
-                    >
-                      View Details <ArrowUpRight className="w-4 h-4" />
-                    </Link>
-                    {current.link && (
-                      <a
-                        href={current.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-zinc-400 font-medium text-sm hover:text-white transition-all"
+                {filteredProjects.length === 0 ? (
+                  <div className="py-12 text-white/40">No projects found for this category.</div>
+                ) : (
+                  <>
+                    {paginatedProjects.map((project, index) => (
+                      <TransitionLink
+                        href={`/project/${project.id}`}
+                        key={project.id}
+                        onMouseEnter={() => setHoveredProject(project)}
+                        className="group flex flex-col py-8 border-b border-white/10 cursor-pointer"
                       >
-                        Live Project <ExternalLink className="w-4 h-4" />
-                      </a>
+                        <div className="flex items-center justify-between">
+                          <h3 className="text-3xl md:text-5xl font-serif text-white/50 group-hover:text-white transition-colors duration-500">
+                            {project.title}
+                          </h3>
+                          <div className="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+                            <ArrowRight className="w-8 h-8 text-[#8ddd8d]" />
+                          </div>
+                        </div>
+                        
+                        {/* Details that expand on hover */}
+                        <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                          <div className="overflow-hidden">
+                            <div className="pt-6 flex flex-col gap-4">
+                              <p className="text-white/50 text-base md:text-lg leading-relaxed max-w-lg">
+                                {project.description}
+                              </p>
+                              <div className="flex flex-wrap gap-2">
+                                {project.techStack.slice(0, 4).map((tech) => (
+                                  <span key={tech} className="px-3 py-1 text-xs text-[#8ddd8d] border border-[#8ddd8d]/30 rounded-full">
+                                    {tech}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </TransitionLink>
+                    ))}
+
+                    {/* Pagination UI */}
+                    {totalPages > 1 && (
+                      <div className="flex items-center justify-between gap-4 mt-8 pt-4">
+                        <button
+                          onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                          disabled={currentPage === 1}
+                          className="p-3 border border-white/10 rounded-full text-white/50 hover:text-white hover:border-white/30 disabled:opacity-30 disabled:hover:border-white/10 transition-all"
+                        >
+                          <ChevronLeft className="w-5 h-5" />
+                        </button>
+                        <span className="text-white/50 text-sm font-medium tracking-widest uppercase">
+                          Page {currentPage} of {totalPages}
+                        </span>
+                        <button
+                          onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                          disabled={currentPage === totalPages}
+                          className="p-3 border border-white/10 rounded-full text-white/50 hover:text-white hover:border-white/30 disabled:opacity-30 disabled:hover:border-white/10 transition-all"
+                        >
+                          <ChevronRight className="w-5 h-5" />
+                        </button>
+                      </div>
                     )}
-                  </div>
-                </div>
+                  </>
+                )}
               </motion.div>
             </AnimatePresence>
           </div>
-        </motion.div>
 
-        {/* All Projects heading */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-zinc-500 text-xs uppercase tracking-widest font-medium mb-6"
-        >
-          All Projects
-        </motion.p>
-
-        {/* Category Filter */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap gap-3 mb-12"
-        >
-          {categories.map((category) => (
-            <motion.button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              whileTap={{ scale: 0.95 }}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                selectedCategory === category
-                  ? "bg-white text-zinc-950"
-                  : "bg-zinc-800/50 text-white hover:bg-zinc-800 border border-zinc-700"
-              }`}
-            >
-              {category}
-            </motion.button>
-          ))}
-        </motion.div>
-
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, index) => (
-              <Link
-                href={`/project/${project.id}`}
-                key={project.id}
-              >
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 16 }}
-                  transition={{ duration: 0.25, delay: index * 0.04, ease: "easeOut" }}
-                  onHoverStart={() => setHoveredId(project.id)}
-                  onHoverEnd={() => setHoveredId(null)}
-                  className="group relative bg-zinc-900/50 rounded-2xl overflow-hidden border border-zinc-800 hover:border-white/30 transition-colors duration-300 h-full"
-                >
-                {/* Image Container */}
-                <div className="relative aspect-video overflow-hidden bg-zinc-800">
-                  {project.videoUrl ? (
-                    <video
-                      src={project.videoUrl}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  ) : project.imageUrl ? (
-                    <Image
-                      src={project.imageUrl}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  ) : (
-                    <div className="flex items-center justify-center w-full h-full bg-linear-to-br from-zinc-800 to-zinc-900">
-                      <div className="text-6xl font-bold text-zinc-700">
-                        {project.title.charAt(0)}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Overlay on hover */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: hoveredId === project.id ? 1 : 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center gap-4"
+          {/* Right Side - Hover Image Display */}
+          <div className="hidden lg:flex w-full lg:w-[50%] flex-col relative h-full">
+            <div className="sticky top-32 flex flex-col gap-12 w-full">
+              
+              {/* Desktop Filters (Positioned strictly above the image) */}
+              <div className="flex flex-wrap gap-6 border-b border-white/10 pb-4 justify-end">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => handleCategoryChange(category)}
+                    className={`text-sm tracking-widest uppercase transition-all duration-300 ${
+                      selectedCategory === category
+                        ? "text-[#8ddd8d] font-semibold"
+                        : "text-white/40 hover:text-white/80"
+                    }`}
                   >
-                    {project.link && (
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.open(project.link, "_blank");
-                        }}
-                        className="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white hover:text-zinc-900 transition-colors"
-                      >
-                        <ExternalLink className="w-5 h-5" />
-                      </button>
-                    )}
-                    {project.github && (
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.open(project.github, "_blank");
-                        }}
-                        className="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white hover:text-zinc-900 transition-colors"
-                      >
-                        <Github className="w-5 h-5" />
-                      </button>
-                    )}
-                  </motion.div>
-                </div>
+                    {category}
+                  </button>
+                ))}
+              </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-xl font-semibold text-white transition-colors">
-                      {project.title}
-                    </h3>
-                    <ArrowUpRight className="w-5 h-5 text-zinc-500 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-                  </div>
-
-                  <p className="text-zinc-400 text-sm leading-relaxed mb-4 line-clamp-3">
-                    {project.description}
-                  </p>
-
-                  {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.techStack.slice(0, 3).map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 text-xs font-medium bg-white/10 text-white rounded-full border border-white/20"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.techStack.length > 3 && (
-                      <span className="px-3 py-1 text-xs font-medium text-zinc-500">
-                        +{project.techStack.length - 3}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                  {/* Category Badge */}
-                  <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 text-xs font-medium bg-zinc-900/90 backdrop-blur-sm text-white rounded-full border border-white/30">
-                      {project.category}
-                    </span>
-                  </div>
-                </motion.div>
-              </Link>
-            ))}
-          </AnimatePresence>
+              {/* Image Container */}
+              <div className="w-full aspect-video rounded-[20px] overflow-hidden bg-transparent shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative">
+                <AnimatePresence mode="wait">
+                  {hoveredProject && (
+                    <motion.div
+                      key={hoveredProject.id}
+                      initial={{ opacity: 0, scale: 1.05 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
+                      className="absolute inset-0 w-full h-full"
+                    >
+                      {hoveredProject.videoUrl ? (
+                        <video
+                          src={hoveredProject.videoUrl}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          className="w-full h-full object-cover"
+                        />
+                      ) : hoveredProject.imageUrl ? (
+                        <Image
+                          src={hoveredProject.imageUrl}
+                          alt={hoveredProject.title}
+                          fill
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-primary">
+                          <span className="text-8xl font-black text-white/5">{hoveredProject.title.charAt(0)}</span>
+                        </div>
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
         </div>
-
-        {/* Empty State */}
-        <AnimatePresence>
-          {filteredProjects.length === 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="text-center py-20 text-zinc-500"
-            >
-              No projects found in this category.
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 text-center"
-        >
-          <p className="text-zinc-400 mb-6">Want to see more of my work?</p>
-          <a
-            href="https://github.com/RIfkiND"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-zinc-950 rounded-full font-semibold hover:bg-zinc-200 transition-colors"
-          >
-            <Github className="w-5 h-5" />
-            Visit My GitHub
-            <ArrowUpRight className="w-4 h-4" />
-          </a>
-        </motion.div>
       </div>
     </section>
   );
 }
+

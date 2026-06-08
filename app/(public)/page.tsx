@@ -4,14 +4,22 @@ import Skill from '@/components/Home/SkillSection';
 import ExperienceSection from '@/components/Home/ExperienceSection';
 import LearnSection from '@/components/Home/LearnSection';
 import ProjectSection from '@/components/Home/ProjectSection';
+import HomeCta from '@/components/Home/HomeCta';
+import Preloader from '@/components/Home/Preloader';
+
 export default function HomePage() {
   return (
-    <div className='min-h-screen'>
+    <div className='min-h-screen '>
+      {/* <Preloader /> */}
       <Hero id='home' />
       <Skill id='skill' />
       <ExperienceSection id='experience' />
-      <LearnSection id= 'learn'/>
       <ProjectSection  id='project'/>
+      {/* 
+      // <ExperienceSection id='experience' />
+      // <LearnSection id= 'learn'/> */}
+      <HomeCta />
     </div>
   );
 }
+   

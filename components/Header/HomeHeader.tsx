@@ -47,21 +47,22 @@ export default function HomeHeader() {
   }, []);
 
 
-  const isContact = pathname === "/contact";
+  const isLightMode = pathname === "/contact" || pathname === "/project";
+  const isProject = pathname === "/project";
 
-  // The logo and header text should turn dark on the contact page
-  const logoTextColor = isContact ? "text-[#111111]" : "text-white";
-  const logoDividerColor = isContact ? "bg-black/30" : "bg-white/30";
+  // The logo and header text should turn dark on light mode pages
+  const logoTextColor = isLightMode ? "text-[#111111]" : "text-white";
+  const logoDividerColor = isLightMode ? "bg-black/30" : "bg-white/30";
   
-  // The container border should be dark on the contact page
-  const containerBorderColor = isContact ? "border-black" : "border-white/10";
-  const containerBorderSecondary = isContact ? "" : "border-[#1c1c1c]";
+  // The container border should be dark on light mode pages
+  const containerBorderColor = isLightMode ? "border-black" : "border-white/10";
+  const containerBorderSecondary = isLightMode ? "" : "border-[#1c1c1c]";
   
   // Mega menu background
-  const megaMenuBg = isContact ? "bg-transparent border-black shadow-xl" : "bg-black/40 border-white/20";
+  const megaMenuBg = isLightMode ? "bg-transparent border-black shadow-xl" : "bg-black/40 border-white/20";
 
-  // The header background is always transparent
-  const headerBgClass = "bg-transparent";
+  // The header background is white on project page
+  const headerBgClass = isProject ? "bg-transparent" : "bg-transparent";
 
   useEffect(() => {
     // When the route changes, animate the header back in!
@@ -72,7 +73,7 @@ export default function HomeHeader() {
   }, [pathname]);
 
   return (
-    <header id="main-header" className={`w-full z-40 font-sans transition-all duration-300 ${headerBgClass} ${isContact ? 'absolute top-0 left-0' : 'md:sticky md:top-0'}`}>
+    <header id="main-header" className={`w-full z-40 font-sans transition-all duration-300 ${headerBgClass} ${isLightMode ? 'absolute top-0 left-0' : 'md:sticky md:top-0'}`}>
       <div className="w-full px-6 md:px-10 lg:px-14 xl:px-20 pt-12">
         <nav className="flex items-center justify-between pb-6 relative"> 
           {/* Logo (always left) */}
@@ -118,13 +119,12 @@ export default function HomeHeader() {
               Project
             </TransitionLink>
             <TransitionLink
-              href={navHref("#experience")}
-              className="text-white hover:text-white transition-colors text-base uppercase tracking-wider font-normal rounded-md px-6 py-3 bg-neutral-800 hover:bg-zinc-800/50"
-              scroll={false}
+              href="/about-me"
+              className={`text-white hover:text-white transition-colors text-base uppercase tracking-wider font-normal rounded-md px-6 py-3 hover:bg-zinc-800/50 ${pathname === "/about-me" ? "bg-neutral-800/40" : "bg-neutral-800"}`}
             >
-              Experience
+              More About Me
             </TransitionLink>
-            <div className={`h-6 w-px mx-4 ${isContact ? 'bg-black/10' : 'bg-white/10'}`} />
+            <div className={`h-6 w-px mx-4 ${isLightMode ? 'bg-black/10' : 'bg-white/10'}`} />
             <TransitionLink href="/contact">
               <AnimatedButton className="mr-1" />
             </TransitionLink>
@@ -138,28 +138,22 @@ export default function HomeHeader() {
                 </div>
               </MobileNavHeader>
               <MobileNavMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} className="right-0 left-auto translate-x-0 w-56 mt-4">
-                <TransitionLink 
-                  href={navHref("#about")} 
-                  scroll={false} 
-                  onClick={() => setMenuOpen(false)}
-                  className="w-full text-white text-base uppercase tracking-wider font-medium hover:text-[#8ddd8d] transition-colors border-b border-white/10 pb-4"
-                >
-                  What i Offer
-                </TransitionLink>
+                <div className="w-full text-white text-base uppercase tracking-wider font-medium border-b border-white/10 pb-4 cursor-default">
+                  What I Offer
+                </div>
                 <TransitionLink 
                   href="/project" 
                   onClick={() => setMenuOpen(false)}
-                  className="w-full text-white text-base uppercase tracking-wider font-medium hover:text-[#8ddd8d] transition-colors border-b border-white/10 pb-4"
+                  className={`w-full text-base uppercase tracking-wider font-medium transition-colors border-b border-white/10 pb-4 block ${pathname === "/project" ? "text-[#8ddd8d]" : "text-white hover:text-[#8ddd8d]"}`}
                 >
                   Project
                 </TransitionLink>
                 <TransitionLink 
-                  href={navHref("#experience")} 
-                  scroll={false} 
+                  href="/about-me" 
                   onClick={() => setMenuOpen(false)}
-                  className="w-full text-white text-base uppercase tracking-wider font-medium hover:text-[#8ddd8d] transition-colors pb-2"
+                  className={`w-full text-base uppercase tracking-wider font-medium transition-colors pb-2 block ${pathname === "/about-me" ? "text-[#8ddd8d]" : "text-white hover:text-[#8ddd8d]"}`}
                 >
-                  Experience
+                  More About Me
                 </TransitionLink>
               </MobileNavMenu>
             </MobileNav>
@@ -195,15 +189,12 @@ export default function HomeHeader() {
                     variants={{ hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }, exit: { opacity: 0, y: 50, transition: { duration: 0.3, ease: "easeIn" } } }} 
                     className="flex-1"
                   >
-                    <TransitionLink href="/offer/backend" className="h-full bg-[#8ddd8d] text-black p-8 rounded-[24px] flex flex-col justify-between group hover:scale-[1.03] transition-transform min-h-[240px] shadow-2xl block">
+                    <div className="h-full bg-[#8ddd8d] text-black p-8 rounded-[24px] flex flex-col justify-between group hover:scale-[1.03] transition-transform min-h-[240px] shadow-2xl block">
                       <div>
                         <h3 className="text-3xl font-bold mb-3 leading-tight font-sans">Backend<br/>Architecture</h3>
                         <p className="text-sm font-medium opacity-80 max-w-[80%]">Robust APIs, microservices, and scalable database designs.</p>
                       </div>
-                      <div className="self-end mt-4 border border-black/20 rounded-full p-3 group-hover:bg-black/10 transition-colors">
-                        <ArrowRight className="w-5 h-5" />
-                      </div>
-                    </TransitionLink>
+                    </div>
                   </motion.div>
                   
                   {/* Yellow Card */}
@@ -211,15 +202,12 @@ export default function HomeHeader() {
                     variants={{ hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }, exit: { opacity: 0, y: 50, transition: { duration: 0.3, ease: "easeIn" } } }} 
                     className="flex-1"
                   >
-                    <TransitionLink href={navHref("#about")} className="h-full bg-[#f4e04d] text-black p-8 rounded-[24px] flex flex-col justify-between group hover:scale-[1.03] transition-transform min-h-[240px] shadow-2xl block">
+                    <div className="h-full bg-[#f4e04d] text-black p-8 rounded-[24px] flex flex-col justify-between group hover:scale-[1.03] transition-transform min-h-[240px] shadow-2xl block">
                       <div>
                         <h3 className="text-3xl font-bold mb-3 leading-tight font-sans">DevOps &<br/>Infrastructure</h3>
                         <p className="text-sm font-medium opacity-80 max-w-[80%]">Automated pipelines, Docker, and reliable cloud deployments.</p>
                       </div>
-                      <div className="self-end mt-4 border border-black/20 rounded-full p-3 group-hover:bg-black/10 transition-colors">
-                        <ArrowRight className="w-5 h-5" />
-                      </div>
-                    </TransitionLink>
+                    </div>
                   </motion.div>
 
                   {/* Blue Card */}
@@ -227,15 +215,12 @@ export default function HomeHeader() {
                     variants={{ hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }, exit: { opacity: 0, y: 50, transition: { duration: 0.3, ease: "easeIn" } } }} 
                     className="flex-1"
                   >
-                    <TransitionLink href={navHref("#about")} className="h-full bg-[#6b66ff] text-white p-8 rounded-[24px] flex flex-col justify-between group hover:scale-[1.03] transition-transform min-h-[240px] shadow-2xl block">
+                    <div className="h-full bg-[#6b66ff] text-white p-8 rounded-[24px] flex flex-col justify-between group hover:scale-[1.03] transition-transform min-h-[240px] shadow-2xl block">
                       <div>
                         <h3 className="text-3xl font-bold mb-3 leading-tight font-sans">Distributed<br/>Systems</h3>
                         <p className="text-sm font-medium opacity-80 max-w-[80%]">High-performance applications handling millions of requests.</p>
                       </div>
-                      <div className="self-end mt-4 border border-white/20 rounded-full p-3 group-hover:bg-white/10 transition-colors">
-                        <ArrowRight className="w-5 h-5" />
-                      </div>
-                    </TransitionLink>
+                    </div>
                   </motion.div>
 
                 </div>
