@@ -1,11 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, HTMLMotionProps } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import React from "react";
 
-interface AnimatedButtonProps extends React.HTMLAttributes<HTMLDivElement> {
+interface AnimatedButtonProps extends HTMLMotionProps<"div"> {
   text?: string;
   defaultBg?: string;
   hoverBg?: string;
