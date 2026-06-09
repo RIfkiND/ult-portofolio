@@ -17,22 +17,11 @@ export default function EducationSection({ id }: { id?: string }) {
           {/* Card 1: Self Learn (White Style) */}
           <div className="group flex flex-col">
             <div className="relative w-full h-[600px] lg:h-[750px] xl:h-[850px] bg-white rounded-[20px] overflow-hidden cursor-pointer">
-              {/* Front view (Images placeholder + Title) */}
-              <div className="absolute inset-0 p-6 flex flex-col justify-between group-hover:opacity-0 transition-opacity duration-300">
-                {/* Placeholder for images */}
-                <div className="flex-1 w-full flex gap-4 p-4 opacity-50 bg-gray-100 rounded-xl mb-6 items-center justify-center">
-                  <span className="text-gray-400 text-sm">(Image Placeholder)</span>
-                </div>
-                <h3 className="text-3xl lg:text-4xl font-medium text-black uppercase tracking-tight">
-                  Self<br />Learn
-                </h3>
-              </div>
-
-              {/* Hover overlay that slides up */}
-              <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.22,1,0.36,1] flex flex-col justify-center p-8 lg:p-12">
-                <div className="text-center mb-10">
-                  <h4 className="text-xl font-bold uppercase tracking-widest text-black mb-2">Self</h4>
-                  <h4 className="text-xl font-bold uppercase tracking-widest text-black">Learn</h4>
+              {/* Front view (Text only) */}
+              <div className="absolute inset-0 flex flex-col justify-center p-8 lg:p-12 bg-white">
+                <div className="text-center mb-10 transition-transform duration-500 group-hover:-translate-y-2">
+                  <h4 className="text-2xl font-bold uppercase tracking-widest text-black mb-2">Self</h4>
+                  <h4 className="text-2xl font-bold uppercase tracking-widest text-black">Learn</h4>
                 </div>
                 <p className="text-black/80 text-sm lg:text-base leading-relaxed text-center">
                   Continuously exploring advanced web technologies and backend systems outside of my formal school curriculum to build <span className="font-bold text-black">real-world, scalable applications.</span>
@@ -78,22 +67,34 @@ export default function EducationSection({ id }: { id?: string }) {
 
               {/* Content */}
               <div className="absolute bottom-8 right-8 z-20 text-right group-hover:opacity-0 transition-opacity duration-300">
-                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center ml-auto mb-4 shadow-lg group-hover:rotate-12 transition-transform">
-                  <span className="text-[#3b5cf0] font-bold text-xl">S</span>
-                </div>
                 <h3 className="text-white font-bold text-2xl lg:text-3xl mb-1">SMKN 1</h3>
                 <h3 className="text-white font-bold text-2xl lg:text-3xl">Ciamis</h3>
               </div>
 
               {/* Hover overlay that slides up */}
-              <div className="absolute inset-0 bg-[#1a1a1a] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.22,1,0.36,1] flex flex-col justify-center p-8 lg:p-12 z-30">
-                <div className="text-center mb-10">
-                  <h4 className="text-xl font-bold uppercase tracking-widest text-white mb-2">SMKN 1</h4>
-                  <h4 className="text-xl font-bold uppercase tracking-widest text-white">Ciamis</h4>
+              <div className="absolute inset-0 bg-[#eff4ff] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.22,1,0.36,1] flex flex-col items-center justify-between p-10 lg:p-14 z-30">
+                
+                {/* Logo Section */}
+                <div className="flex-1 flex flex-col items-center justify-center w-full">
+                  <div className="relative w-24 md:w-32 h-24 md:h-32 mb-4">
+                    <Image 
+                      src="/images/education/smk.png" 
+                      alt="SMKN 1 Ciamis Logo" 
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <span className="text-[#3b5cf0] font-bold tracking-[0.3em] uppercase text-xs md:text-sm">
+                    SMKN 1 Ciamis
+                  </span>
                 </div>
-                <p className="text-white/80 text-sm lg:text-base leading-relaxed text-center">
-                  Built a strong foundation in software engineering, networking, and core programming principles to <span className="font-bold text-white">kickstart my technical journey.</span>
-                </p>
+
+                {/* Text Section */}
+                <div className="w-full">
+                  <p className="text-[#333333] text-sm lg:text-[15px] leading-relaxed text-center font-medium">
+                    Built a strong foundation in software engineering, networking, and core programming principles to <span className="font-bold text-black">kickstart my technical journey.</span>
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -141,7 +142,7 @@ export default function EducationSection({ id }: { id?: string }) {
               </div>
 
               {/* Hover overlay that slides up */}
-              <div className="absolute inset-0 bg-[#f4f4f4] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.22,1,0.36,1] flex flex-col items-center justify-between p-10 lg:p-14 z-30">
+              <div className="absolute inset-0 bg-[#fef2f2] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.22,1,0.36,1] flex flex-col items-center justify-between p-10 lg:p-14 z-30">
                 
                 {/* Logo Section */}
                 <div className="flex-1 flex flex-col items-center justify-center w-full">

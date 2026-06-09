@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ArrowRight, ChevronUp } from "lucide-react";
 import Image from "next/image";
 import {
-  education,
+  educations,
   experiences,
   certificates,
   competitions
@@ -51,10 +51,10 @@ export default function ExperienceSection(id: { id: string }) {
             </h2>
           </div>
           
-          <div className="flex gap-4">
+          <div className="flex gap-3 md:gap-4 overflow-x-auto w-[calc(100%+3rem)] -mx-6 px-6 md:w-full md:mx-0 md:px-0 pb-2 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             <button
               onClick={() => setActiveTab("experience")}
-              className={`text-xs md:text-sm font-semibold tracking-widest uppercase px-10 py-4 transition-all duration-300 border ${
+              className={`shrink-0 whitespace-nowrap text-xs md:text-sm font-semibold tracking-widest uppercase px-8 md:px-10 py-3 md:py-4 transition-all duration-300 border ${
                 activeTab === "experience" 
                   ? "bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.1)]" 
                   : "bg-transparent text-white/40 border-white/20 hover:text-white hover:border-white/50"
@@ -64,7 +64,7 @@ export default function ExperienceSection(id: { id: string }) {
             </button>
             <button
               onClick={() => setActiveTab("education")}
-              className={`text-xs md:text-sm font-semibold tracking-widest uppercase px-10 py-4 transition-all duration-300 border ${
+              className={`shrink-0 whitespace-nowrap text-xs md:text-sm font-semibold tracking-widest uppercase px-8 md:px-10 py-3 md:py-4 transition-all duration-300 border ${
                 activeTab === "education" 
                   ? "bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.1)]" 
                   : "bg-transparent text-white/40 border-white/20 hover:text-white hover:border-white/50"
@@ -74,7 +74,7 @@ export default function ExperienceSection(id: { id: string }) {
             </button>
             <button
               onClick={() => setActiveTab("certificates")}
-              className={`text-xs md:text-sm font-semibold tracking-widest uppercase px-10 py-4 transition-all duration-300 border ${
+              className={`shrink-0 whitespace-nowrap text-xs md:text-sm font-semibold tracking-widest uppercase px-8 md:px-10 py-3 md:py-4 transition-all duration-300 border ${
                 activeTab === "certificates" 
                   ? "bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.1)]" 
                   : "bg-transparent text-white/40 border-white/20 hover:text-white hover:border-white/50"
@@ -84,7 +84,7 @@ export default function ExperienceSection(id: { id: string }) {
             </button>
             <button
               onClick={() => setActiveTab("achievements")}
-              className={`text-xs md:text-sm font-semibold tracking-widest uppercase px-10 py-4 transition-all duration-300 border ${
+              className={`shrink-0 whitespace-nowrap text-xs md:text-sm font-semibold tracking-widest uppercase px-8 md:px-10 py-3 md:py-4 transition-all duration-300 border ${
                 activeTab === "achievements" 
                   ? "bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.1)]" 
                   : "bg-transparent text-white/40 border-white/20 hover:text-white hover:border-white/50"
@@ -206,49 +206,55 @@ export default function ExperienceSection(id: { id: string }) {
               </div>
 
               {/* Education section */}
-              <div className="group border-b border-white/10 py-12 md:px-4 transition-colors duration-500 hover:bg-white/[0.03]">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                  
-                  {/* Left: Image and Title */}
-                  <div className="md:col-span-5 flex items-center gap-6">
-                    <div className="w-20 h-20 rounded-2xl bg-white p-4 flex items-center justify-center shrink-0 shadow-lg">
-                      <div className="relative w-full h-full">
-                        <Image
-                          src={education.image}
-                          alt={education.university}
-                          fill
-                          className="object-contain"
-                        />
+              {educations.map((edu, index) => (
+                <div key={index} className="group border-b border-white/10 py-12 md:px-4 transition-colors duration-500 hover:bg-white/[0.03]">
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    
+                    {/* Left: Image and Title */}
+                    <div className="md:col-span-5 flex items-center gap-6">
+                      <div className="w-20 h-20 rounded-2xl bg-white p-4 flex items-center justify-center shrink-0 shadow-lg">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={edu.image}
+                            alt={edu.university}
+                            fill
+                            className="object-contain"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-normal text-white group-hover:text-[#8ddd8d] transition-colors duration-300">
+                          {edu.degree}
+                        </h3>
+                        <p className="text-white/40 mt-2 text-sm uppercase tracking-wider font-medium group-hover:text-white/80 transition-colors">
+                          {edu.university}
+                        </p>
                       </div>
                     </div>
-                    <div>
-                      <h3 className="text-2xl font-normal text-white group-hover:text-[#8ddd8d] transition-colors duration-300">
-                        {education.degree}
-                      </h3>
-                      <p className="text-white/40 mt-2 text-sm uppercase tracking-wider font-medium group-hover:text-white/80 transition-colors">
-                        {education.university}
+
+                    {/* Middle: Description */}
+                    <div className="md:col-span-5 pr-4">
+                      <p className="text-white/60 text-sm md:text-[15px] leading-relaxed font-light group-hover:text-white/80 transition-colors duration-300">
+                        {edu.description}
+                        {edu.gpa && (
+                          <>
+                            <br className="hidden md:block" />
+                            <span className="text-[#8ddd8d] font-mono mt-2 inline-block">GPA: {edu.gpa}</span>
+                          </>
+                        )}
                       </p>
                     </div>
-                  </div>
 
-                  {/* Middle: Description */}
-                  <div className="md:col-span-5 pr-4">
-                    <p className="text-white/60 text-sm md:text-[15px] leading-relaxed font-light group-hover:text-white/80 transition-colors duration-300">
-                      Currently pursuing my degree with a focus on backend architecture, software engineering principles, and distributed systems. 
-                      <br className="hidden md:block" />
-                      <span className="text-[#8ddd8d] font-mono mt-2 inline-block">GPA: {education.gpa}</span>
-                    </p>
-                  </div>
+                    {/* Right: Date */}
+                    <div className="md:col-span-2 flex md:justify-end">
+                      <span className="text-white/40 font-mono text-sm uppercase tracking-wider transition-colors duration-300 bg-transparent border-l-2 border-white/10 pl-4 py-1 group-hover:border-[#8ddd8d] group-hover:text-white">
+                        {edu.years}
+                      </span>
+                    </div>
 
-                  {/* Right: Date */}
-                  <div className="md:col-span-2 flex md:justify-end">
-                    <span className="text-white/40 font-mono text-sm uppercase tracking-wider transition-colors duration-300 bg-transparent border-l-2 border-white/10 pl-4 py-1 group-hover:border-[#8ddd8d] group-hover:text-white">
-                      {education.years}
-                    </span>
                   </div>
-
                 </div>
-              </div>
+              ))}
             </motion.div>
           )}
 
@@ -285,7 +291,7 @@ export default function ExperienceSection(id: { id: string }) {
                         href={cert.url} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-[#8ddd8d] font-medium text-sm tracking-widest uppercase border border-[#8ddd8d] px-6 py-2 rounded-full hover:bg-[#8ddd8d] hover:text-[#111111] transition-all duration-300 flex items-center gap-2"
+                        className="text-white font-medium text-sm tracking-widest uppercase border border-white/20 px-6 py-2 rounded-full hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2"
                       >
                         View Credential <ArrowRight className="w-4 h-4" />
                       </a>

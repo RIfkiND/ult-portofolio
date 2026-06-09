@@ -54,6 +54,17 @@ const projects = [
     link: "https://github.com/RIfkiND/HasilBumi",
     isGithub: true,
   },
+  {
+    id: 5,
+    title: "AKUPUNYAKASUS",
+    description: "A hobby project built to analyze legal cases using AI. Integrated with Grok and Gemini AI for advanced analysis, and utilizes the pasal.id API for fetching Indonesian laws (hukum, KUHP, etc.).",
+    techStack: ["Next.js", "Golang", "Grok AI", "Gemini AI", "Pasal.id API"],
+    category: "Hobbies / Fun",
+    imageUrl: "/projects/akupunyakasus-app.png",
+    bgColor: "#1a3622", // Dark Green
+    link: "https://github.com/RIfkiND", // Assuming github link or placeholder
+    isGithub: true,
+  },
 ];
 
 const ALL_CATEGORY = "All";

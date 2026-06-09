@@ -3,8 +3,10 @@ import  HomeHeader  from '@/components/Header/HomeHeader';
 import PageLoader from '@/components/ui/page-loader';
 import { Suspense } from 'react';
 import Footer from '@/components/Footer/Footer';
+import DynamicTitle from '@/components/ui/DynamicTitle';
+
 export const metadata: Metadata = {
-  title: 'Portfolio - Rifki',
+  title: 'Rifki ND',
   description: ' Backend developer from indonesia',
 };
 
@@ -15,6 +17,7 @@ export default function PublicLayout({
 }) {
   return (
     <>
+      <DynamicTitle />
       <HomeHeader />
       <Suspense>
         {children}

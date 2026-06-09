@@ -73,9 +73,9 @@ export default function HomeHeader() {
   }, [pathname]);
 
   return (
-    <header id="main-header" className={`w-full z-40 font-sans transition-all duration-300 ${headerBgClass} ${isLightMode ? 'absolute top-0 left-0' : 'md:sticky md:top-0'}`}>
-      <div className="w-full px-6 md:px-10 lg:px-14 xl:px-20 pt-12">
-        <nav className="flex items-center justify-between pb-6 relative"> 
+    <header id="main-header" className={`w-full z-40 font-sans transition-all duration-300 ${headerBgClass} ${isLightMode ? 'absolute top-0 left-0' : 'sticky top-0'}`}>
+      <div className="w-full px-6 md:px-10 lg:px-14 xl:px-20 pt-6 md:pt-12">
+        <nav className="flex items-center justify-between pb-4 md:pb-6 relative"> 
           {/* Logo (always left) */}
           <TransitionLink href="/" className="flex items-center gap-4">
             <motion.div
@@ -138,9 +138,6 @@ export default function HomeHeader() {
                 </div>
               </MobileNavHeader>
               <MobileNavMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} className="right-0 left-auto translate-x-0 w-56 mt-4">
-                <div className="w-full text-white text-base uppercase tracking-wider font-medium border-b border-white/10 pb-4 cursor-default">
-                  What I Offer
-                </div>
                 <TransitionLink 
                   href="/project" 
                   onClick={() => setMenuOpen(false)}
@@ -151,9 +148,16 @@ export default function HomeHeader() {
                 <TransitionLink 
                   href="/about-me" 
                   onClick={() => setMenuOpen(false)}
-                  className={`w-full text-base uppercase tracking-wider font-medium transition-colors pb-2 block ${pathname === "/about-me" ? "text-[#8ddd8d]" : "text-white hover:text-[#8ddd8d]"}`}
+                  className={`w-full text-base uppercase tracking-wider font-medium transition-colors border-b border-white/10 pb-4 pt-4 block ${pathname === "/about-me" ? "text-[#8ddd8d]" : "text-white hover:text-[#8ddd8d]"}`}
                 >
                   More About Me
+                </TransitionLink>
+                <TransitionLink 
+                  href="/contact" 
+                  onClick={() => setMenuOpen(false)}
+                  className={`w-full text-base uppercase tracking-wider font-medium transition-colors pt-4 pb-2 block ${pathname === "/contact" ? "text-[#8ddd8d]" : "text-white hover:text-[#8ddd8d]"}`}
+                >
+                  Contact
                 </TransitionLink>
               </MobileNavMenu>
             </MobileNav>
