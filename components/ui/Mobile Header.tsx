@@ -69,7 +69,6 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       }}
       className={cn(
         "relative z-50 flex w-full flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden",
-        visible && "bg-neutral-950/80",
         className,
       )}
     >

@@ -12,9 +12,10 @@ export interface ExperienceItem {
 export interface EducationItem {
   university: string;
   degree: string;
-  gpa: string;
+  gpa?: string;
   years: string;
   image: string;
+  description: string;
 }
 
 export interface CertificateItem {
@@ -74,13 +75,23 @@ export const experiences: ExperienceItem[] = [
   },
 ];
 
-export const education: EducationItem = {
-  university: "Telkom University",
-  degree: "Bachelor of Software Engineering",
-  gpa: "3.66/4",
-  years: "2025 - present",
-  image: "/images/education/telkom.png",
-};
+export const educations: EducationItem[] = [
+  {
+    university: "Telkom University",
+    degree: "Bachelor of Software Engineering",
+    gpa: "3.66/4",
+    years: "2025 - present",
+    image: "/images/education/telkom.png",
+    description: "Currently pursuing my degree with a focus on backend architecture, software engineering principles, and distributed systems.",
+  },
+  {
+    university: "SMKN 1 Ciamis",
+    degree: "Software Engineering (RPL)",
+    years: "2022 - 2025",
+    image: "/images/education/smk.png",
+    description: "Built a strong foundation in software engineering, networking, and core programming principles.",
+  }
+];
 
 export const certificates: CertificateItem[] = [
   {

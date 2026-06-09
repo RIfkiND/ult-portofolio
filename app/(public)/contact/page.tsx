@@ -64,10 +64,10 @@ export default function ContactPage() {
             <div className="h-px w-full max-w-xl bg-black/10" />
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-12 sm:gap-20">
+            <div className="flex flex-col gap-10 sm:gap-20 w-full">
               {/* First Action */}
-              <a href="mailto:rifkinauvaldzaki08@gmail.com" className="flex items-center gap-6 group cursor-pointer">
-                <p className="text-xl sm:text-2xl text-black/70 max-w-[200px] font-sans leading-tight">
+              <a href="mailto:rifkinauvaldzaki08@gmail.com" className="flex flex-row items-center justify-between sm:justify-start gap-4 sm:gap-6 group cursor-pointer w-full sm:w-auto">
+                <p className="text-lg sm:text-2xl text-black/70 max-w-[180px] sm:max-w-[200px] font-sans leading-tight">
                   Let&apos;s talk about your technical challenges!
                 </p>
                 <AnimatedButton
@@ -85,8 +85,8 @@ export default function ContactPage() {
               </a>
 
               {/* Second Action */}
-              <a href="mailto:rifkinauvaldzaki08@gmail.com" className="flex items-center gap-6 group cursor-pointer">
-                <p className="text-xl sm:text-2xl text-black/70 max-w-[140px] font-sans leading-tight">
+              <a href="mailto:rifkinauvaldzaki08@gmail.com" className="flex flex-row items-center justify-between sm:justify-start gap-4 sm:gap-6 group cursor-pointer w-full sm:w-auto">
+                <p className="text-lg sm:text-2xl text-black/70 max-w-[140px] font-sans leading-tight">
                   Have an idea?<br />
                   Write to me.
                 </p>
